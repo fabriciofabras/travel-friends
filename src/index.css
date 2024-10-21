@@ -1,0 +1,163 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+
+body,
+html {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.main-container {
+  min-height: 100%;
+  /* Hace que el contenedor ocupe al menos la altura completa de la ventana */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* Esto distribuye el contenido correctamente */
+  width: 100%
+}
+
+.navbar {
+  background-color: #9e1414;
+}
+
+.menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.menu-item {
+  position: relative;
+}
+
+.menu-item a {
+  display: block;
+  padding: 15px 20px;
+  color: white;
+  text-decoration: none;
+}
+
+.menu-item a:hover {
+  background-color: rgb(39, 106, 199);
+
+}
+
+/* Estilo para el menú desplegable */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #333;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  min-width: 150px;
+}
+
+.dropdown-menu li a {
+  padding: 10px 20px;
+}
+
+.dropdown-menu li a:hover {
+  background-color: rgb(39, 106, 199);
+}
+
+/* Mostrar el menú desplegable al pasar el ratón sobre el elemento principal */
+.menu-item.dropdown:hover .dropdown-menu {
+  background-color: rgb(31 41 55);
+  display: block;
+}
+
+.mi-div {
+  background-image: url(./assets/hero.jpg);
+  background-size: cover;
+  /* Ajusta la imagen para que cubra todo el div */
+  background-position: center;
+  mask-image: linear-gradient(black 70%, transparent);
+
+}
+
+.navlink {
+  color: gray;
+}
+
+.navlink:hover {
+  color: #004c97;
+  font-size: 17px;
+}
+
+
+.mi-div-nosotros {
+  background-color: white;
+  background-size: cover;
+  /* Ajusta la imagen para que cubra todo el div */
+  background-position: center;
+}
+
+/* Opcional: Ajuste adicional */
+footer {
+  margin-top: auto;
+  /* Esto empuja el footer hacia abajo solo si es necesario */
+  padding-bottom: 20px;
+  /* Agrega espacio para el contenido final sin generar scroll */
+}
+
+/* Fija la sección del título, búsqueda y botón */
+
+/* Hacer que la tabla tenga un área de desplazamiento */
+.scrollable-section {
+  max-height: calc(100vh - 270px);
+  /* Ajustar según la altura de la sección fija */
+  overflow-y: auto;
+}
+
+/* Aplica al encabezado (fila de th) */
+thead th {
+  position: sticky;
+  top: 0;
+  /* Fija la fila de encabezado en la parte superior al hacer scroll vertical */
+  z-index: 3;
+  /* Mayor valor para que esté por encima de las celdas */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  /* Sombra opcional para un efecto visual */
+}
+
+/* Aplica a la primera columna de cada fila */
+th:first-child,
+td:first-child {
+  position: sticky;
+  left: 0;
+  /* Fija la primera columna en el borde izquierdo al hacer scroll horizontal */
+  z-index: 2;
+  /* Menor valor que el encabezado, pero mayor que las otras celdas */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  /* Sombra opcional para un mejor efecto */
+}
+
+thead th:first-child {
+  position: sticky;
+  top: 0;
+  /* Fija el encabezado en la parte superior */
+  left: 0;
+  /* Fija también la primera columna al borde izquierdo */
+  z-index: 4;
+  /* Valor más alto para que esté sobre el resto del contenido */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  /* Sombra opcional */
+}
