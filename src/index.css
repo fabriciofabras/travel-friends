@@ -94,12 +94,14 @@ code {
 }
 
 .navlink {
-  color: gray;
+  color: #d59319;
+  font-family: "Trebuchet";
 }
 
 .navlink:hover {
   color: #004c97;
   font-size: 17px;
+  font-family: "Trebuchet";
 }
 
 

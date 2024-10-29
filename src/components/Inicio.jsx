@@ -20,8 +20,9 @@ export const Inicio = () => {
                     </div>
                     <div class="flex flex-col w-1/2">
                         <div>
-                            <a class="text-balance text-2xl font-bold text-[#004c97] sm:text-6xl">Travel Friend's</a>
-                            <p class="mt-6 text-lg leading-8 text-[#004c97]">Transformamos tus sueños, en viajes inolvidables</p>
+                        <a class="text-balance text-2xl font-bold text-[#e35724] sm:text-6xl font-['Trebuchet']">travel</a>
+                        <a class="text-balance text-2xl font-bold text-[#005ae0] sm:text-6xl font-['Trebuchet']">friends.com.mx</a>
+                        <p class="mt-6 text-lg leading-8 text-[#004c97] font-['Trebuchet']">Transformamos tus sueños, en viajes inolvidables</p>
                         </div>
                         <div class="mt-10 flex items-center justify-center gap-x-6">
                             <a href="#" class="rounded-md bg-[#004c97] px-3.5 py-2.5 text-sm font-semibold text-white hover:text-[#004c97] shadow-sm hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Cotizar alojamientos</a>
