@@ -1,3 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: 'trebuchet';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(./assets/fonts/trebuchet-ms-2-webfont/Trebuchet-MS-Italic.woff) format('woff2');
+  }
+}
+
 .App {
   text-align: center;
 }
@@ -36,3 +50,4 @@
     transform: rotate(360deg);
   }
 }
+
