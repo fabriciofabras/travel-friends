@@ -20,7 +20,7 @@ export const Cotiza = () => {
                 </div> */}
 
 
-                <div class="grid grid-cols-3 gap-4 border">
+                <div class="grid grid-cols-1 sm:grid-cols-3  gap-4 border">
 
                     {
                         promociones.Promotions.map((promocion, index) => {
