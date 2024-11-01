@@ -6,7 +6,7 @@ import { TravelRoutes } from './routes/TravelRoutes';
 
 function App() {
   return (
-    <main className="mi-div main-container text-sky-950 body-font">
+    <main className="main-container text-sky-950 body-font">
       <BrowserRouter>
         <TravelRoutes />
       </BrowserRouter>

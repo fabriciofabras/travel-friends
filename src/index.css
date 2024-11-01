@@ -20,6 +20,32 @@ code {
     monospace;
 }
 
+.titulo-promociones {
+  font-size: 22px;
+  font-weight: bold;
+  color: #005ae0;
+  font-family: 'Trebuchet'
+}
+
+.descripcion-promociones {
+  font-size: 14px;
+  font-weight: normal;
+  color: #7e7e7e;
+  font-family: 'Trebuchet'
+}
+
+.policies-promociones {
+  font-size: 11px;
+  font-weight: normal;
+  color: #7e7e7e;
+  font-family: 'Trebuchet'
+}
+
+.precio {
+  font-size: 24px;
+  font-weight:bold
+}
+
 .main-container {
   min-height: 100%;
   /* Hace que el contenedor ocupe al menos la altura completa de la ventana */

@@ -22,6 +22,7 @@ export const TravelRoutes = () => {
 
             <div className="container">
                 <Routes>
+                <Route path="/" element={<Inicio />}></Route>
                 <Route path="/inicio" element={<Inicio />}></Route>
                 <Route path="/nosotros" element={<Nosotros />}></Route>
                 <Route path="/cotiza" element={<Cotiza />}></Route>

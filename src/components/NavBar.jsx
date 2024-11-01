@@ -30,19 +30,19 @@ export const NavBar = () => {
                 >        <HomeIcon className="h-6 w-6 inline-block mr-2" />
 
                     Inicio
-                </NavLink><NavLink className="navlink"
+                </NavLink>{/* <NavLink className="navlink"
                     to="/nosotros"
                 ><UserGroupIcon className="h-6 w-6 inline-block mr-2" />
                     Nosotros
-                </NavLink><NavLink className="navlink"
+                </NavLink> */}<NavLink className="navlink"
                     to="/cotiza"
                 ><BuildingOfficeIcon className="h-6 w-6 inline-block mr-2"/>
-                    Alojamientos
-                </NavLink><NavLink className="navlink"
+                    Promociones
+                </NavLink>{/* <NavLink className="navlink"
                     to="/contacto"
                 ><ChatBubbleOvalLeftIcon className="h-6 w-6 inline-block mr-2"/>
                     Contacto
-                </NavLink>
+                </NavLink> */}
                 {/* <a href="/inicio" class="text-sm font-semibold leading-6 text-gray-900">Inicio</a>
                 <a href="/nosotros" class="text-sm font-semibold leading-6 text-gray-900">Nosotros</a>
                 <a href="/cotiza" class="text-sm font-semibold leading-6 text-gray-900">Cotiza</a>

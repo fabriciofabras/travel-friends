@@ -3,7 +3,7 @@ import { ChatBubbleOvalLeftIcon } from "@heroicons/react/24/outline"
 export const Inicio = () => {
 
     return (
-        <div class="relative isolate px-2 pt-2 lg:px-2">
+        <div class="mi-div relative isolate px-2 pt-2 lg:px-2">
             <div class="absolute inset-x-0 -top-40 -z-10 overflow-hidden  sm:-top-80" aria-hidden="true">
                 <div ></div>
             </div>
