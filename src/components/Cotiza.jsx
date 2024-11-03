@@ -20,7 +20,7 @@ export const Cotiza = () => {
                 </div> */}
 
 
-                <div class="grid grid-cols-1 sm:grid-cols-3  gap-4 border">
+                <div class="grid grid-cols-1 sm:grid-cols-3  gap-6 ">
 
                     {
                         promociones.Promotions.map((promocion, index) => {
@@ -29,8 +29,8 @@ export const Cotiza = () => {
                             console.log("promotionDetail")
                             console.log(promotionDetail)
                             return (
-                                <div class="flex flex-col pt-5 mx-8 w-3/3 bg-opacity-60 rounded-2xl">
-                                    <img src={promocion.UrlImage}></img>
+                                <div class="flex flex-col  w-3/3 bg-opacity-60 rounded-2xl">
+                                    <img className="rounded-lg" src={promocion.UrlImage}></img>
                                     <div className="m-2 mb-0">
                                         <h1 className="titulo-promociones">{promocion.Name}
                                             <div className="flex space-x-1">
