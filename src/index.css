@@ -111,12 +111,18 @@ code {
 }
 
 .mi-div {
-  background-image: url(./assets/hero.jpg);
+  background-image: url(./assets/hero-mini.jpg);
   background-size: cover;
   /* Ajusta la imagen para que cubra todo el div */
   background-position: center;
   mask-image: linear-gradient(black 70%, transparent);
 
+}
+
+@media (min-width: 640px) {
+  .mi-div {
+    background-image: url(./assets/hero.jpg);
+  }
 }
 
 .navlink {
