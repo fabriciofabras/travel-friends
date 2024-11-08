@@ -29,7 +29,7 @@ export const Cotiza = () => {
                             console.log("promotionDetail")
                             console.log(promotionDetail)
                             return (
-                                <div class="flex flex-col  w-3/3 bg-opacity-60 rounded-2xl">
+                                <div class="flex flex-col  w-3/3 rounded-2xl">
                                     <img className="rounded-lg" src={promocion.UrlImage}></img>
                                     <div className="m-2 mb-0">
                                         <h1 className="titulo-promociones">{promocion.Name}

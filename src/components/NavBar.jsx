@@ -29,11 +29,11 @@ export const NavBar = () => {
             </div>
 
             <div className={`lg:hidden ${isMenuOpen ? 'block' : 'hidden'} absolute top-16 left-0 right-0 bg-white p-4 shadow-lg`}>
-                <NavLink className="block py-2 text-gray-900 hover:bg-gray-100" to="/inicio">
+                <NavLink onClick={toggleMenu} className="block py-2 text-gray-900 hover:bg-gray-100" to="/inicio">
                     <HomeIcon className="h-6 w-6 inline-block mr-2" />
                     Inicio
                 </NavLink>
-                <NavLink className="block py-2 text-gray-900 hover:bg-gray-100" to="/cotiza">
+                <NavLink onClick={toggleMenu} className="block py-2 text-gray-900 hover:bg-gray-100" to="/cotiza">
                     <BuildingOfficeIcon className="h-6 w-6 inline-block mr-2" />
                     Promociones
                 </NavLink>
