@@ -70,7 +70,7 @@ export const Cotiza = () => {
 
                                         <div className="pt-2">
 
-                                            <a href={`https://wa.me/5215618984696?text=Hola!%20quiero%20reclamar%20esta%20oferta:${promocion.Name}.`} class="rounded-md border-2 border-white bg-[#004c97] px-3.5 py-2.5 text-sm font-semibold text-white hover:text-[#004c97] shadow-sm hover:bg-white hover:border-2 hover:border-[#004c97] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Reclamar oferta</a>
+                                            <a href={`https://wa.me/5215512120049?text=Hola!%20quiero%20reclamar%20esta%20oferta:${promocion.Name}.`} class="rounded-md border-2 border-white bg-[#004c97] px-3.5 py-2.5 text-sm font-semibold text-white hover:text-[#004c97] shadow-sm hover:bg-white hover:border-2 hover:border-[#004c97] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Reclamar oferta</a>
                                         </div>
                                         <div>
                                             <p className="policies-promociones pt-2">
