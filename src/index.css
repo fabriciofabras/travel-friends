@@ -123,7 +123,6 @@ code {
   border: 2px solid white;
   background-color: #004c97;
   color: white;
-  padding: 10px 20px;
   font-weight: 600;
 }
 
@@ -142,7 +141,8 @@ code {
 
 .navlink {
   color: #d59319;
-  font-family: "Trebuchet"
+  font-family: "Trebuchet";
+  text-decoration: none;
 }
 
 .h2-travel {
@@ -175,7 +175,6 @@ code {
 footer {
   margin-top: auto;
   /* Esto empuja el footer hacia abajo solo si es necesario */
-  padding-bottom: 20px;
   /* Agrega espacio para el contenido final sin generar scroll */
 }
 

@@ -31,7 +31,6 @@ export const Favoritos = () => {
                     </div>
                 </div> */}
 
-                <b className="h2-travel">Destinos Favoritos</b>
                 <div class="grid grid-cols-1 sm:grid-cols-1  gap-6 ">
                     {
                         destinos.map((destino, index) => {
@@ -63,9 +62,7 @@ export const Favoritos = () => {
                                                         </p>
                                                         <hr class="border-t-1 border-gray-300 my-2" />
 
-                                                        <p className="descripcion-promociones">
-
-                                                        </p>
+                                                       
 
 
                                                     </div>
@@ -78,11 +75,7 @@ export const Favoritos = () => {
                                                                 onClick={() => handleClick(destino.destinoId, hotel.hotelID)}
                                                                 >Ver detalles</Button>
                                                         </div>
-                                                        <div>
-                                                            <p className="policies-promociones pt-2">
-                                                                .
-                                                            </p>
-                                                        </div>
+                                                       
                                                     </footer>
 
                                                 </div>

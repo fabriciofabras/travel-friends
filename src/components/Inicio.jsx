@@ -1,3 +1,4 @@
+import { Button } from "react-bootstrap"
 import hero from "../assets/hero.jpg"
 import { ChatBubbleOvalLeftIcon } from "@heroicons/react/24/outline"
 export const Inicio = () => {
@@ -19,8 +20,10 @@ export const Inicio = () => {
                             <p class="mt-6 text-lg leading-8 text-[#004c97] font-['Trebuchet']">Transformamos tus sueños, en viajes inolvidables</p>
                         </div>
                         <div class="px-10 pt-52 sm:pt-0 mt-10 flex items-center justify-center gap-x-6">
-                            <b href="/cotiza" className="min-h-14 sm:min-h-10 rounded-md bg-[#004c97] px-3.5 py-2.5 text-sm font-semibold text-white hover:text-[#004c97] shadow-sm hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Ver Promociones</b>
-                            <b href="https://wa.me/5215512120049?text=Hola!%20quiero%20cotizar%20un%20viaje." className="min-h-14 sm:min-h-10 rounded-md bg-[#004c97] px-3.5 py-2.5 text-sm font-semibold text-white hover:text-[#004c97] shadow-sm hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Hablar con un agente <ChatBubbleOvalLeftIcon className="h-6 w-6 inline-block mr-2" /></b>
+                            <Button href="/cotiza" variant="custom"
+                                className="btn custom">Ver Promociones</Button>
+                            <Button href="https://wa.me/5215512120049?text=Hola!%20quiero%20cotizar%20un%20viaje." variant="custom"
+                                className="btn custom">Hablar con un agente <ChatBubbleOvalLeftIcon className="h-6 w-6 inline-block mr-2" /></Button>
                         </div>
                     </div>
 

@@ -27,7 +27,7 @@ export const NavBar = () => {
                     </svg>
                 </button>
             </div>
-
+ 
             <div className={`lg:hidden ${isMenuOpen ? 'block' : 'hidden'} absolute top-16 left-0 right-0 bg-white p-4 shadow-lg`}>
                 <NavLink onClick={toggleMenu} className="block py-2 text-gray-900 hover:bg-gray-100" to="/inicio">
                     <HomeIcon className="h-6 w-6 inline-block mr-2" />
@@ -52,6 +52,8 @@ export const NavBar = () => {
 
             <div class="hidden lg:flex lg:gap-x-12">
                 <NavLink className="navlink"
+                variant="custom"
+                                                            
                     to="/inicio"
                 >        <HomeIcon className="h-6 w-6 inline-block mr-2" />
 
