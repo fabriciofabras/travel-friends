@@ -118,6 +118,21 @@ code {
 
 }
 
+.btn.custom {
+  border-radius: 8px;
+  border: 2px solid white;
+  background-color: #004c97;
+  color: white;
+  padding: 10px 20px;
+  font-weight: 600;
+}
+
+.btn.custom:hover {
+  background-color: white;
+  color: #004c97;
+  border-color: #004c97;
+}
+
 @media (min-width: 640px) {
   .mi-div {
     background-image: url(./assets/hero.jpg);
@@ -127,7 +142,19 @@ code {
 
 .navlink {
   color: #d59319;
+  font-family: "Trebuchet"
+}
+
+.h2-travel {
+  color: #d59319;
   font-family: "Trebuchet";
+  font-size: 30px;
+}
+
+.h3-travel {
+  color: #d59319;
+  font-family: "Trebuchet";
+  font-size: 20px;
 }
 
 .navlink:hover {
