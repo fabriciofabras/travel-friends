@@ -28,18 +28,18 @@ export const Inicio = () => {
                     </div>
 
                 </div>
-                <div class="grid grid-cols-1 sm:flex sm:flex-auto flex-row pt-10 gap-6">
-                    <div class="flex flex-col pt-5 mx-8 sm:w-1/3 bg-[#004c97] bg-opacity-70 rounded-2xl">
-                        <b class=" text-2xl text-center w-full font-bold text-slate-50">Ofertas exclusivas</b>
+                <div class="grid grid-cols-1 sm:flex sm:flex-auto flex-row pt-32 gap-6">
+                    <div class="ofertas-especiales flex w-10/12  flex-col pt-5 mx-8 sm:w-1/3 bg-[#004c97] bg-opacity-70 rounded-2xl">
+                      {/*   <b class=" text-2xl text-center w-full font-bold text-slate-50">Ofertas exclusivas</b>
                         <p class="mt-5 text-2xl text-center text-slate-50">Descuentos y promociones especiales en vuelos y alojamientos. Planes de pago a la medida.</p>
-                    </div>
-                    <div class="flex  flex-col pt-5 mx-8 sm:w-1/3 bg-[#004c97] bg-opacity-70 rounded-2xl">
-                        <b class=" text-2xl text-center w-full font-bold text-slate-50">Atención personalizada</b>
+                    */} </div>
+                    <div class="planes flex  flex-col w-10/12  pt-5 mx-8 sm:w-1/3 bg-[#004c97] bg-opacity-70 rounded-2xl">
+                        {/* <b class=" text-2xl text-center w-full font-bold text-slate-50">Atención personalizada</b>
                         <p class="mt-5 text-2xl text-center text-slate-50">Contacto directo con agentes; antes, durante y después del viaje.</p>
-                    </div>
-                    <div class="flex  flex-col pt-5 mx-8 sm:w-1/3 bg-[#004c97] bg-opacity-70 rounded-2xl">
-                        <b class=" text-2xl text-center w-full font-bold text-slate-50">Sin complicaciones</b>
-                        <p class=" text-2xl mt-5 text-center text-slate-50">Resolvemos tu viaje: Alojamiento, vuelos, traslados y atracciones en un sólo paquete.</p>
+                */}     </div>
+                    <div class="paquetes flex flex-col w-10/12 pt-5 mx-8 sm:w-1/3 bg-[#004c97] bg-opacity-70 rounded-2xl">
+                       {/*  <b class=" text-2xl text-center w-full font-bold text-slate-50"></b>
+                        <p class=" text-2xl mt-5 text-center text-slate-50"></p> */}
                     </div>
                 </div>
 
