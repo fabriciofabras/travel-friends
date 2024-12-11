@@ -1,7 +1,10 @@
 import { Button } from "react-bootstrap"
 import hero from "../assets/hero.jpg"
 import { ChatBubbleOvalLeftIcon } from "@heroicons/react/24/outline"
+import { useNavigate } from "react-router-dom";
 export const Inicio = () => {
+
+    const navigate = useNavigate();
 
     return (
         <div class="mi-div relative isolate px-2 pt-2 lg:px-2">
@@ -29,7 +32,9 @@ export const Inicio = () => {
 
                 </div>
                 <div class="grid grid-cols-1 sm:flex sm:flex-auto flex-row pt-32 gap-6">
-                    <div class="ofertas-especiales flex w-10/12  flex-col pt-5 mx-8 sm:w-1/3 bg-[#004c97] bg-opacity-70 rounded-2xl">
+                    <div class="ofertas-especiales flex w-10/12  flex-col pt-5 mx-8 sm:w-1/3 bg-[#004c97] bg-opacity-70 rounded-2xl"
+                    onClick={() => navigate('/cotiza')}
+                    style={{ cursor: 'pointer' }}>
                       {/*   <b class=" text-2xl text-center w-full font-bold text-slate-50">Ofertas exclusivas</b>
                         <p class="mt-5 text-2xl text-center text-slate-50">Descuentos y promociones especiales en vuelos y alojamientos. Planes de pago a la medida.</p>
                     */} </div>
