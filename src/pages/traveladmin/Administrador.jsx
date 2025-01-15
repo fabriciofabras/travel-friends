@@ -6,7 +6,7 @@ import Reservations from "./Reservations";
 import Proposal from "./Proposal";
 import Income from "./Income";
 
-export const Administrador = () => {
+function Administrador() {
   const [activePage, setActivePage] = useState("Quotes");
   const [userInfo, setUserInfo] = useState(null);
 
@@ -31,29 +31,38 @@ export const Administrador = () => {
   useEffect(() => {
     const accessToken = getAccessTokenFromUrl();
     if (accessToken) {
-      switch (activePage) {
-        case "Quotes":
-          return <Quotes />;
-        case "Reservations":
-          return <Reservations />;
-        case "Proposal":
-          return <Proposal />;
-        case "Income":
-          return <Income />;
-        default:
-          return <Quotes />;
-      }
       console.log('Access Token:', accessToken);
       getUserInfo(accessToken); // Obtener la información del usuario
     }
-  }, []);
+  }, []); // El array vacío significa que se ejecuta una vez cuando el componente se monta
 
-  return (
-    <div className="dashboard mt-24">
-      <Sidebar setActivePage={setActivePage} userInfo={userInfo} />
-      <div className="content"></div>
-    </div>
-  );
+
+  const renderPage = () => {
+
+
+    switch (activePage) {
+      case "Quotes":
+        return <Quotes />;
+      case "Reservations":
+        return <Reservations />;
+      case "Proposal":
+        return <Proposal />;
+      case "Income":
+        return <Income />;
+      default:
+        return <Quotes />;
+    }
+  };
+
+  return (<>
+    {userInfo === null ? <div></div> : (
+      <div className="dashboard mt-24">
+        <Sidebar setActivePage={setActivePage} userInfo={userInfo} />
+        <div className="content">{renderPage()}</div>
+      </div>
+    )}
+
+  </>);
 }
 
 export default Administrador;
