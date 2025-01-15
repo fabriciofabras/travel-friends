@@ -5,10 +5,12 @@ import Quotes from "./Quotes";
 import Reservations from "./Reservations";
 import Proposal from "./Proposal";
 import Income from "./Income";
+import { useNavigate } from "react-router-dom"; // Necesario para redirigir
 
 function Administrador() {
   const [activePage, setActivePage] = useState("Quotes");
   const [userInfo, setUserInfo] = useState(null);
+  const navigate = useNavigate(); // Hook para redirección
 
   // Función para extraer el access_token de la URL
   const getAccessTokenFromUrl = () => {
@@ -19,11 +21,13 @@ function Administrador() {
   // Función para obtener la información del usuario con el access_token
   const getUserInfo = async (accessToken) => {
     try {
-      const response = await fetch(`https://www.googleapis.com/oauth2/v3/userinfo?access_token=${accessToken}`);
+      const response = await fetch(
+        `https://www.googleapis.com/oauth2/v3/userinfo?access_token=${accessToken}`
+      );
       const data = await response.json();
       setUserInfo(data); // Guardar la info del usuario en el estado
     } catch (error) {
-      console.error('Error fetching user info:', error);
+      console.error("Error fetching user info:", error);
     }
   };
 
@@ -31,8 +35,10 @@ function Administrador() {
   useEffect(() => {
     const accessToken = getAccessTokenFromUrl();
     if (accessToken) {
-      console.log('Access Token:', accessToken);
+      console.log("Access Token:", accessToken);
       getUserInfo(accessToken); // Obtener la información del usuario
+    } else {
+      navigate("/ingreso"); // Redirigir si no hay token
     }
   }, []); // El array vacío significa que se ejecuta una vez cuando el componente se monta
 
