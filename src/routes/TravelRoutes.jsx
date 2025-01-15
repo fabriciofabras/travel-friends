@@ -6,6 +6,8 @@ import { Cotiza } from "../components/Cotiza"
 import { NavBar } from "../components/NavBar"
 import { Favoritos } from "../components/Favoritos"
 import { Hotel } from "../components/Hotel"
+import Administrador from "../pages/traveladmin/Administrador"
+import QuoteView from "../pages/traveladmin/QuoteView"
 
 export const TravelRoutes = () => {
 
@@ -26,6 +28,8 @@ export const TravelRoutes = () => {
                 <Routes>
                 <Route path="/" element={<Inicio />}></Route>
                 <Route path="/inicio" element={<Inicio />}></Route>
+                <Route  path="/administrador" element={<Administrador/>}></Route>
+                <Route  path="/quote" element={<QuoteView/>}></Route>
                 <Route path="/nosotros" element={<Nosotros />}></Route>
                 <Route path="/cotiza" element={<Cotiza />}></Route>
                 <Route path="/contacto" element={<Contacto />}></Route>
