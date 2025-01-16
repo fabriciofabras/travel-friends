@@ -247,8 +247,8 @@ function Quotes() {
 
     } else {
       // Continuar en la misma página
-      doc.text("Vuelos:", 10, doc.autoTable.previous.finalY + 10);
-    }
+/*       doc.text("Vuelos:", 10, doc.autoTable.previous.finalY + 10);
+ */    }
 
     // Ajusta las dimensiones de la imagen según sea necesario
     const pageWidth = doc.internal.pageSize.width;
