@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Modal, Form, Table } from "react-bootstrap";
+import { Button, Modal, Form, Table, Col, Row } from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import jsPDF from "jspdf";
@@ -174,7 +174,7 @@ function Quotes() {
         const hotelExtraAmount = Number(hotel.extraAmount || 0);
         const transferAmount = Number(formData.transferAmount || 0);
         const flightAmount = Number(formData.flightAmount || 0);
-        const totalAmount = hotelAmount + transferAmount + flightAmount;
+        const totalAmount = hotelAmount + hotelExtraAmount + transferAmount + flightAmount;
 
         let rows;
 
@@ -247,7 +247,9 @@ function Quotes() {
 
     } else {
       // Continuar en la misma página
+      if(formData.includeTransfers===true){
       doc.text("Vuelos:", 10, doc.autoTable.previous.finalY + 10);
+      }
     }
 
     // Ajusta las dimensiones de la imagen según sea necesario
@@ -257,8 +259,6 @@ function Quotes() {
     const imgHeight = 60; // Altura de la imagen
     const x = 50; // Posición horizontal (comienza en el borde izquierdo)
     const y = 150; // Posición vertical (al final de la página)
-
-
 
     const addFooterImage = (doc, footer) => {
       const pageHeight = doc.internal.pageSize.height;
@@ -282,8 +282,6 @@ function Quotes() {
 
     doc.setPage(2);
     addHeaderImage(doc, header);
-
-
 
     const startY = formData.hotels.length > 3 ? 20 : doc.autoTable.previous.finalY + 10;
     /*     doc.text("Cotización de Vuelos:", 10, startY);
@@ -380,7 +378,7 @@ function Quotes() {
           <Modal.Title>Nueva Cotización</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form onSubmit={handleFormSubmit}>
+          {/* <Form onSubmit={handleFormSubmit}>
             <Form.Group className="mb-3">
               <Form.Label>Asesor de viaje</Form.Label>
               <Form.Control
@@ -586,10 +584,240 @@ function Quotes() {
             <Button variant="primary" type="submit">
               Guardar y Generar PDF
             </Button>
+          </Form> */}
+          <Form onSubmit={handleFormSubmit}>
+            {/* Información principal */}
+            <h5 className="mb-4">Información del viaje</h5>
+            <Row className="mb-3">
+              <Col md={4}>
+                <Form.Group>
+                  <Form.Control
+                    type="text"
+                    name="advisor"
+                    onChange={handleFormChange}
+                    placeholder="Nombre del asesor"
+                  />
+                </Form.Group>
+              </Col>
+              <Col md={4}>
+                <Form.Group>
+                  <Form.Control
+                    type="text"
+                    name="clientName"
+                    onChange={handleFormChange}
+                    placeholder="Nombre del cliente"
+                  />
+                </Form.Group>
+              </Col>
+              <Col md={4}>
+                <Form.Group>
+                  <DatePicker
+                    placeholderText="Fechas"
+                    selectsRange
+                    startDate={dates[0]}
+                    endDate={dates[1]}
+                    onChange={(update) => setDates(update)}
+                    isClearable={true}
+                    dateFormat="dd/MM/yyyy"
+                    className="form-control"
+                  />
+                </Form.Group>
+              </Col>
+            </Row>
+            <Row className="mb-3">
+
+              <Col md={4}>
+                <Form.Group>
+                  <Form.Select
+                    onChange={handleDestinoChange}
+                    name="destination"
+                    value={formData.destination}
+                    defaultValue=""
+                  >
+                    <option value="" disabled>
+                      Seleccione un destino
+                    </option>
+                    {destinos.map((destino) => (
+                      <option key={destino.destinoId} value={destino.destinoId}>
+                        {destino.destino}
+                      </option>
+                    ))}
+                  </Form.Select>
+                </Form.Group>
+              </Col>
+              <Col md={2}>
+                <Form.Group>
+                  <Form.Control placeholder="Adultos" type="number" name="adults" min="0" onChange={handleFormChange} />
+                </Form.Group>
+              </Col>
+              <Col md={2}>
+                <Form.Group>
+                  <Form.Control placeholder="Menores" type="number" name="children" min="0" onChange={handleFormChange} />
+                </Form.Group>
+              </Col>
+            </Row>
+
+
+            {/* Sección de hoteles */}
+            <h5 className="mb-4">Hoteles</h5>
+            {formData.hotels.map((hotel, index) => (
+              <div key={index} className="mb-4 p-3 border rounded">
+                <Row>
+                  <Col md={3}>
+                    <Form.Group>
+                      <Form.Select
+                        name="hotel"
+                        onChange={(e) => handleHotelChange(index, "name", e.target.value)}
+                        value={hotel.name}
+                        disabled={!formData.destination}
+                      >
+                        <option value="" disabled>
+                          Seleccione un hotel
+                        </option>
+                        {filteredHoteles.map((hotelOption) => (
+                          <option key={hotelOption.hotelID} value={hotelOption.name}>
+                            {hotelOption.name}
+                          </option>
+                        ))}
+                      </Form.Select>
+                    </Form.Group>
+                  </Col>
+                  <Col md={3}>
+                    <Form.Group>
+                      <Form.Control
+                        placeholder="Detalle de la habitación"
+                        type="text"
+                        value={hotel.details}
+                        onChange={(e) => handleHotelChange(index, "details", e.target.value)}
+                      />
+                    </Form.Group>
+                  </Col>
+                  <Col md={3}>
+                    <Form.Group>
+                      <Form.Control
+                        placeholder="Monto(MXN)"
+                        type="number"
+                        value={hotel.amount}
+                        onChange={(e) => handleHotelChange(index, "amount", e.target.value)}
+                      />
+                    </Form.Group>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <label>
+                      <input
+                        type="checkbox"
+                        checked={showExtraFields}
+                        onChange={handleCheckboxChange}
+                      />
+                      Mostrar campos extra
+                    </label>
+                    {showExtraFields && (
+                      <div>
+                        <Form.Group className="mb-2">
+                          <Form.Label>Extra</Form.Label>
+                          <Form.Control
+                            type="text"
+                            value={hotel.extra}
+                            onChange={(e) =>
+                              handleHotelChange(index, "extra", e.target.value)
+                            }
+                          />
+                        </Form.Group>
+                        <Form.Group className="mb-2">
+                          <Form.Label>Monto Extra (MXN)</Form.Label>
+                          <Form.Control
+                            type="number"
+                            value={hotel.extraAmount}
+                            onChange={(e) =>
+                              handleHotelChange(index, "extraAmount", e.target.value)
+                            }
+                          />
+                        </Form.Group>
+                      </div>
+                    )}
+                  </Col>
+                  <Col md={3}>
+                    <Button variant="danger" onClick={() => removeHotel(index)} >
+                      Quitar Hotel
+                    </Button>
+                  </Col>
+                </Row>
+              </div>
+
+
+
+            ))}
+            <Button variant="success" onClick={addHotel} className="mb-2">
+              Agregar Hotel
+            </Button>
+
+            {/* Opciones adicionales */}
+            <h5 className="mb-4">Opciones adicionales</h5>
+            <Row>
+              <Col md={6}>
+                <Form.Group className="mb-3">
+                  <Form.Check
+                    type="checkbox"
+                    label="Incluye traslados"
+                    onChange={(e) => setFormData({ ...formData, includeTransfers: e.target.checked })}
+                  />
+                  {formData.includeTransfers && (
+                    <Form.Group className="mt-2">
+                      <Form.Label>Monto de traslados (MXN)</Form.Label>
+                      <Form.Control
+                        type="number"
+                        value={formData.transferAmount || ""}
+                        onChange={(e) =>
+                          setFormData({ ...formData, transferAmount: e.target.value })
+                        }
+                      />
+                    </Form.Group>
+                  )}
+                </Form.Group>
+              </Col>
+              <Col md={6}>
+                <Form.Group className="mb-3">
+                  <Form.Check
+                    type="checkbox"
+                    label="Incluye vuelos"
+                    onChange={(e) => setFormData({ ...formData, includeFlights: e.target.checked })}
+                  />
+                  {formData.includeFlights && (
+                    <div>
+                      <Form.Group className="mt-2">
+                        <Form.Label>Monto del vuelo (MXN)</Form.Label>
+                        <Form.Control
+                          type="number"
+                          value={formData.flightAmount || ""}
+                          onChange={(e) =>
+                            setFormData({ ...formData, flightAmount: e.target.value })
+                          }
+                        />
+                      </Form.Group>
+                      <Form.Group className="mt-2">
+                        <Form.Label>Subir itinerario de vuelo</Form.Label>
+                        <Form.Control type="file" accept="image/*" onChange={handleFileChange} />
+                      </Form.Group>
+                      <Form.Group>
+                        <Form.Label>Subir detalle de equipaje</Form.Label>
+                        <Form.Control type="file" accept="image/*" onChange={handleFileChangeEquipaje} />
+                      </Form.Group>
+                    </div>
+                  )}
+                </Form.Group>
+              </Col>
+            </Row>
+
+            {/* Botón para guardar */}
+            <Button variant="primary" type="submit" className="mt-3">
+              Guardar y Generar PDF
+            </Button>
           </Form>
         </Modal.Body>
       </Modal>
-    </div>
+    </div >
   );
 }
 

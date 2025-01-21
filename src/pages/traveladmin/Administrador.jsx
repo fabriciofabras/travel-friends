@@ -35,10 +35,20 @@ function Administrador() {
   useEffect(() => {
     const accessToken = getAccessTokenFromUrl();
     if (accessToken) {
-      console.log("Access Token:", accessToken);
+      console.log("Access Token:", accessToken)
+      console.log("Location:", window.location)
+
+      debugger;
       getUserInfo(accessToken); // Obtener la información del usuario
     } else {
-      navigate("/ingreso"); // Redirigir si no hay token
+      console.log("Location:", window.location)
+      if(window.location.hostname==="localhost")
+      {
+        setUserInfo({name:"Pruebas locales",picture:""})
+        console.log("Estamos en Localhost")
+      }else{
+        navigate("/ingreso"); // Redirigir si no hay token
+      }
     }
   }, []); // El array vacío significa que se ejecuta una vez cuando el componente se monta
 

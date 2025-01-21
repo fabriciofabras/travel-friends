@@ -1,6 +1,8 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
 
 
 body,
@@ -252,4 +254,13 @@ thead th:first-child {
   /* Valor más alto para que esté sobre el resto del contenido */
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
   /* Sombra opcional */
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 100px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }

@@ -1,90 +1,193 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { Container, Row, Col, Form, Button, Card } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
 
-const QuoteView = () => {
+function QuoteView() {
 
   const location = useLocation();
-  const [formData, setFormData] = useState(null);
-  useEffect(() => {
-    // Parsear datos de la URL
-    const queryParams = new URLSearchParams(location.search);
-    const data = queryParams.get("formData");
+  const queryParams = new URLSearchParams(location.search);
 
-    if (data) {
-      try {
-        // Decodificar el JSON
-        const parsedData = JSON.parse(decodeURIComponent(data));
-        setFormData(parsedData);
-      } catch (error) {
-        console.error("Error parsing formData from URL:", error);
-      }
-    }
-  }, [location.search]);
+  const formData = {};
+  queryParams.forEach((value, key) => {
+    formData[key] = value;
+  });
 
-  const formatCurrency = (value) => {
-    return `$${Number(value).toLocaleString("en-US", {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    })}`;
+  /*  const [formData, setFormData] = useState({
+     guestName: "",
+     phone: "",
+     email: "",
+     gender: "",
+     age: "",
+     agentCommission: "20",
+     nights: 7,
+     nightlyRate: 119,
+     transactionFee: 4,
+     total: 903,
+     cancellationPolicy: false,
+   }); */
+
+  const handleChange = (e) => {
+    /*  const { name, value, type, checked } = e.target;
+     setFormData({
+       ...formData,
+       [name]: type === "checkbox" ? checked : value,
+     }); */
+
+    console.log("Handle change")
   };
 
-  const totalAmount =
-    Number(formData.hotels[0].amount) +
-    Number(formData.transferAmount) +
-    Number(formData.flightAmount);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const data = new FormData();
+    Object.entries(formData).forEach(([key, value]) => {
+      data.append(key, value);
+    });
+
+    // Enviar datos al servidor (puedes usar fetch o axios)
+    console.log("Datos enviados:", Object.fromEntries(data.entries()));
+  };
 
   return (
-    <div style={{ fontFamily: "Arial, sans-serif", margin: "20px", lineHeight: 1.6 }}>
-      <h2 style={{ textAlign: "center", color: "#0056b3" }}>Cotización de Viaje</h2>
-      <p>
-        Estimado(a) <strong>{formData.clientName}</strong>, le compartimos la cotización
-        solicitada para el plan vacacional en <strong>{formData.destination}</strong> del
-        <strong> {formData.dates[0]}</strong> al <strong>{formData.dates[1]}</strong> para
-        <strong> {formData.adults}</strong> adulto{formData.adults > 1 ? "s" : ""}.
-      </p>
+    <Container fluid className="bg-dark text-light py-36">
+      <Row>
+        {/* Información del huésped */}
+        <Col md={6} className="px-5">
+          <h2 className="mb-4">Detalle de la Reservación</h2>
+          <Card className="p-4 mb-4 bg-secondary text-light">
+            <Form onSubmit={handleSubmit}>
+              <h5>Invitado 1</h5>
+              <Form.Group className="mb-3">
+                <Form.Control
+                  type="text"
+                  name="guestName"
+                  disabled
+                  placeholder="Name"
+                  value={formData.guestName}
+                  onChange={handleChange}
+                />
+              </Form.Group>
+              <Form.Group className="mb-3">
+                <Form.Control
+                  type="text"
+                  name="phone"
+                  disabled
+                  placeholder="Phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                />
+              </Form.Group>
+              <Form.Group className="mb-3">
+                <Form.Control
+                  type="email"
+                  name="email"
+                  disabled
+                  placeholder="Email"
+                  value={formData.email}
+                  onChange={handleChange}
+                />
+              </Form.Group>
 
-      <table style={{ width: "100%", borderCollapse: "collapse", margin: "20px 0" }}>
-        <thead>
-          <tr>
-            <th style={{ border: "1px solid #ddd", padding: "8px", backgroundColor: "#0056b3", color: "#fff" }}>Nombre del Hotel</th>
-            <th style={{ border: "1px solid #ddd", padding: "8px", backgroundColor: "#0056b3", color: "#fff" }}>Detalles</th>
-            <th style={{ border: "1px solid #ddd", padding: "8px", backgroundColor: "#0056b3", color: "#fff", textAlign: "right" }}>Monto (MXN)</th>
-          </tr>
-        </thead>
-        <tbody>
-          {formData.hotels.map((hotel, index) => (
-            <tr key={index}>
-              <td style={{ border: "1px solid #ddd", padding: "8px" }}>
-                <a href={hotel.link} target="_blank" rel="noopener noreferrer" style={{ color: "#0056b3", textDecoration: "underline" }}>
-                  {hotel.name}
-                </a>
-              </td>
-              <td style={{ border: "1px solid #ddd", padding: "8px" }}>{hotel.details}</td>
-              <td style={{ border: "1px solid #ddd", padding: "8px", textAlign: "right" }}>{formatCurrency(hotel.amount)}</td>
-            </tr>
-          ))}
-          <tr>
-            <td style={{ border: "1px solid #ddd", padding: "8px" }}></td>
-            <td style={{ border: "1px solid #ddd", padding: "8px" }}>Traslados</td>
-            <td style={{ border: "1px solid #ddd", padding: "8px", textAlign: "right" }}>{formatCurrency(formData.transferAmount)}</td>
-          </tr>
-          <tr>
-            <td style={{ border: "1px solid #ddd", padding: "8px" }}></td>
-            <td style={{ border: "1px solid #ddd", padding: "8px" }}>Vuelos</td>
-            <td style={{ border: "1px solid #ddd", padding: "8px", textAlign: "right" }}>{formatCurrency(formData.flightAmount)}</td>
-          </tr>
-          <tr>
-            <td style={{ border: "1px solid #ddd", padding: "8px" }}></td>
-            <td style={{ border: "1px solid #ddd", padding: "8px", fontWeight: "bold" }}>Total</td>
-            <td style={{ border: "1px solid #ddd", padding: "8px", textAlign: "right", fontWeight: "bold" }}>{formatCurrency(totalAmount)}</td>
-          </tr>
-        </tbody>
-      </table>
+              <h5>Detalle de Tarifa</h5>
+              <Form.Group className="mb-3">
+                <Row>
+                  <Col md={6}>
+                    <Form.Label>Hotel</Form.Label>
+                  </Col>
+                  <Col md={6}>
+                    <Form.Control
+                      type="text"
+                      disabled
+                      name="agentCommission"
+                      value={formData.agentCommission}
+                      onChange={handleChange}
+                    />
+                  </Col>
+                </Row>
+                <Row className="mt-2">
+                  <Col md={6}>
+                    <Form.Label>Traslados</Form.Label>
+                  </Col>
+                  <Col md={6}>
+                    <Form.Control
+                      type="text"
+                      disabled
+                      name="traslados"
+                      value={formData.traslados}
+                      onChange={handleChange}
+                    />
+                  </Col>
+                </Row>
+                <Row className="mt-2">
+                  <Col md={6}>
+                    <Form.Label>Vuelos</Form.Label>
+                  </Col>
+                  <Col md={6}>
+                    <Form.Control
+                      type="text"
+                      disabled
+                      name="vuelos"
+                      value={formData.vuelos}
+                      onChange={handleChange}
+                    />
+                  </Col>
+                </Row>
+                <Row className="mt-2">
+                  <Col md={6}>
+                    <Form.Label>Total</Form.Label>
+                  </Col>
+                  <Col md={6}>
+                    <Form.Control
+                      type="text"
+                      name="vuelos"
+                      disabled
+                      value={formData.vuelos}
+                      onChange={handleChange}
+                    />
+                  </Col>
+                </Row>
+              </Form.Group>
+              
+              <Button type="submit" variant="primary" className="w-100">
+                Continuar al Pago
+              </Button>
+            </Form>
+          </Card>
+        </Col>
 
-      <h3>Vuelos:</h3>
-      <p>Información adicional sobre vuelos (si aplica).</p>
-    </div>
+        {/* Información del hotel */}
+        <Col md={6} className="px-5">
+          <Card className="mb-4 p-4 bg-secondary text-light">
+            <h4>Hotel Bristol, A Luxury Collection Hotel, Warsaw</h4>
+            <p>Sadowa 19, Warsaw, 36001, CZ</p>
+            <p>★★★★☆ 4.0</p>
+            <p>
+              Deluxe Room, 2 Twin Beds, Non Smoking <br />
+              (Fully refundable before)
+            </p>
+            <Row>
+              <Col>
+                <p>Check-in: Mo, 19 Dec (04:00 PM)</p>
+              </Col>
+              <Col>
+                <p>Check-out: Mo, 19 Dec (11:00 AM)</p>
+              </Col>
+            </Row>
+          </Card>
+
+          <Card className="p-4 bg-secondary text-light">
+            <h5>Facilities</h5>
+            <Row>
+              <Col>Swimming pool</Col>
+              <Col>Room service</Col>
+              <Col>Airport shuttle</Col>
+              <Col>Good Breakfast</Col>
+              <Col>Bar</Col>
+            </Row>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
   );
-};
+}
 
 export default QuoteView;
