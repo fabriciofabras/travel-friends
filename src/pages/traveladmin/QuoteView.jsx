@@ -116,7 +116,7 @@ function QuoteView() {
   };
 
   const crearPreferencia = async () => {
-    const response = await fetch('https://travel-friends-mu.vercel.app/crear-preferencia', {
+    const response = await fetch('https://travel-friends-server.vercel.app/crear-preferencia', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -30,7 +30,7 @@ const initialization = {
       formData.description = props.description;
       console.log(JSON.stringify(formData))
       return new Promise((resolve, reject) => {
-        fetch("https://travel-friends-mu.vercel.app/process_payment", {
+        fetch("https://travel-friends-server.vercel.app/process_payment", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
