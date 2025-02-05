@@ -4,7 +4,8 @@ import { initMercadoPago } from '@mercadopago/sdk-react';
 export const PaymentComponent = (props) =>{
 
 
-initMercadoPago('TEST-c6c22da5-fa17-4e4c-a559-16e50d1921a9');
+ // initMercadoPago('TEST-c6c22da5-fa17-4e4c-a559-16e50d1921a9');
+  initMercadoPago('APP_USR-a281ec0d-80e5-4450-88fe-cdf95d2ee013');
 
 console.log("props",props)
 const initialization = {
@@ -31,6 +32,7 @@ const initialization = {
       console.log(JSON.stringify(formData))
       return new Promise((resolve, reject) => {
         fetch("https://travel-friends-server.vercel.app/process_payment", {
+          mode: 'no-cors',
           method: "POST",
           headers: {
             "Content-Type": "application/json",
