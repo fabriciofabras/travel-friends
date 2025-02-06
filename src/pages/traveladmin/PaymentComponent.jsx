@@ -32,7 +32,6 @@ const initialization = {
       console.log(JSON.stringify(formData))
       return new Promise((resolve, reject) => {
         fetch("https://travel-friends-server.vercel.app/process_payment", {
-          mode: 'no-cors',
           method: "POST",
           headers: {
             "Content-Type": "application/json",
