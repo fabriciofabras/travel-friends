@@ -4,6 +4,7 @@ import Slider from "react-slick";
 import { ChatBubbleOvalLeftIcon, ShieldCheckIcon, UserGroupIcon, CreditCardIcon } from "@heroicons/react/24/outline";
 import { useNavigate } from "react-router-dom";
 import ssl from "../assets/ssl.png"
+import mercadopago from "../assets/mercadopago.png"
 import visa from "../assets/visa.png"
 import pci from "../assets/pci.png"
 import promo1 from "../assets/promociones/promo1.png"; // Ejemplo de imágenes
@@ -13,6 +14,7 @@ import promo4 from "../assets/promociones/promo4.png";
 import promo5 from "../assets/promociones/promo5.png";
 import promo6 from "../assets/promociones/promo6.png";
 import promo7 from "../assets/promociones/promo7.png";
+import promo8 from "../assets/promociones/promo8.png";
 
 export const Inicio = () => {
 
@@ -86,6 +88,12 @@ export const Inicio = () => {
                                 <img
                                     src={promo7}
                                     alt="Promoción 7"
+                                    className="rounded-lg shadow-lg mx-auto"
+                                />
+                            </div><div>
+                                <img
+                                    src={promo8}
+                                    alt="Promoción 8"
                                     className="rounded-lg shadow-lg mx-auto"
                                 />
                             </div>
@@ -186,7 +194,7 @@ export const Inicio = () => {
                         <p className="text-lg text-gray-600 mt-2">
                             Nuestro compromiso es brindarte un servicio seguro y confiable.
                         </p>
-                        <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 gap-6 items-center justify-center">
+                        <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-6 items-center justify-center">
                             {/* Certificación 1 */}
                             <div>
                                 <img
@@ -194,7 +202,14 @@ export const Inicio = () => {
                                     alt="Certificado SSL"
                                     className="h-16 mx-auto"
                                 />
-                                <p className="mt-2 text-sm text-gray-700">Certificado SSL</p>
+                            </div>
+                            {/* Certificación 1 */}
+                            <div>
+                                <img
+                                    src={mercadopago}
+                                    alt="Mercado Pago"
+                                    className="h-16 mx-auto"
+                                />
                             </div>
                             {/* Certificación 2 */}
                             <div>
