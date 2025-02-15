@@ -98,7 +98,9 @@ function Quotes() {
 
       console.log("hotel", hotel)
 
-      updatedHotels[index].link = hotel ? `https://travel-friends-mu.vercel.app/hotel/${hotelCatalog[0].destinoId}/${hotel.hotelID}` : "";
+      const hotelId = hotel.hotelID !== undefined ? hotel.hotelID : hotel.hotelId;
+
+      updatedHotels[index].link = hotel ? `https://travel-friends-mu.vercel.app/hotel/${hotelCatalog[0].destinoId}/${hotelId}` : "";
       updatedHotels[index].hotelID = hotel ? hotel.hotelID : "";
     }
 
