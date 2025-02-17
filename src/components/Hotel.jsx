@@ -16,15 +16,15 @@ export const Hotel = () => {
 
     console.log(destino)
 
-    let hotel = destino[0].hoteles.filter(hotel => hotel.hotelID == hotelId)
-
+    let hotel = destino[0].hoteles.filter(hotel => (hotel.hotelID !== undefined ? hotel.hotelID : hotel.hotelId) == hotelId)
+    console.log("hotel:", hotel)
     hotel = hotel[0];
 
     return (
 
         <Container fluid>
             {/* Hero Section */}
-            <div
+            {/* <div
                 style={{
                     backgroundImage: `url(${hotel.gallery[0].cloudUri})`,
                     height: '400px',
@@ -36,7 +36,7 @@ export const Hotel = () => {
                     justifyContent: 'center'
                 }}
             >
-            </div>
+            </div> */}
 
             {/* General Information */}
             <Container className="mt-4">
@@ -60,7 +60,7 @@ export const Hotel = () => {
                         </div>
                     </Col>
                     <Col md={6}>
-                        <Carousel>
+                       {/*  <Carousel>
                             {hotel.gallery.map((image, index) => (
                                 <Carousel.Item key={index}>
                                     <img
@@ -70,7 +70,7 @@ export const Hotel = () => {
                                     />
                                 </Carousel.Item>
                             ))}
-                        </Carousel>
+                        </Carousel> */}
                     </Col>
                 </Row>
             </Container>
@@ -80,12 +80,12 @@ export const Hotel = () => {
                 <Row>
                     <Col md={6}>
 
-                        <h1 className="h2-travel">Destacados</h1>
+                       {/*  <h1 className="h2-travel">Destacados</h1>
                         <ul>
                             {hotel.importantFacilities.map((item, index) => (
                                 <li key={index}>{item}</li>
                             ))}
-                        </ul>
+                        </ul> */}
                     </Col>
                     <Col md={6} className="mb-1">
                         <h1 className="h2-travel">Amenidades</h1>
