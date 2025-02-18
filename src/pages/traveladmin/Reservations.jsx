@@ -42,7 +42,7 @@ function Reservations() {
 
 
   useEffect(() => {
-    fetch("https://travel-friends-mu.vercel.app/api/reservations") // URL de tu backend
+    fetch("http://travel-friends-server.vercel.app/api/reservations") // URL de tu backend
       .then((response) => response.json())
       .then((data) => setReservations(data))
       .catch((error) => console.error("Error:", error));
@@ -217,7 +217,7 @@ function Reservations() {
     setReservations(reservations.map(res => res.id === reservationId ? { ...res, paymentLink: paymentUrl } : res));
   };
 
-  const API_URL = "https://travel-friends-mu.vercel.app/api/reservation"; // URL del backend
+  const API_URL = "http://travel-friends-server.vercel.app/api/reservation"; // URL del backend
 
   const createReservation = async (reservationData) => {
     try {
