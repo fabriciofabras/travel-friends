@@ -11,6 +11,7 @@ import header from '../../assets/header.png';
 
 function Quotes() {
   const [showExtraFields, setShowExtraFields] = useState(false);
+  const [imageFiles, setImageFiles] = useState([]);
 
   const [showModal, setShowModal] = useState(false);
   const [dates, setDates] = useState([null, null]);
@@ -33,6 +34,7 @@ function Quotes() {
 
   const [flightImage, setFlightImage] = useState(null);
   const [flightImageEquipaje, setFlightImageEquipaje] = useState(null);
+  const [hotelImage, setHotelImage] = useState(null);
 
   // Manejador de eventos para el checkbox
   const handleCheckboxChange = (e) => {
@@ -54,6 +56,67 @@ function Quotes() {
       setFlightImageEquipaje(URL.createObjectURL(file));
     }
   };
+
+  const [hotelImages, setHotelImages] = useState([]);
+
+
+  const handleFileChangeHotel = (event, hotelId) => {
+    const files = Array.from(event.target.files);
+
+    const compressImage = (file, maxWidth = 800, maxHeight = 600, quality = 0.3) => {
+      return new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = (e) => {
+          const img = new Image();
+          img.src = e.target.result;
+          img.onload = () => {
+            // Crear un canvas para redimensionar la imagen
+            const canvas = document.createElement("canvas");
+            const ctx = canvas.getContext("2d");
+
+            let width = img.width;
+            let height = img.height;
+
+            // Mantener proporción al redimensionar
+            if (width > maxWidth || height > maxHeight) {
+              const aspectRatio = width / height;
+              if (width > height) {
+                width = maxWidth;
+                height = maxWidth / aspectRatio;
+              } else {
+                height = maxHeight;
+                width = maxHeight * aspectRatio;
+              }
+            }
+
+            canvas.width = width;
+            canvas.height = height;
+
+            // Dibujar la imagen en el canvas con el nuevo tamaño
+            ctx.drawImage(img, 0, 0, width, height);
+
+            // Convertir a JPEG (compatible con jsPDF)
+            const outputFormat = file.type === "image/avif" ? "image/jpeg" : file.type;
+            const compressedBase64 = canvas.toDataURL(outputFormat, quality);
+
+            resolve({ name: file.name, base64: compressedBase64 });
+          };
+        };
+      });
+    };
+
+    // Procesar todas las imágenes con compresión
+    const promises = files.map((file) => compressImage(file));
+
+    Promise.all(promises).then((compressedImages) => {
+      setHotelImages((prevImages) => ({
+        ...prevImages,
+        [hotelId]: [...(prevImages[hotelId] || []), ...compressedImages],
+      }));
+    });
+  };
+
 
 
   const handleDestinoChange = (e) => {
@@ -100,7 +163,6 @@ function Quotes() {
 
       const hotelId = hotel.hotelID !== undefined ? hotel.hotelID : hotel.hotelId;
 
-      updatedHotels[index].link = hotel ? `https://travel-friends-mu.vercel.app/hotel/${hotelCatalog[0].destinoId}/${hotelId}` : "";
       updatedHotels[index].hotelID = hotel ? hotel.hotelID : "";
     }
 
@@ -206,14 +268,14 @@ function Quotes() {
             ["", "Total", { content: formatCurrency(totalAmount), styles: { halign: "right", fontStyle: "bold" } }],
             ,
 
-            [
+           /*  [
               {
                 content: `${hotel.link}`,
                 colSpan: 3, // Ocupa el ancho completo de las tres columnas
                 styles: { textColor: "#0000EE", fontStyle: "italic" },
                 underline: true, // Estilo de texto (azul y cursiva para indicar enlace)
               },
-            ]
+            ] */
           ];
         } else {
 
@@ -226,8 +288,13 @@ function Quotes() {
 
             [
               {
-                content: `${hotel.link}`,
-                colSpan: 3, // Ocupa el ancho completo de las tres columnas
+/*                 content: `${hotel.link}`,
+
+
+
+ */               
+                    content: ``,
+            colSpan: 3, // Ocupa el ancho completo de las tres columnas
                 styles: { textColor: "#0000EE", fontStyle: "italic" },
                 underline: true, // Estilo de texto (azul y cursiva para indicar enlace)
               },
@@ -290,15 +357,9 @@ function Quotes() {
       doc.addImage(footer, "PNG", x, y, imgWidth, imgHeight);
     };
 
-    // Agregar imagen de footer a todas las páginas
-    const pageCount = doc.internal.getNumberOfPages();
-    for (let i = 1; i <= pageCount; i++) {
-      doc.setPage(i);
-      addFooterImage(doc, footer);
-    }
+
 
     doc.setPage(2);
-    addHeaderImage(doc, header);
 
     const startY = formData.hotels.length > 3 ? 20 : doc.autoTable.previous.finalY + 10;
     /*     doc.text("Cotización de Vuelos:", 10, startY);
@@ -347,6 +408,55 @@ function Quotes() {
 
     console.log(dataSerializada[0]);
 
+    console.log("Hotel Images", hotelImages)
+
+
+
+    Object.keys(hotelImages).forEach((hotelId) => {
+      doc.addPage(); // Agregar una nueva página para el siguiente hotel
+
+      const images = hotelImages[hotelId] || [];
+
+      if (images.length === 0) return; // Saltar si no hay imágenes
+
+      doc.setFontSize(16);
+      doc.text(`${formData.hotels[hotelId].name}`, 10, 30); // Título del hotel
+
+      images.forEach((image, index) => {
+        const imagesPerPage = 8; // Máximo de imágenes por página
+        const colWidth = 95; // Espacio entre columnas
+        const rowHeight = 60; // Espacio entre filas
+        const marginX = 15;
+        const marginY = 40;
+
+        // Calcular posición en columnas
+        const col = index % 2; // 0: Izquierda, 1: Derecha
+        const row = Math.floor(index / 2) % (imagesPerPage / 2); // Control de filas dentro de una página
+
+        const x = marginX + col * colWidth;
+        const y = marginY + row * rowHeight;
+
+        // Si el índice actual es múltiplo de imagesPerPage, agregar nueva página (excepto la primera imagen)
+        if (index > 0 && index % imagesPerPage === 0) {
+          doc.addPage(); // Agregar nueva página
+        }
+
+        doc.addImage(image.base64, "JPEG", x, y, 85, 55);
+      });
+
+    });
+
+    // Agregar imagen de footer a todas las páginas
+    const pageCount = doc.internal.getNumberOfPages();
+    for (let i = 1; i <= pageCount; i++) {
+      doc.setPage(i);
+      addFooterImage(doc, footer);
+      addHeaderImage(doc, header);
+
+    }
+
+    /*       doc.addImage(hotelImage, "PNG", 55, startY, imgWidth, imgHeight);
+     */
 
     /*     doc.addImage(flightImage, "PNG", 55, 180, 100, 50);
         doc.addImage(flightImageEquipaje, "PNG", 55, 235, 100, 40); */
@@ -442,10 +552,10 @@ function Quotes() {
                   />
                 </Form.Group>
               </Col>
-              
+
             </Row>
             <Row className="mb-3">
-            <Col md={4}>
+              <Col md={4}>
                 <Form.Group>
                   <DatePicker
                     placeholderText="Fechas"
@@ -570,6 +680,12 @@ function Quotes() {
                         </Form.Group>
                       </div>
                     )}
+                  </Col>
+                  <Col>
+                    <Form.Group>
+                      <Form.Label>Subir imagenes del hotel</Form.Label>
+                      <Form.Control type="file" multiple accept="image/*" onChange={(event) => handleFileChangeHotel(event, index)} />
+                    </Form.Group>
                   </Col>
                   <Col md={3}>
                     <Button variant="danger" onClick={() => removeHotel(index)} >

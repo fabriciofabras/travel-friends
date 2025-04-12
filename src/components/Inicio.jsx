@@ -15,6 +15,7 @@ import promo5 from "../assets/promociones/promo5.png";
 import promo6 from "../assets/promociones/promo6.png";
 import promo7 from "../assets/promociones/promo7.png";
 import promo8 from "../assets/promociones/promo8.png";
+import TestimonialsCarousel from "./TestimonialsCarousel";
 
 export const Inicio = () => {
 
@@ -115,7 +116,14 @@ export const Inicio = () => {
                             <Button href="https://wa.me/5215512120049?text=Hola!%20quiero%20cotizar%20un%20viaje." variant="custom"
                                 className="btn custom px-4 py-2">Hablar con un agente <ChatBubbleOvalLeftIcon className="h-6 w-6 inline-block mr-2" /></Button>
                         </div>
+
+                        <div class="flex flex-col">
+                        <TestimonialsCarousel />
+
+
+                        </div>
                     </div>
+
 
                 </div>
 
