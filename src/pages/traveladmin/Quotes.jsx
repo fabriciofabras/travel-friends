@@ -245,7 +245,9 @@ function Quotes() {
           { content: "Detalles", styles: { fillColor: [0, 90, 224], textColor: [255, 255, 255], fontStyle: "bold" } },
           { content: "Monto (MXN)", styles: { fillColor: [0, 90, 224], textColor: [255, 255, 255], fontStyle: "bold", halign: "right" } }
         ],
-      ], body: formData.hotels.flatMap((hotel) => {
+      ], columnStyles: {
+        0: { cellWidth: 60 } // Fijamos el ancho de la primera columna a 80 (puedes ajustarlo)
+      }, body: formData.hotels.flatMap((hotel) => {
         const formatCurrency = (value) => {
           return `$${Number(value || 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
         }; // Formato con comas y 2 decimales
@@ -268,14 +270,14 @@ function Quotes() {
             ["", "Total", { content: formatCurrency(totalAmount), styles: { halign: "right", fontStyle: "bold" } }],
             ,
 
-           /*  [
-              {
-                content: `${hotel.link}`,
-                colSpan: 3, // Ocupa el ancho completo de las tres columnas
-                styles: { textColor: "#0000EE", fontStyle: "italic" },
-                underline: true, // Estilo de texto (azul y cursiva para indicar enlace)
-              },
-            ] */
+            /*  [
+               {
+                 content: `${hotel.link}`,
+                 colSpan: 3, // Ocupa el ancho completo de las tres columnas
+                 styles: { textColor: "#0000EE", fontStyle: "italic" },
+                 underline: true, // Estilo de texto (azul y cursiva para indicar enlace)
+               },
+             ] */
           ];
         } else {
 
@@ -288,13 +290,13 @@ function Quotes() {
 
             [
               {
-/*                 content: `${hotel.link}`,
-
-
-
- */               
-                    content: ``,
-            colSpan: 3, // Ocupa el ancho completo de las tres columnas
+                /*                 content: `${hotel.link}`,
+                
+                
+                
+                 */
+                content: ``,
+                colSpan: 3, // Ocupa el ancho completo de las tres columnas
                 styles: { textColor: "#0000EE", fontStyle: "italic" },
                 underline: true, // Estilo de texto (azul y cursiva para indicar enlace)
               },
@@ -602,11 +604,11 @@ function Quotes() {
 
 
             {/* Sección de hoteles */}
-            <h5 className="mb-4">Hoteles</h5>
+            <h5 className="mb-2">Hoteles</h5>
             {formData.hotels.map((hotel, index) => (
               <div key={index} className="mb-4 p-3 border rounded">
                 <Row>
-                  <Col md={3}>
+                  <Col md={4}>
                     <Form.Group>
                       <Form.Select
                         name="hotel"
@@ -625,20 +627,34 @@ function Quotes() {
                       </Form.Select>
                     </Form.Group>
                   </Col>
-                  <Col md={3}>
+                  <Col md={6}>
                     <Form.Group>
-                      <Form.Control
+                      {/* <Form.Control
                         placeholder="Detalle de la habitación"
                         type="text"
                         value={hotel.details}
                         onChange={(e) => handleHotelChange(index, "details", e.target.value)}
+                      /> */}
+                      <Form.Control
+                        as="textarea"
+                        placeholder="Detalle de la habitación"
+                        value={hotel.details}
+                        onChange={(e) => handleHotelChange(index, "details", e.target.value)}
+                        onInput={(e) => {
+                          e.target.style.height = 'auto'; // Reinicia altura para reducir si se borra texto
+                          e.target.style.height = `${e.target.scrollHeight}px`; // Ajusta a la altura del contenido
+                        }}
+                        style={{
+                          overflow: 'hidden',
+                          resize: 'none',
+                        }}
                       />
                     </Form.Group>
                   </Col>
-                  <Col md={3}>
+                  <Col md={2}>
                     <Form.Group>
                       <Form.Control
-                        placeholder="Monto(MXN)"
+                        placeholder="Monto"
                         type="number"
                         value={hotel.amount}
                         onChange={(e) => handleHotelChange(index, "amount", e.target.value)}
@@ -646,52 +662,68 @@ function Quotes() {
                     </Form.Group>
                   </Col>
                 </Row>
-                <Row>
-                  <Col>
+                <Row className="">
+                  <Col md={3}>
+                    <Form.Group>
+                      <Form.Label>Imagenes</Form.Label>
+                      <Form.Control type="file" multiple accept="image/*" onChange={(event) => handleFileChangeHotel(event, index)} />
+                    </Form.Group>
+                  </Col>
+                  <Col md={7}>
                     <label>
                       <input
                         type="checkbox"
                         checked={showExtraFields}
                         onChange={handleCheckboxChange}
                       />
-                      Mostrar campos extra
+                      Extra
                     </label>
                     {showExtraFields && (
-                      <div>
+                      <Row>
+                      <Col md={8}>
                         <Form.Group className="mb-2">
-                          <Form.Label>Extra</Form.Label>
                           <Form.Control
+                            as="textarea"
+                            placeholder="Detalle extra"
                             type="text"
                             value={hotel.extra}
                             onChange={(e) =>
                               handleHotelChange(index, "extra", e.target.value)
                             }
+                            onInput={(e) => {
+                              e.target.style.height = 'auto'; // Reinicia altura para reducir si se borra texto
+                              e.target.style.height = `${e.target.scrollHeight}px`; // Ajusta a la altura del contenido
+                            }}
+                            style={{
+                              overflow: 'hidden',
+                              resize: 'none',
+                            }}
                           />
                         </Form.Group>
+                        </Col>
+                        <Col md={4}>
                         <Form.Group className="mb-2">
-                          <Form.Label>Monto Extra (MXN)</Form.Label>
                           <Form.Control
                             type="number"
+                            placeholder="Monto"
                             value={hotel.extraAmount}
                             onChange={(e) =>
                               handleHotelChange(index, "extraAmount", e.target.value)
                             }
                           />
                         </Form.Group>
-                      </div>
+                      </Col>
+                      </Row>
                     )}
                   </Col>
-                  <Col>
-                    <Form.Group>
-                      <Form.Label>Subir imagenes del hotel</Form.Label>
-                      <Form.Control type="file" multiple accept="image/*" onChange={(event) => handleFileChangeHotel(event, index)} />
-                    </Form.Group>
-                  </Col>
-                  <Col md={3}>
+                  <Col md={2} className="mb-4 p-2">
                     <Button variant="danger" onClick={() => removeHotel(index)} >
-                      Quitar Hotel
+                      Quitar
                     </Button>
                   </Col>
+                </Row>
+                <Row>
+                
                 </Row>
               </div>
 
