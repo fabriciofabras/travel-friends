@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from 'react';
 import { Button, Modal, Form, Table, Col, Row } from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -8,10 +8,15 @@ import destinos from '../../assets/destinos';
 import logo from '../../assets/logo.png';
 import footer from '../../assets/footer.png';
 import header from '../../assets/header.png';
+import axios from 'axios';
+
 
 function Quotes() {
+  const options = { method: 'GET', headers: { accept: 'application/json' } };
+
   const [showExtraFields, setShowExtraFields] = useState(false);
   const [imageFiles, setImageFiles] = useState([]);
+  const [manualQuote, setManualQuote] = useState(false)
 
   const [showModal, setShowModal] = useState(false);
   const [dates, setDates] = useState([null, null]);
@@ -30,6 +35,55 @@ function Quotes() {
     ],
   });
 
+  const [hotelInput, setHotelInput] = useState('');
+  const [suggestions, setSuggestions] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const debounceRef = useRef(null);
+
+  useEffect(() => {
+    if (hotelInput.length < 5) {
+      setSuggestions([]);
+      return;
+    }
+
+    // Limpiar el debounce anterior si existe
+    if (debounceRef.current) {
+      clearTimeout(debounceRef.current);
+    }
+
+    // Establecer nuevo timeout para hacer la petición después de 2 segundos sin escribir
+    debounceRef.current = setTimeout(() => {
+      fetchHotels(hotelInput);
+    }, 2000);
+
+    return () => clearTimeout(debounceRef.current);
+  }, [hotelInput]);
+
+  const handleInputChange = (e) => {
+    setHotelInput(e.target.value);
+    handleFormChange(e); // seguir usando tu lógica original si necesitas almacenar este valor
+  };
+
+  const fetchHotels = async (query) => {
+    try {
+      setLoading(true);
+
+      // Reemplaza esta URL por tu endpoint real de TripAdvisor
+
+     const response = await fetch(`https://api.content.tripadvisor.com/api/v1/location/search?key=519AAFC09925436194F4B5798A71F9A2&searchQuery=${encodeURIComponent(query)}&category=hotels&language=en`, options)
+        .then(res => res.json())
+        .then(res => console.log(res))
+        .catch(err => console.error(err));
+
+      setSuggestions(response.data?.results || []);
+    } catch (error) {
+      console.error('Error fetching hotels:', error);
+      setSuggestions([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const [selectedDestino, setSelectedDestino] = useState("");
 
   const [flightImage, setFlightImage] = useState(null);
@@ -39,6 +93,12 @@ function Quotes() {
   // Manejador de eventos para el checkbox
   const handleCheckboxChange = (e) => {
     setShowExtraFields(e.target.checked);
+  };
+
+
+  // Manejador de eventos para el cambio a manual
+  const handleChangeManual = (e) => {
+    setManualQuote(e.target.checked);
   };
 
   const handleFileChange = (e) => {
@@ -512,7 +572,26 @@ function Quotes() {
         <Modal.Body>
           <Form onSubmit={handleFormSubmit}>
             {/* Información principal */}
-            <h5 className="mb-4">Información del viaje</h5>
+            <Row>
+              <Col md={4}>
+                <h5 className="mb-4">Información del viaje</h5>
+
+              </Col>
+
+              <Col md={4}>
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={manualQuote}
+                    onChange={handleChangeManual}
+                  />
+                  Manual
+                </label>
+
+              </Col>
+
+
+            </Row>
             <Row className="mb-3">
               {/* <Col md={4}>
                 <Form.Group>
@@ -573,7 +652,8 @@ function Quotes() {
               </Col>
               <Col md={4}>
                 <Form.Group>
-                  <Form.Select
+                  {!manualQuote ? (<Form.Control placeholder="Destino" type="text" name="destino" onChange={handleFormChange} />
+                  ) : (<Form.Select
                     onChange={handleDestinoChange}
                     name="destination"
                     value={formData.destination}
@@ -587,7 +667,9 @@ function Quotes() {
                         {destino.destino}
                       </option>
                     ))}
-                  </Form.Select>
+                  </Form.Select>)
+                  }
+
                 </Form.Group>
               </Col>
               <Col md={2}>
@@ -610,21 +692,31 @@ function Quotes() {
                 <Row>
                   <Col md={4}>
                     <Form.Group>
-                      <Form.Select
+                      {!manualQuote ? (<Form.Control
+                        placeholder="Hotel"
+                        type="text"
                         name="hotel"
-                        onChange={(e) => handleHotelChange(index, "name", e.target.value)}
-                        value={hotel.name}
-                        disabled={!formData.destination}
-                      >
-                        <option value="" disabled>
-                          Seleccione un hotel
-                        </option>
-                        {filteredHoteles.map((hotelOption) => (
-                          <option key={hotelOption.hotelID} value={hotelOption.name}>
-                            {hotelOption.name}
+                        value={hotelInput}
+                        onChange={handleInputChange}
+                        autoComplete="off"
+                      />
+                      ) : (
+                        <Form.Select
+                          name="hotel"
+                          onChange={(e) => handleHotelChange(index, "name", e.target.value)}
+                          value={hotel.name}
+                          disabled={!formData.destination}
+                        >
+                          <option value="" disabled>
+                            Seleccione un hotel
                           </option>
-                        ))}
-                      </Form.Select>
+                          {filteredHoteles.map((hotelOption) => (
+                            <option key={hotelOption.hotelID} value={hotelOption.name}>
+                              {hotelOption.name}
+                            </option>
+                          ))}
+                        </Form.Select>
+                      )}
                     </Form.Group>
                   </Col>
                   <Col md={6}>
@@ -680,39 +772,39 @@ function Quotes() {
                     </label>
                     {showExtraFields && (
                       <Row>
-                      <Col md={8}>
-                        <Form.Group className="mb-2">
-                          <Form.Control
-                            as="textarea"
-                            placeholder="Detalle extra"
-                            type="text"
-                            value={hotel.extra}
-                            onChange={(e) =>
-                              handleHotelChange(index, "extra", e.target.value)
-                            }
-                            onInput={(e) => {
-                              e.target.style.height = 'auto'; // Reinicia altura para reducir si se borra texto
-                              e.target.style.height = `${e.target.scrollHeight}px`; // Ajusta a la altura del contenido
-                            }}
-                            style={{
-                              overflow: 'hidden',
-                              resize: 'none',
-                            }}
-                          />
-                        </Form.Group>
+                        <Col md={8}>
+                          <Form.Group className="mb-2">
+                            <Form.Control
+                              as="textarea"
+                              placeholder="Detalle extra"
+                              type="text"
+                              value={hotel.extra}
+                              onChange={(e) =>
+                                handleHotelChange(index, "extra", e.target.value)
+                              }
+                              onInput={(e) => {
+                                e.target.style.height = 'auto'; // Reinicia altura para reducir si se borra texto
+                                e.target.style.height = `${e.target.scrollHeight}px`; // Ajusta a la altura del contenido
+                              }}
+                              style={{
+                                overflow: 'hidden',
+                                resize: 'none',
+                              }}
+                            />
+                          </Form.Group>
                         </Col>
                         <Col md={4}>
-                        <Form.Group className="mb-2">
-                          <Form.Control
-                            type="number"
-                            placeholder="Monto"
-                            value={hotel.extraAmount}
-                            onChange={(e) =>
-                              handleHotelChange(index, "extraAmount", e.target.value)
-                            }
-                          />
-                        </Form.Group>
-                      </Col>
+                          <Form.Group className="mb-2">
+                            <Form.Control
+                              type="number"
+                              placeholder="Monto"
+                              value={hotel.extraAmount}
+                              onChange={(e) =>
+                                handleHotelChange(index, "extraAmount", e.target.value)
+                              }
+                            />
+                          </Form.Group>
+                        </Col>
                       </Row>
                     )}
                   </Col>
@@ -723,7 +815,7 @@ function Quotes() {
                   </Col>
                 </Row>
                 <Row>
-                
+
                 </Row>
               </div>
 
