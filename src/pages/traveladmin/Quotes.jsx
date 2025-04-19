@@ -70,7 +70,7 @@ function Quotes() {
 
       // Reemplaza esta URL por tu endpoint real de TripAdvisor
 
-     const response = await fetch(`https://api.content.tripadvisor.com/api/v1/location/search?key=519AAFC09925436194F4B5798A71F9A2&searchQuery=${encodeURIComponent(query)}&category=hotels&language=en`, options)
+      const response = await fetch(`https://api.content.tripadvisor.com/api/v1/location/search?key=519AAFC09925436194F4B5798A71F9A2&searchQuery=${encodeURIComponent(query)}&category=hotels&language=en`, options)
         .then(res => res.json())
         .then(res => console.log(res))
         .catch(err => console.error(err));
@@ -253,6 +253,14 @@ function Quotes() {
 
     const opciones = { day: 'numeric', month: 'long', year: 'numeric' };
     return new Intl.DateTimeFormat('es-ES', opciones).format(fecha);
+  };
+
+  const handleSuggestionClick = (hotelName) => {
+    setHotelInput(hotelName);
+    setSuggestions([]);
+
+    // Simular un evento para actualizar el estado padre si es necesario
+    handleFormChange({ target: { name: 'hotel', value: hotelName } });
   };
 
   const updateDates = (update) => {
@@ -692,14 +700,46 @@ function Quotes() {
                 <Row>
                   <Col md={4}>
                     <Form.Group>
-                      {!manualQuote ? (<Form.Control
-                        placeholder="Hotel"
-                        type="text"
-                        name="hotel"
-                        value={hotelInput}
-                        onChange={handleInputChange}
-                        autoComplete="off"
-                      />
+                      {!manualQuote ? (
+
+                        <div style={{ position: 'relative' }}>
+                          <Form.Control
+                            placeholder="Hotel"
+                            type="text"
+                            name="hotel"
+                            value={hotelInput}
+                            onChange={handleInputChange}
+                            autoComplete="off"
+                          />
+                          {loading && <div>Cargando...</div>}
+                          {suggestions.length > 0 && (
+                            <ul
+                              style={{
+                                position: 'absolute',
+                                zIndex: 1000,
+                                backgroundColor: 'white',
+                                border: '1px solid #ccc',
+                                width: '100%',
+                                listStyle: 'none',
+                                padding: 0,
+                                margin: 0,
+                                maxHeight: '200px',
+                                overflowY: 'auto',
+                              }}
+                            >
+                              {suggestions.map((hotel, index) => (
+                                <li
+                                  key={index}
+                                  onClick={() => handleSuggestionClick(hotel.name)}
+                                  style={{ padding: '8px', cursor: 'pointer' }}
+                                >
+                                  {hotel.name}
+                                </li>
+                              ))}
+                            </ul>
+                          )}
+                        </div>
+
                       ) : (
                         <Form.Select
                           name="hotel"
