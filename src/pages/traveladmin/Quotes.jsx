@@ -64,6 +64,15 @@ function Quotes() {
     handleFormChange(e); // seguir usando tu lógica original si necesitas almacenar este valor
   };
 
+  const handleSuggestionClick = (hotelName) => {
+    setHotelInput(hotelName);
+    setSuggestions([]);
+
+    // Simular un evento para actualizar el estado padre si es necesario
+    handleFormChange({ target: { name: 'hotel', value: hotelName } });
+  };
+
+
   const fetchHotels = async (query) => {
     try {
       setLoading(true);
@@ -75,7 +84,7 @@ function Quotes() {
         .then(res => console.log(res))
         .catch(err => console.error(err));
 
-      setSuggestions(response.data?.results || []);
+      setSuggestions(response.data || []);
     } catch (error) {
       console.error('Error fetching hotels:', error);
       setSuggestions([]);
@@ -253,14 +262,6 @@ function Quotes() {
 
     const opciones = { day: 'numeric', month: 'long', year: 'numeric' };
     return new Intl.DateTimeFormat('es-ES', opciones).format(fecha);
-  };
-
-  const handleSuggestionClick = (hotelName) => {
-    setHotelInput(hotelName);
-    setSuggestions([]);
-
-    // Simular un evento para actualizar el estado padre si es necesario
-    handleFormChange({ target: { name: 'hotel', value: hotelName } });
   };
 
   const updateDates = (update) => {
