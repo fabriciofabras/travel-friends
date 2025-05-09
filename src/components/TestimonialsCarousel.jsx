@@ -2,12 +2,17 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import carlos from "../assets/carlos.png";
+import sofia from "../assets/sofia.png";
+import ana from "../assets/ana.png";
+import jorge from "../assets/jorge.png";
+import mariana from "../assets/mariana.png";
 
 const testimonials = [
   {
     id: 1,
     name: "Sofia Lopez",
-    image: "https://via.placeholder.com/50", // Reemplaza con URL de imagen real
+    image: sofia, // Reemplaza con URL de imagen real
     review:
       "Travel Friends facilitó mis vacaciones, desde la planificación hasta la ejecución. ¡Recomiendo mucho su servicio personalizado!",
     rating: 5,
@@ -15,11 +20,35 @@ const testimonials = [
   {
     id: 2,
     name: "Carlos Mendez",
-    image: "https://via.placeholder.com/50", // Reemplaza con URL de imagen real
+    image: carlos, // Reemplaza con URL de imagen real
     review:
       "La flexibilidad en las opciones de pago nos permitió viajar sin preocupaciones financieras. ¡Gracias, Travel Friends!",
     rating: 5,
   },
+  {
+    id: 3,
+    name: "Ana Martínez",
+    image: ana, // Reemplaza con URL de imagen real
+    review:
+      "Viajar con Travel Friends fue una experiencia increíble. Me ayudaron a encontrar el mejor destino para mi familia. ¡Volveré a viajar con ellos!",
+    rating: 5,
+  },
+  {
+    id: 4,
+    name: "Jorge Ramirez",
+    image: jorge, // Reemplaza con URL de imagen real
+    review:
+      "El equipo de Travel Friends siempre estuvo atento a nuestras necesidades. Fue como tener un asesor personal de viajes. ¡Excelente servicio!",
+    rating: 5,
+  },
+  {
+    id: 5,
+    name: "Mariana Gómez",
+    image: mariana, // Reemplaza con URL de imagen real
+    review:
+      "Me encantó la facilidad para organizar todo en un solo lugar. Desde el vuelo hasta las actividades, Travel Friends se encargó de todo.",
+    rating: 5,
+  }
   // Agrega más testimonios aquí
 ];
 

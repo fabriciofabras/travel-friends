@@ -12,11 +12,20 @@ import axios from 'axios';
 
 
 function Quotes() {
-  const options = { method: 'GET', headers: { accept: 'application/json' } };
+  const options = {
+    method: 'GET', headers: {
+      accept: 'application/json', origin: 'https://travel-friends-mu.vercel.app',
+      referer: 'https://travel-friends-mu.vercel.app'
+    }
+  };
+
+  const [activeHotelIndex, setActiveHotelIndex] = useState(null);
 
   const [showExtraFields, setShowExtraFields] = useState(false);
   const [imageFiles, setImageFiles] = useState([]);
   const [manualQuote, setManualQuote] = useState(false)
+  const [isTyping, setIsTyping] = useState(false);
+  const typingTimeout = useRef(null);
 
   const [showModal, setShowModal] = useState(false);
   const [dates, setDates] = useState([null, null]);
@@ -41,7 +50,7 @@ function Quotes() {
   const debounceRef = useRef(null);
 
   useEffect(() => {
-    if (hotelInput.length < 5) {
+    if (hotelInput.length < 5 || !isTyping) {
       setSuggestions([]);
       return;
     }
@@ -57,36 +66,50 @@ function Quotes() {
     }, 2000);
 
     return () => clearTimeout(debounceRef.current);
-  }, [hotelInput]);
+  }, [hotelInput, isTyping]);
 
   const handleInputChange = (e) => {
     setHotelInput(e.target.value);
     handleFormChange(e); // seguir usando tu lógica original si necesitas almacenar este valor
+    setIsTyping(true);
+
   };
 
-  const handleSuggestionClick = (hotelName) => {
-    setHotelInput(hotelName);
+  const handleSuggestionClick = (index, hotelName, location_id) => {
+
+    console.log("index", index)
+    console.log("hotelName", hotelName)
+    console.log("location_id", location_id)
+
+    const updatedHotels = [...formData.hotels];
+
+    updatedHotels[index].hotelID = location_id ? location_id : "";
+
+
+    setFormData({ ...formData, hotels: updatedHotels });
+
     setSuggestions([]);
+    setIsTyping(false); // ✅ Esto evita que se dispare la búsqueda después de seleccionar
 
     // Simular un evento para actualizar el estado padre si es necesario
     handleFormChange({ target: { name: 'hotel', value: hotelName } });
+
+    handleHotelChange(index, 'name', hotelName, 'notTyping')
+
   };
 
 
   const fetchHotels = async (query) => {
+
     try {
       setLoading(true);
 
-      // Reemplaza esta URL por tu endpoint real de TripAdvisor
-
-      const response = await fetch(`https://api.content.tripadvisor.com/api/v1/location/search?key=519AAFC09925436194F4B5798A71F9A2&searchQuery=${encodeURIComponent(query)}&category=hotels&language=en`, options)
-        .then(res => res.json())
-        .then(res => console.log(res))
-        .catch(err => console.error(err));
-
-      setSuggestions(response.data || []);
+      const res = await fetch(`http://localhost:3000/api/hotels?q=${encodeURIComponent(query)}`);
+      const data = await res.json();
+      console.log("response.data", data);
+      setSuggestions(data.data || []);
     } catch (error) {
-      console.error('Error fetching hotels:', error);
+      console.error("Error fetching suggestions:", error);
       setSuggestions([]);
     } finally {
       setLoading(false);
@@ -216,7 +239,9 @@ function Quotes() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleHotelChange = (index, field, value) => {
+
+
+  const handleHotelChange = (index, field, value, mode) => {
     const updatedHotels = [...formData.hotels];
     updatedHotels[index][field] = value;
 
@@ -224,15 +249,32 @@ function Quotes() {
     // Generar el enlace automáticamente cuando el nombre del hotel se selecciona
     if (field === "name") {
 
-      console.log("value", value)
-      console.log("hotelCatalog", hotelCatalog)
-      const hotel = hotelCatalog[0].hoteles.find((h) => h.name === value);
+      if (mode === "notTyping") {
+        console.log("updated hoteles", updatedHotels)
+        setHotelInput(value);
+        setFormData({ ...formData, [field]: value });
+        return;
+      }
 
-      console.log("hotel", hotel)
+      if (mode === "auto") {
 
-      const hotelId = hotel.hotelID !== undefined ? hotel.hotelID : hotel.hotelId;
+        console.log("value", value)
 
-      updatedHotels[index].hotelID = hotel ? hotel.hotelID : "";
+        setHotelInput(value);
+        setFormData({ ...formData, [field]: value });
+        setIsTyping(true);
+      } else {
+
+        console.log("value", value)
+        console.log("hotelCatalog", hotelCatalog)
+        const hotel = hotelCatalog[0].hoteles.find((h) => h.name === value);
+
+        console.log("hotel", hotel)
+
+        const hotelId = hotel.hotelID !== undefined ? hotel.hotelID : hotel.hotelId;
+
+        updatedHotels[index].hotelID = hotel ? hotel.hotelID : "";
+      }
     }
 
     setFormData({ ...formData, hotels: updatedHotels });
@@ -661,7 +703,8 @@ function Quotes() {
               </Col>
               <Col md={4}>
                 <Form.Group>
-                  {!manualQuote ? (<Form.Control placeholder="Destino" type="text" name="destino" onChange={handleFormChange} />
+                  {!manualQuote ? (<Form.Control placeholder="Destino" type="text" name="destination" value={formData.destination}
+                    onChange={handleFormChange} />
                   ) : (<Form.Select
                     onChange={handleDestinoChange}
                     name="destination"
@@ -705,15 +748,15 @@ function Quotes() {
 
                         <div style={{ position: 'relative' }}>
                           <Form.Control
+                            onFocus={() => setActiveHotelIndex(index)}
                             placeholder="Hotel"
                             type="text"
+                            value={hotel.name}
                             name="hotel"
-                            value={hotelInput}
-                            onChange={handleInputChange}
-                            autoComplete="off"
+                            onChange={(e) => handleHotelChange(index, "name", e.target.value, "auto")} autoComplete="off"
                           />
-                          {loading && <div>Cargando...</div>}
-                          {suggestions.length > 0 && (
+                          {loading && activeHotelIndex === index && <div>Cargando...</div>}
+                          {activeHotelIndex === index && suggestions.length > 0 && (
                             <ul
                               style={{
                                 position: 'absolute',
@@ -728,10 +771,10 @@ function Quotes() {
                                 overflowY: 'auto',
                               }}
                             >
-                              {suggestions.map((hotel, index) => (
+                              {suggestions.map((hotel, index2) => (
                                 <li
                                   key={index}
-                                  onClick={() => handleSuggestionClick(hotel.name)}
+                                  onClick={() => handleSuggestionClick(index, hotel.name, hotel.location_id)}
                                   style={{ padding: '8px', cursor: 'pointer' }}
                                 >
                                   {hotel.name}

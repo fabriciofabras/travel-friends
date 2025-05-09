@@ -1,4 +1,5 @@
 import express from "express";
+import axios from "axios";
 import cors from "cors";
 import path from "path";
 import { fileURLToPath } from 'url';
@@ -64,6 +65,30 @@ app.post('/process_payment', async (req, res) => {
 });
 
 const port = 3000;
+
+const TRIPADVISOR_API_KEY = '519AAFC09925436194F4B5798A71F9A2';
+
+app.get('/api/hotels', async (req, res) => {
+  const query = req.query.q;
+
+  try {
+    const response = await axios.get(
+      `https://api.content.tripadvisor.com/api/v1/location/search?key=${TRIPADVISOR_API_KEY}&searchQuery=${encodeURIComponent(query)}&category=hotels`,
+      {
+        headers: {
+          accept: 'application/json',
+          origin: 'https://travel-friends-mu.vercel.app/',   // opcional si tu API key lo requiere
+          referer: 'https://travel-friends-mu.vercel.app/'   // opcional si tu API key lo requiere
+        }
+      }
+    );
+
+    res.json(response.data);
+  } catch (error) {
+    console.error('Error al obtener datos de TripAdvisor:', error.response?.data || error.message);
+    res.status(500).json({ error: 'Error al consultar TripAdvisor' });
+  }
+});
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));

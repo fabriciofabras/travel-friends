@@ -273,6 +273,7 @@ thead th:first-child {
 
 .testimonial-card {
   text-align: center;
+  width: 90%;
   padding: 20px;
   background: #f9f9f9;
   border-radius: 10px;
