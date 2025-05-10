@@ -198,6 +198,7 @@ function Quotes() {
       });
     };
 
+
     // Procesar todas las imágenes con compresión
     const promises = files.map((file) => compressImage(file));
 
@@ -313,7 +314,9 @@ function Quotes() {
 
     setDates(update)
   }
-  const generatePDF = () => {
+  const generatePDF = async () => {
+
+    console.log(formData)
     const doc = new jsPDF();
 
     const addHeaderImage = (doc, footer) => {
@@ -521,21 +524,23 @@ function Quotes() {
 
     console.log(dataSerializada[0]);
 
-    console.log("Hotel Images", hotelImages)
+    // AGREGAR IMAGENES DE TRIP ADVISOR 
+
+    const hotelImages = await fetchHotelImages(formData.hotels);
+
+    console.log("hotelIMAGENES:", hotelImages);
 
 
+    formData.hotels.forEach((hotel) => {
+      const imagesData = hotelImages[hotel.hotelID]?.data || [];
 
-    Object.keys(hotelImages).forEach((hotelId) => {
+      if (imagesData.length === 0) return; // Saltar si no hay imágenes
+
       doc.addPage(); // Agregar una nueva página para el siguiente hotel
-
-      const images = hotelImages[hotelId] || [];
-
-      if (images.length === 0) return; // Saltar si no hay imágenes
-
       doc.setFontSize(16);
-      doc.text(`${formData.hotels[hotelId].name}`, 10, 30); // Título del hotel
+      doc.text(`${hotel.name}`, 10, 30); // Título del hotel
 
-      images.forEach((image, index) => {
+      imagesData.forEach((imageData, index) => {
         const imagesPerPage = 8; // Máximo de imágenes por página
         const colWidth = 95; // Espacio entre columnas
         const rowHeight = 60; // Espacio entre filas
@@ -543,20 +548,20 @@ function Quotes() {
         const marginY = 40;
 
         // Calcular posición en columnas
-        const col = index % 2; // 0: Izquierda, 1: Derecha
-        const row = Math.floor(index / 2) % (imagesPerPage / 2); // Control de filas dentro de una página
+        const col = index % 2;
+        const row = Math.floor(index / 2) % (imagesPerPage / 2);
 
         const x = marginX + col * colWidth;
         const y = marginY + row * rowHeight;
 
-        // Si el índice actual es múltiplo de imagesPerPage, agregar nueva página (excepto la primera imagen)
+        // Si el índice actual es múltiplo de imagesPerPage, agregar nueva página
         if (index > 0 && index % imagesPerPage === 0) {
-          doc.addPage(); // Agregar nueva página
+          doc.addPage();
         }
 
-        doc.addImage(image.base64, "JPEG", x, y, 85, 55);
+        const imageUrl = imageData.images.large.url; // Usando la imagen de tamaño "large"
+        doc.addImage(imageUrl, "JPEG", x, y, 85, 55);
       });
-
     });
 
     // Agregar imagen de footer a todas las páginas
@@ -578,6 +583,28 @@ function Quotes() {
     doc.save("cotizacion.pdf");
   };
 
+
+  // Función para obtener imágenes de los hoteles
+  const fetchHotelImages = async (hotels) => {
+    const hotelImages = {};
+
+    try {
+      // Hacer las peticiones para todos los hoteles en paralelo
+      await Promise.all(
+        hotels.map(async (hotel) => {
+          const res = await fetch(`https://travel-friends-server.vercel.app/api/hotelImages?q=${hotel.hotelID}`);
+          const data = await res.json();
+          hotelImages[hotel.hotelID] = data;
+        })
+      );
+
+      console.log("Imágenes de hoteles:", hotelImages);
+    } catch (error) {
+      console.error("Error fetching hotel images:", error);
+    }
+
+    return hotelImages;
+  };
 
 
   return (
