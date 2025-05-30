@@ -11,6 +11,7 @@ import QuoteView from "../pages/traveladmin/QuoteView"
 import Ingreso from "../pages/traveladmin/Ingreso"
 import Politicas from "../pages/traveladmin/Politicas"
 import Terminos from "../pages/traveladmin/Terminos"
+import SeccionOficina from "../components/NuestraOficina"
 
 export const TravelRoutes = () => {
 
@@ -31,6 +32,7 @@ export const TravelRoutes = () => {
                 <Routes>
                     <Route path="/" element={<Inicio />}></Route>
                     <Route path="/inicio" element={<Inicio />}></Route>
+                    <Route path="/nuestraoficina" element={<SeccionOficina />}></Route>
                     <Route path="/administrador" element={<Administrador />}></Route>
                     <Route path="/ingreso" element={<Ingreso />}></Route>
                     <Route path="/quote" element={<QuoteView />}></Route>

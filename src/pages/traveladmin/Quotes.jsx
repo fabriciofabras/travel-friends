@@ -378,12 +378,7 @@ function Quotes() {
 
           rows = [
             [hotel.name, hotel.details, { content: formatCurrency(hotelAmount), styles: { halign: "right" } }],
-            ["", hotel.extra, { content: formatCurrency(hotelExtraAmount), styles: { halign: "right" } }],
-            ["", "Traslados", { content: formatCurrency(transferAmount), styles: { halign: "right" } }],
-            ["", "Vuelos", { content: formatCurrency(flightAmount), styles: { halign: "right" } }],
-            ["", "Total", { content: formatCurrency(totalAmount), styles: { halign: "right", fontStyle: "bold" } }],
-            ,
-
+            ["", hotel.extra, { content: formatCurrency(hotelExtraAmount), styles: { halign: "right" } }]
             /*  [
                {
                  content: `${hotel.link}`,
@@ -397,9 +392,6 @@ function Quotes() {
 
           rows = [
             [hotel.name, hotel.details, { content: formatCurrency(hotelAmount), styles: { halign: "right" } }],
-            ["", "Traslados", { content: formatCurrency(transferAmount), styles: { halign: "right" } }],
-            ["", "Vuelos", { content: formatCurrency(flightAmount), styles: { halign: "right" } }],
-            ["", "Total", { content: formatCurrency(totalAmount), styles: { halign: "right", fontStyle: "bold" } }],
             ,
 
             [
@@ -417,6 +409,23 @@ function Quotes() {
             ]
           ];
 
+          if (formData?.includeTransfers) {
+            rows.push([
+              "",
+              "Traslados",
+              { content: formatCurrency(transferAmount || 0), styles: { halign: "right" } },
+            ]);
+          }
+
+          if (formData?.includeFlights) {
+            rows.push([
+              "",
+              "Vuelos",
+              { content: formatCurrency(flightAmount || 0), styles: { halign: "right" } },
+            ]);
+          }
+
+          rows.push(["", "Total", { content: formatCurrency(totalAmount), styles: { halign: "right", fontStyle: "bold" } }]);
         }
 
         return rows;

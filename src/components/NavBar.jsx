@@ -1,8 +1,9 @@
 import { NavLink } from "react-router-dom";
 import logo from "../assets/logo.png"
-import { HomeIcon, StarIcon } from '@heroicons/react/24/outline'; // Outline style
+import { GifIcon, HomeIcon, StarIcon } from '@heroicons/react/24/outline'; // Outline style
 import { BuildingOfficeIcon } from '@heroicons/react/24/outline'; // Outline style
 import { useState } from 'react';
+import { GiftIcon } from "lucide-react";
 
 export const NavBar = () => {
 
@@ -33,6 +34,10 @@ export const NavBar = () => {
                     <HomeIcon className="h-6 w-6 inline-block mr-2" />
                     Inicio
                 </NavLink>
+                <NavLink onClick={toggleMenu} className="block py-2 text-gray-900 hover:bg-gray-100" to="/nuestraoficina">
+                    <HomeIcon className="h-6 w-6 inline-block mr-2" />
+                    Nuestra Oficina
+                </NavLink>
                 <NavLink onClick={toggleMenu} className="block py-2 text-gray-900 hover:bg-gray-100" to="/cotiza">
                     <BuildingOfficeIcon className="h-6 w-6 inline-block mr-2" />
                     Promociones
@@ -60,8 +65,13 @@ export const NavBar = () => {
                     Inicio
                 </NavLink>
                 <NavLink className="navlink"
+                variant="custom" to="/nuestraoficina">
+                    <BuildingOfficeIcon className="h-6 w-6 inline-block mr-2" />
+                    Nuestra Oficina
+                </NavLink>
+                <NavLink className="navlink"
                     to="/cotiza"
-                ><BuildingOfficeIcon className="h-6 w-6 inline-block mr-2" />
+                ><GiftIcon className="h-6 w-6 inline-block mr-2" />
                     Promociones
                 </NavLink>
                 <NavLink className="navlink"
