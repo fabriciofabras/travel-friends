@@ -652,7 +652,7 @@ function Quotes() {
       </Table>
 
       {/* Modal */}
-      <Modal show={showModal} onHide={closeModal} size="lg">
+      <Modal show={showModal} backdrop="static" keyboard={false} onHide={closeModal} size="lg">
         <Modal.Header closeButton>
           <Modal.Title>Nueva Cotización</Modal.Title>
         </Modal.Header>
@@ -734,6 +734,7 @@ function Quotes() {
                     isClearable={true}
                     dateFormat="dd/MM/yyyy"
                     className="form-control"
+                    minDate={new Date()} // <-- esta línea evita fechas pasadas
                   />
                 </Form.Group>
               </Col>
