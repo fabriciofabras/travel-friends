@@ -77,13 +77,17 @@ function Quotes() {
 
   const handleSuggestionClick = (index, hotelName, location_id) => {
 
+    console.log("handleSuggestionClick")
     console.log("index", index)
     console.log("hotelName", hotelName)
     console.log("location_id", location_id)
 
+    const partes = location_id.split("_");
+    const location = partes[1];
+
     const updatedHotels = [...formData.hotels];
 
-    updatedHotels[index].hotelID = location_id ? location_id : "";
+    updatedHotels[index].hotelID = location ? location : "";
 
 
     setFormData({ ...formData, hotels: updatedHotels });
@@ -104,7 +108,8 @@ function Quotes() {
     try {
       setLoading(true);
 
-      const res = await fetch(`https://travel-friends-server.vercel.app/api/hotels?q=${encodeURIComponent(query)}`);
+/*       const res = await fetch(`https://travel-friends-server.vercel.app/api/hotels?q=${encodeURIComponent(query)}`);
+ */      const res = await fetch(`http://localhost:3000/api/hotels?q=${encodeURIComponent(query)}`);
       const data = await res.json();
       console.log("response.data", data);
       setSuggestions(data.data || []);
@@ -535,13 +540,19 @@ function Quotes() {
 
     // AGREGAR IMAGENES DE TRIP ADVISOR 
 
+    console.log("fetchdatahotels:", formData.hotels)
+
     const hotelImages = await fetchHotelImages(formData.hotels);
 
     console.log("hotelIMAGENES:", hotelImages);
 
 
     formData.hotels.forEach((hotel) => {
-      const imagesData = hotelImages[hotel.hotelID]?.data || [];
+
+      console.log("prueba", hotelImages[hotel.hotelID]?.data.contentDetail.contentImages.hotelImages)
+      const imagesData = hotelImages[hotel.hotelID]?.data.contentDetail.contentImages.hotelImages || [];
+
+      console.log("imagesdata:", imagesData)
 
       if (imagesData.length === 0) return; // Saltar si no hay imágenes
 
@@ -549,7 +560,7 @@ function Quotes() {
       doc.setFontSize(16);
       doc.text(`${hotel.name}`, 10, 30); // Título del hotel
 
-      imagesData.forEach((imageData, index) => {
+      imagesData.slice(0, 16).forEach((imageData, index) => {
         const imagesPerPage = 8; // Máximo de imágenes por página
         const colWidth = 95; // Espacio entre columnas
         const rowHeight = 60; // Espacio entre filas
@@ -568,8 +579,37 @@ function Quotes() {
           doc.addPage();
         }
 
-        const imageUrl = imageData.images.large.url; // Usando la imagen de tamaño "large"
-        doc.addImage(imageUrl, "JPEG", x, y, 85, 55);
+        let imageUrl = imageData.urls[0].value; // Usando la imagen de tamaño "large"
+
+        console.log(imageUrl)
+
+        if (imageUrl?.startsWith("//")) {
+          imageUrl = "https:" + imageUrl;
+        }
+
+        // Usar la API URL para obtener el pathname sin los parámetros
+        const pathname = new URL(imageUrl).pathname;
+
+
+        // Extraer la extensión del archivo (sin parámetros)
+        const extension = pathname.split('.').pop().toLowerCase();
+
+
+        // Mapear extensión a formato aceptado por jsPDF
+        let imageFormat;
+        if (["jpg", "jpeg"].includes(extension)) {
+          imageFormat = "JPEG";
+        } else if (["png"].includes(extension)) {
+          imageFormat = "PNG";
+        } else if (["webp"].includes(extension)) {
+          imageFormat = "WEBP"; // Solo en builds que lo soporten
+        } else {
+          console.warn("Formato de imagen no soportado:", extension);
+          return;
+        }
+
+        // Insertar la imagen
+        doc.addImage(imageUrl, imageFormat, x, y, 85, 55);
       });
     });
 
@@ -601,7 +641,9 @@ function Quotes() {
       // Hacer las peticiones para todos los hoteles en paralelo
       await Promise.all(
         hotels.map(async (hotel) => {
-          const res = await fetch(`https://travel-friends-server.vercel.app/api/hotelImages?q=${hotel.hotelID}`);
+          /*           const res = await fetch(`https://travel-friends-server.vercel.app/api/hotelImages?q=${hotel.hotelID}`);
+           */
+          const res = await fetch(`http://localhost:3000/api/hotelImages?q=${hotel.hotelID}`);
           const data = await res.json();
           hotelImages[hotel.hotelID] = data;
         })
@@ -811,7 +853,7 @@ function Quotes() {
                               {suggestions.map((hotel, index2) => (
                                 <li
                                   key={index}
-                                  onClick={() => handleSuggestionClick(index, hotel.name, hotel.location_id)}
+                                  onClick={() => handleSuggestionClick(index, hotel.name, hotel.id)}
                                   style={{ padding: '8px', cursor: 'pointer' }}
                                 >
                                   {hotel.name}
