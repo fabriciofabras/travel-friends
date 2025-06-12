@@ -109,7 +109,7 @@ function Quotes() {
       setLoading(true);
 
 /*       const res = await fetch(`https://travel-friends-server.vercel.app/api/hotels?q=${encodeURIComponent(query)}`);
- */      const res = await fetch(`http://localhost:3000/api/hotels?q=${encodeURIComponent(query)}`);
+ */      const res = await fetch(`https://travel-friends-server.vercel.app/api/hotels?q=${encodeURIComponent(query)}`);
       const data = await res.json();
       console.log("response.data", data);
       setSuggestions(data.data || []);
@@ -643,7 +643,7 @@ function Quotes() {
         hotels.map(async (hotel) => {
           /*           const res = await fetch(`https://travel-friends-server.vercel.app/api/hotelImages?q=${hotel.hotelID}`);
            */
-          const res = await fetch(`http://localhost:3000/api/hotelImages?q=${hotel.hotelID}`);
+          const res = await fetch(`https://travel-friends-server.vercel.app/api/hotelImages?q=${hotel.hotelID}`);
           const data = await res.json();
           hotelImages[hotel.hotelID] = data;
         })
