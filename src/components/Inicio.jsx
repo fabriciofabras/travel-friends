@@ -15,6 +15,10 @@ import promo5 from "../assets/promociones/promo5.png";
 import promo6 from "../assets/promociones/promo6.png";
 import promo7 from "../assets/promociones/promo7.png";
 import promo8 from "../assets/promociones/promo8.png";
+import promo9 from "../assets/promociones/promo9.png";
+import promo10 from "../assets/promociones/promo10.png";
+import promo11 from "../assets/promociones/promo11.png";
+import promo12 from "../assets/promociones/promo12.png";
 import TestimonialsCarousel from "./TestimonialsCarousel";
 
 export const Inicio = () => {
@@ -23,14 +27,14 @@ export const Inicio = () => {
 
     // Configuración del slider
     const sliderSettings = {
-        dots: false, // Muestra los puntos de navegación
+        dots: true, // Muestra los puntos de navegación
         infinite: true, // Hace el slider infinito
         speed: 500, // Velocidad de transición
         slidesToShow: 1, // Número de imágenes visibles al mismo tiempo
         slidesToScroll: 1, // Número de imágenes que se mueven al hacer scroll
         autoplay: true, // Habilita el auto-play
         autoplaySpeed: 3000, // Velocidad del auto-play
-        arrows: false, // Deshabilita las flechas
+        arrows: true, // Deshabilita las flechas
     };
 
     return (
@@ -41,7 +45,7 @@ export const Inicio = () => {
                 </div>            </div>
             <div class="mx-auto max-w-full pt-32 sm:pt-0 lg:py-40  lg-w-max">
                 <div className="flex flex-col-reverse sm:flex-row flex-wrap">
-                    <div className="flex flex-col mt-10 w-full sm:mt-0 sm:w-1/2">
+                    <div className="flex flex-col mt-10 w-full sm:mt-0 sm:w-1/2 sm:px-6">
                         <Slider {...sliderSettings}>
                             <div>
                                 <img
@@ -98,6 +102,34 @@ export const Inicio = () => {
                                     className="rounded-lg shadow-lg mx-auto"
                                 />
                             </div>
+                            <div>
+                                <img
+                                    src={promo9}
+                                    alt="Promoción 9"
+                                    className="rounded-lg shadow-lg mx-auto"
+                                />
+                            </div>
+                            <div>
+                                <img
+                                    src={promo10}
+                                    alt="Promoción 9"
+                                    className="rounded-lg shadow-lg mx-auto"
+                                />
+                            </div>
+                            <div>
+                                <img
+                                    src={promo11}
+                                    alt="Promoción 8"
+                                    className="rounded-lg shadow-lg mx-auto"
+                                />
+                            </div>
+                            <div>
+                                <img
+                                    src={promo12}
+                                    alt="Promoción 8"
+                                    className="rounded-lg shadow-lg mx-auto"
+                                />
+                            </div>
                         </Slider>
                     </div>
                     <div className="flex flex-col w-full sm:w-1/2">
@@ -129,7 +161,7 @@ export const Inicio = () => {
 
 
                 {/* Sección de categorías */}
-                <div className="mt-24 grid grid-cols-1 gap-6 sm:grid-cols-3 px-6">
+                <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-3 px-6">
                     <div
                         className="ofertas-especiales bg-[#004c97] bg-opacity-70 text-white p-6 rounded-lg shadow-lg cursor-pointer"
                         onClick={() => navigate("/cotiza")}
