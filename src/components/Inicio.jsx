@@ -23,7 +23,7 @@ export const Inicio = () => {
 
     // Configuración del slider
     const sliderSettings = {
-        dots: true, // Muestra los puntos de navegación
+        dots: false, // Muestra los puntos de navegación
         infinite: true, // Hace el slider infinito
         speed: 500, // Velocidad de transición
         slidesToShow: 1, // Número de imágenes visibles al mismo tiempo
@@ -40,8 +40,8 @@ export const Inicio = () => {
 
                 </div>            </div>
             <div class="mx-auto max-w-full pt-32 sm:pt-0 lg:py-40  lg-w-max">
-                <div class="flex flex-auto flex-row">
-                    <div class="flex w-1/2 hidden sm:block">
+                <div className="flex flex-col-reverse sm:flex-row flex-wrap">
+                    <div className="flex flex-col mt-10 w-full sm:mt-0 sm:w-1/2">
                         <Slider {...sliderSettings}>
                             <div>
                                 <img
@@ -100,7 +100,7 @@ export const Inicio = () => {
                             </div>
                         </Slider>
                     </div>
-                    <div class="flex flex-col sm:w-1/2">
+                    <div className="flex flex-col w-full sm:w-1/2">
                         <div className="px-10 sm:px-0">
                             <b class="text-balance text-2xl font-bold text-[#e35724] sm:text-6xl font-['Trebuchet']">travel</b>
                             <b class="text-balance text-2xl font-bold text-[#005ae0] sm:text-6xl font-['Trebuchet']">friends.com</b>
@@ -117,11 +117,11 @@ export const Inicio = () => {
                                 className="btn custom px-4 py-2">Hablar con un agente <ChatBubbleOvalLeftIcon className="h-6 w-6 inline-block mr-2" /></Button>
                         </div>
 
-                        <div class="flex flex-col">
+                        {/*   <div class="flex flex-col">
                         <TestimonialsCarousel />
 
 
-                        </div>
+                        </div> */}
                     </div>
 
 
