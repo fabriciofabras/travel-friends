@@ -145,8 +145,10 @@ export const Inicio = () => {
                         <div class="px-10 sm:pt-0 mt-10 flex items-center justify-center gap-x-6">
                             <Button href="/cotiza" variant="custom" id="click_promociones"
                                 className="btn custom px-4 py-2">Ver Promociones</Button>
-                            <Button href="https://wa.me/5215512120049?text=Hola!%20quiero%20cotizar%20un%20viaje." variant="custom"
-                                className="btn custom px-4 py-2">Hablar con un agente <ChatBubbleOvalLeftIcon className="h-6 w-6 inline-block mr-2" /></Button>
+                            <Button
+                                href="https://wa.me/5215512120049?text=Hola!%20quiero%20cotizar%20un%20viaje."
+                                className="btn btn-success px-4 py-2"
+                            >Hablar con un agente <ChatBubbleOvalLeftIcon className="h-6 w-6 inline-block mr-2" /></Button>
                         </div>
 
                         {/*   <div class="flex flex-col">
