@@ -1,7 +1,7 @@
 export const Politicas = () => {
 
     return (
-        <div class="container">
+        <div className="container">
             <h1>Políticas de Privacidad</h1>
             <p>En <strong>Travel Friends</strong>, la privacidad y seguridad de nuestros usuarios son una prioridad. En este documento, te explicamos cómo recopilamos, utilizamos y protegemos tu información personal.</p>
 

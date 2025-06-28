@@ -15,7 +15,7 @@ export const NavBar = () => {
 
 
     return (
-        <nav class="flex items-center justify-around pt-4 lg:px-12 px-4 bg-white border-2" aria-label="Global">
+        <nav className="flex items-center justify-around pt-4 lg:px-12 px-4 bg-white border-2" aria-label="Global">
             <div className="flex lg:hidden">
                 <button
                     type="button"
@@ -38,24 +38,43 @@ export const NavBar = () => {
                     <HomeIcon className="h-6 w-6 inline-block mr-2" />
                     Nuestra Oficina
                 </NavLink>
-                <NavLink onClick={toggleMenu} className="block py-2 text-gray-900 hover:bg-gray-100" to="/cotiza">
+                {/* <NavLink onClick={toggleMenu} className="block py-2 text-gray-900 hover:bg-gray-100" to="/cotiza">
                     <BuildingOfficeIcon className="h-6 w-6 inline-block mr-2" />
                     Promociones
                 </NavLink>
                 <NavLink onClick={toggleMenu} className="block py-2 text-gray-900 hover:bg-gray-100" to="/favoritos">
                     <StarIcon className="h-6 w-6 inline-block mr-2" />
                     Destinos Favoritos
+                </NavLink> */}
+                <NavLink
+                    onClick={toggleMenu}
+                    className="block py-2 text-gray-900 hover:bg-gray-100" to="/favoritos"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <FacebookIcon className="h-6 w-6 inline-block mr-2" />
+                    Facebook
+                </NavLink>
+
+                <NavLink
+                    onClick={toggleMenu}
+                    className="block py-2 text-gray-900 hover:bg-gray-100" to="/favoritos"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <InstagramIcon className="h-6 w-6 inline-block mr-2" />
+                    Instagram
                 </NavLink>
                 {/* Añade más enlaces si es necesario */}
             </div>
-            <div class="flex lg:flex-1">
-                <b href="#" class="-m-1.5 p-1.5">
-                    <span class="sr-only">Travel Friends</span>
-                    <img class="h-20 w-auto" src={logo} alt=""></img>
+            <div className="flex lg:flex-1">
+                <b href="#" className="-m-1.5 p-1.5">
+                    <span className="sr-only">Travel Friends</span>
+                    <img className="h-20 w-auto" src={logo} alt=""></img>
                 </b>
             </div>
 
-            <div class="hidden lg:flex lg:gap-x-12">
+            <div className="hidden lg:flex lg:gap-x-12">
                 <NavLink className="navlink"
                     variant="custom"
 
@@ -69,7 +88,7 @@ export const NavBar = () => {
                     <BuildingOfficeIcon className="h-6 w-6 inline-block mr-2" />
                     Nuestra Oficina
                 </NavLink>
-                <NavLink className="navlink"
+                {/* <NavLink className="navlink"
                     to="/cotiza"
                 ><GiftIcon className="h-6 w-6 inline-block mr-2" />
                     Promociones
@@ -78,7 +97,7 @@ export const NavBar = () => {
                     to="/favoritos"
                 ><StarIcon className="h-6 w-6 inline-block mr-2" />
                     Destinos Favoritos
-                </NavLink>
+                </NavLink> */}
                 <NavLink
                     className="navlink hover:text-blue-600"
                     to="https://www.facebook.com/travelfriendsmx"
@@ -99,8 +118,8 @@ export const NavBar = () => {
                     Instagram
                 </NavLink>
             </div>
-            {/* <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-                <b href="#" class="text-sm font-semibold leading-6 text-neutral-950">Log in <span aria-hidden="true">&rarr;</span></b>
+            {/* <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+                <b href="#" className="text-sm font-semibold leading-6 text-neutral-950">Log in <span aria-hidden="true">&rarr;</span></b>
             </div> */}
         </nav>
 

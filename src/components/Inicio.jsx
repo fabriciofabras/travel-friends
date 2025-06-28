@@ -38,12 +38,12 @@ export const Inicio = () => {
     };
 
     return (
-        <div class="xs:mi-div sm:relative sm:isolate sm:px-2 sm:pt-2 lg:px-2">
-            <div class="absolute inset-x-0 -top-40 -z-10 overflow-hidden  sm:-top-80" aria-hidden="true">
+        <div className="xs:mi-div sm:relative sm:isolate sm:px-2 sm:pt-2 lg:px-2">
+            <div className="absolute inset-x-0 -top-40 -z-10 overflow-hidden  sm:-top-80" aria-hidden="true">
                 <div className="flex w-1/2 hidden sm:block">
 
                 </div>            </div>
-            <div class="mx-auto max-w-full pt-32 sm:pt-0 lg:py-40  lg-w-max">
+            <div className="mx-auto max-w-full pt-32 sm:pt-0 lg:py-40  lg-w-max">
                 <div className="flex flex-col-reverse sm:flex-row flex-wrap">
                     <div className="flex flex-col mt-10 w-full sm:mt-0 sm:w-1/2 sm:px-6">
                         <Slider {...sliderSettings}>
@@ -134,15 +134,15 @@ export const Inicio = () => {
                     </div>
                     <div className="flex flex-col w-full sm:w-1/2">
                         <div className="px-10 sm:px-0">
-                            <b class="text-balance text-2xl font-bold text-[#e35724] sm:text-6xl font-['Trebuchet']">travel</b>
-                            <b class="text-balance text-2xl font-bold text-[#005ae0] sm:text-6xl font-['Trebuchet']">friends.com</b>
+                            <b className="text-balance text-2xl font-bold text-[#e35724] sm:text-6xl font-['Trebuchet']">travel</b>
+                            <b className="text-balance text-2xl font-bold text-[#005ae0] sm:text-6xl font-['Trebuchet']">friends.com</b>
                             <h1 className="py-4 text-2xl font-bold text-[#004c97] sm:text-4xl drop-shadow-lg">
                                 Transformamos tus sueños en viajes inolvidables
                             </h1>
                             <p className="mt-4 text-lg text-[#004c97] sm:text-xl">
                                 ¡Explora nuestros destinos y vive la mejor experiencia de viaje!
                             </p>                    </div>
-                        <div class="px-10 sm:pt-0 mt-10 flex items-center justify-center gap-x-6">
+                        <div className="px-10 sm:pt-0 mt-10 flex items-center justify-center gap-x-6">
                             <Button href="/cotiza" variant="custom" id="click_promociones"
                                 className="btn custom px-4 py-2">Ver Promociones</Button>
                             <Button
@@ -151,7 +151,7 @@ export const Inicio = () => {
                             >Hablar con un agente <ChatBubbleOvalLeftIcon className="h-6 w-6 inline-block mr-2" /></Button>
                         </div>
 
-                        {/*   <div class="flex flex-col">
+                        {/*   <div className="flex flex-col">
                         <TestimonialsCarousel />
 
 

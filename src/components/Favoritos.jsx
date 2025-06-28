@@ -20,29 +20,29 @@ export const Favoritos = () => {
     };
 
     return (
-        <div class="relative isolate px-2 pt-2 lg:px-2">
-            <div class="absolute inset-x-0 -top-40 -z-10 overflow-hidden  sm:-top-80" aria-hidden="true">
+        <div className="relative isolate px-2 pt-2 lg:px-2">
+            <div className="absolute inset-x-0 -top-40 -z-10 overflow-hidden  sm:-top-80" aria-hidden="true">
                 <div ></div>
             </div>
-            <div class="mx-auto max-w-full py-32 lg-w-max">
-                {/*  <div class="hidden sm:mb-8 sm:flex sm:justify-center">
-                    <div class="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-                        Announcing our next round of funding. <b href="#" class="font-semibold text-indigo-600"><span class="absolute inset-0" aria-hidden="true"></span>Read more <span aria-hidden="true">&rarr;</span></b>
+            <div className="mx-auto max-w-full py-32 lg-w-max">
+                {/*  <div className="hidden sm:mb-8 sm:flex sm:justify-center">
+                    <div className="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
+                        Announcing our next round of funding. <b href="#" className="font-semibold text-indigo-600"><span className="absolute inset-0" aria-hidden="true"></span>Read more <span aria-hidden="true">&rarr;</span></b>
                     </div>
                 </div> */}
 
-                <div class="grid grid-cols-1 sm:grid-cols-1  gap-6 ">
+                <div className="grid grid-cols-1 sm:grid-cols-1  gap-6 ">
                     {
                         destinos.map((destino, index) => {
 
                             return (<>
                                 <b className="h3-travel">{destino.titulo}</b>
-                                <div class="grid grid-cols-1 sm:grid-cols-4 gap-6">
+                                <div className="grid grid-cols-1 sm:grid-cols-4 gap-6">
 
                                     {
                                         destino.hoteles.map((hotel, index) => {
                                             return (
-                                                <div class="flex flex-col  w-3/3 rounded-2xl">
+                                                <div className="flex flex-col  w-3/3 rounded-2xl">
                                                     <img className="rounded-lg" src={hotel.gallery[0].cloudUri}></img>
                                                     <div className="m-2 mb-0">
                                                         <h1 className="titulo-promociones">{hotel.name}
@@ -60,7 +60,7 @@ export const Favoritos = () => {
                                                         <p className="descripcion-promociones">
                                                             {hotel.title}
                                                         </p>
-                                                        <hr class="border-t-1 border-gray-300 my-2" />
+                                                        <hr className="border-t-1 border-gray-300 my-2" />
 
                                                        
 

@@ -8,19 +8,19 @@ export const Cotiza = () => {
     const promociones = promotions;
 
     return (
-        <div class="relative isolate px-2 pt-2 lg:px-2">
-            <div class="absolute inset-x-0 -top-40 -z-10 overflow-hidden  sm:-top-80" aria-hidden="true">
+        <div className="relative isolate px-2 pt-2 lg:px-2">
+            <div className="absolute inset-x-0 -top-40 -z-10 overflow-hidden  sm:-top-80" aria-hidden="true">
                 <div ></div>
             </div>
-            <div class="mx-auto max-w-full py-32 lg-w-max">
-                {/*  <div class="hidden sm:mb-8 sm:flex sm:justify-center">
-                    <div class="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-                        Announcing our next round of funding. <a href="#" class="font-semibold text-indigo-600"><span class="absolute inset-0" aria-hidden="true"></span>Read more <span aria-hidden="true">&rarr;</span></a>
+            <div className="mx-auto max-w-full py-32 lg-w-max">
+                {/*  <div className="hidden sm:mb-8 sm:flex sm:justify-center">
+                    <div className="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
+                        Announcing our next round of funding. <a href="#" className="font-semibold text-indigo-600"><span className="absolute inset-0" aria-hidden="true"></span>Read more <span aria-hidden="true">&rarr;</span></a>
                     </div>
                 </div> */}
 
 
-                <div class="grid grid-cols-1 sm:grid-cols-3  gap-6 ">
+                <div className="grid grid-cols-1 sm:grid-cols-3  gap-6 ">
 
                     {
                         promociones.Promotions.map((promocion, index) => {
@@ -29,7 +29,7 @@ export const Cotiza = () => {
                             console.log("promotionDetail")
                             console.log(promotionDetail)
                             return (
-                                <div class="flex flex-col  w-3/3 rounded-2xl">
+                                <div className="flex flex-col  w-3/3 rounded-2xl">
                                     <img className="rounded-lg" src={promocion.UrlImage}></img>
                                     <div className="m-2 mb-0">
                                         <h1 className="titulo-promociones">{promocion.Name}
@@ -47,7 +47,7 @@ export const Cotiza = () => {
                                         <p className="descripcion-promociones">
                                             {promocion.Description}, {promocion.Adults} adultos.
                                         </p>
-                                        <hr class="border-t-1 border-gray-300 my-2" />
+                                        <hr className="border-t-1 border-gray-300 my-2" />
 
                                         <p className="descripcion-promociones">
                                             {promotionDetail.Room} -  {promotionDetail.MealPlan}

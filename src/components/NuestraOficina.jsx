@@ -23,6 +23,7 @@ const SeccionOficina = () => {
                     <h3 className="text-2xl font-bold mb-2">Ubicación</h3>
                     <p><MapPin className="inline mr-2" /> Av. Vía Adolfo López Mateos 201, Col. Santa Cruz Acatlán, Naucalpan, Méx., Santa Cruz Acatlán, 53150 Naucalpan, Méx., México</p>
                     <iframe
+                        title="miOficina"
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3731.6477822280053!2d-99.2540596486978!3d19.48235346667536!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d203e2faa1372b%3A0xb97a28bff339e42d!2sPlaza%20San%20Mateo!5e0!3m2!1ses!2smx!4v1746942936608!5m2!1ses!2smx"
                         className="w-full h-64 mt-4 rounded-xl"
                         allowFullScreen=""
