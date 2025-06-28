@@ -33,7 +33,7 @@ const SeccionOficina = () => {
 
                     <h3 className="text-2xl font-bold mt-4 mb-2">Contacto</h3>
                     <p><Phone className="inline mr-2" /> +52 55 1212 0049</p>
-                    <p><Mail className="inline mr-2" /> fabriciofabras@gmail.com</p>
+                    <p><Mail className="inline mr-2" /> contacto@travelfriends.com.mx</p>
 
                     <Button href="https://wa.me/5215512120049?text=Hola!%20Quiero%20agendar%20una%20cita." variant="custom"
                         className="btn custom px-4 py-2">Agendar una cita <ChatBubbleOvalLeftIcon className="h-6 w-6 inline-block mr-2" /></Button>

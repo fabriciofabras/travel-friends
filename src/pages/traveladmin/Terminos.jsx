@@ -46,7 +46,7 @@ export const Terminos = () =>{
         <h2>9. Contacto</h2>
         <p>Si tienes preguntas o comentarios sobre estos términos, contáctanos:</p>
         <p><strong>Travel Friends</strong></p>
-        <p>Email: <a href="mailto:fabriciofabras@gmail.com">fabriciofabras@gmail.com</a></p>
+        <p>Email: <a href="mailto:contacto@travelfriends.com.mx">contacto@travelfriends.com.mx</a></p>
         <p>Teléfono: +52 56 1212 0049</p>
     
        

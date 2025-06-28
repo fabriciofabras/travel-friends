@@ -44,7 +44,7 @@ export const Politicas = () => {
                 <li>Optar por no recibir comunicaciones promocionales.</li>
                 <li>Solicitar detalles sobre el tratamiento de tus datos personales.</li>
             </ul>
-            <p>Para ejercer tus derechos, contáctanos en <a href="mailto:fabriciofabras@gmail.com">fabriciofabras@gmail.com</a>.</p>
+            <p>Para ejercer tus derechos, contáctanos en <a href="mailto:contacto@travelfriends.com.mx">contacto@travelfriends.com.mx</a>.</p>
 
             <h2>7. Cambios en las políticas</h2>
             <p>Nos reservamos el derecho de actualizar estas políticas en cualquier momento. Notificaremos los cambios en esta página.</p>
@@ -52,7 +52,7 @@ export const Politicas = () => {
             <h2>8. Contacto</h2>
             <p>Si tienes preguntas o inquietudes sobre nuestras políticas de privacidad, contáctanos:</p>
             <p><strong>Travel Friends</strong></p>
-            <p>Email: <a href="mailto:fabriciofabras@gmail.com">fabriciofabras@gmail.com</a></p>
+            <p>Email: <a href="mailto:contacto@travelfriends.com.mx">contacto@travelfriends.com.mx</a></p>
             <p>Teléfono: +52 55 1212 0049</p>
 
         </div>

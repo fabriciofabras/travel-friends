@@ -3,7 +3,7 @@ import logo from "../assets/logo.png"
 import { GifIcon, HomeIcon, StarIcon } from '@heroicons/react/24/outline'; // Outline style
 import { BuildingOfficeIcon } from '@heroicons/react/24/outline'; // Outline style
 import { useState } from 'react';
-import { GiftIcon } from "lucide-react";
+import { GiftIcon, FacebookIcon, InstagramIcon } from "lucide-react";
 
 export const NavBar = () => {
 
@@ -28,7 +28,7 @@ export const NavBar = () => {
                     </svg>
                 </button>
             </div>
- 
+
             <div className={`lg:hidden ${isMenuOpen ? 'block' : 'hidden'} absolute top-16 left-0 right-0 bg-white p-4 shadow-lg`}>
                 <NavLink onClick={toggleMenu} className="block py-2 text-gray-900 hover:bg-gray-100" to="/inicio">
                     <HomeIcon className="h-6 w-6 inline-block mr-2" />
@@ -57,15 +57,15 @@ export const NavBar = () => {
 
             <div class="hidden lg:flex lg:gap-x-12">
                 <NavLink className="navlink"
-                variant="custom"
-                                                            
+                    variant="custom"
+
                     to="/inicio"
                 >        <HomeIcon className="h-6 w-6 inline-block mr-2" />
 
                     Inicio
                 </NavLink>
                 <NavLink className="navlink"
-                variant="custom" to="/nuestraoficina">
+                    variant="custom" to="/nuestraoficina">
                     <BuildingOfficeIcon className="h-6 w-6 inline-block mr-2" />
                     Nuestra Oficina
                 </NavLink>
@@ -78,6 +78,25 @@ export const NavBar = () => {
                     to="/favoritos"
                 ><StarIcon className="h-6 w-6 inline-block mr-2" />
                     Destinos Favoritos
+                </NavLink>
+                <NavLink
+                    className="navlink hover:text-blue-600"
+                    to="https://www.facebook.com/travelfriendsmx"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <FacebookIcon className="h-6 w-6 inline-block mr-2" />
+                    Facebook
+                </NavLink>
+
+                <NavLink
+                    className="navlink hover:text-pink-500"
+                    to="https://www.instagram.com/travel.friends.mexico"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <InstagramIcon className="h-6 w-6 inline-block mr-2" />
+                    Instagram
                 </NavLink>
             </div>
             {/* <div class="hidden lg:flex lg:flex-1 lg:justify-end">
