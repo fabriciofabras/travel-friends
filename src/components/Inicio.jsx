@@ -136,9 +136,12 @@ export const Inicio = () => {
                         <div className="px-10 sm:px-0">
                             <b className="text-balance text-2xl font-bold text-[#e35724] sm:text-6xl font-['Trebuchet']">travel</b>
                             <b className="text-balance text-2xl font-bold text-[#005ae0] sm:text-6xl font-['Trebuchet']">friends.com</b>
-                            <h1 className="py-4 text-2xl font-bold text-[#004c97] sm:text-4xl drop-shadow-lg">
-                                Transformamos tus sueños en viajes inolvidables
+                            <h1 className="visually-hidden">
+                                Agencia de viajes en Naucalpan, Satélite y zona norte CDMX
                             </h1>
+                            <h2 className="py-4 text-2xl font-bold text-[#004c97] sm:text-4xl drop-shadow-lg">
+                                Transformamos tus sueños en viajes inolvidables
+                            </h2>
                             <p className="mt-4 text-lg text-[#004c97] sm:text-xl">
                                 ¡Explora nuestros destinos y vive la mejor experiencia de viaje!
                             </p>                    </div>
@@ -161,6 +164,15 @@ export const Inicio = () => {
 
                 </div>
 
+                {/* Nueva sección: contenido SEO local */}
+                <section className="mt-16 px-6">
+                    <div className="max-w-4xl mx-auto text-center">
+                        <h2 className="text-3xl font-bold text-[#004c97]">Agencia de viajes en Naucalpan, Satélite y alrededores</h2>
+                        <p className="mt-4 text-lg text-gray-700">
+                            En <strong>Travel Friends</strong> nos especializamos en ofrecer viajes a medida para nuestros clientes en la zona norte de la Ciudad de México. Si te encuentras en Naucalpan, Lomas Verdes, Boulevares, Satélite o zonas cercanas, estás en el lugar correcto. Tenemos promociones todo incluido a Cancún, Acapulco, Los Cabos y otros destinos nacionales e internacionales. Nuestro equipo de asesores está disponible para ayudarte a planear el viaje perfecto, con atención personalizada, opciones flexibles de pago y un compromiso total con la calidad del servicio. ¡Viajar no tiene por qué ser caro!
+                        </p>
+                    </div>
+                </section>
 
                 {/* Sección de categorías */}
                 <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-3 px-6">
@@ -228,7 +240,7 @@ export const Inicio = () => {
                 </section>
 
                 {/* Nueva sección: Certificaciones y Sellos de Confianza */}
-                <section className="py-4">
+                <section className="py-0">
                     <div className="max-w-5xl mx-auto text-center">
                         <h2 className="text-2xl font-bold text-[#004c97]">
                             Certificaciones y Sellos de Confianza
