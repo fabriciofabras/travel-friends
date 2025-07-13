@@ -3,12 +3,18 @@ import hero from "../assets/hero.jpg"
 import { ChatBubbleOvalLeftIcon } from "@heroicons/react/24/outline"
 import { StarIcon } from '@heroicons/react/24/solid'; // Outline style
 import promotions from "../assets/promotions"
+import { Helmet } from "react-helmet";
+
 export const Cotiza = () => {
 
     const promociones = promotions;
 
     return (
         <div className="relative isolate px-2 pt-2 lg:px-2">
+            <Helmet>
+                <title>Agencia de Viajes en Satélite | Travel Friends</title>
+                <meta name="description" content="Cotiza tu viaje con Travel Friends. Diseñamos paquetes a medida desde Naucalpan y Satélite. Rápido, fácil y con atención cara a cara." />
+            </Helmet>
             <div className="absolute inset-x-0 -top-40 -z-10 overflow-hidden  sm:-top-80" aria-hidden="true">
                 <div ></div>
             </div>
@@ -71,7 +77,7 @@ export const Cotiza = () => {
                                         <div className="pt-2">
 
                                             <Button href={`https://wa.me/5215512120049?text=Hola!%20quiero%20reclamar%20esta%20oferta:${promocion.Name}.`} variant="custom"
-                                                            className="btn custom">Reclamar oferta</Button>
+                                                className="btn custom">Reclamar oferta</Button>
                                         </div>
                                         <div>
                                             <p className="policies-promociones pt-2">

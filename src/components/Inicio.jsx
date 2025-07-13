@@ -1,7 +1,7 @@
 import { Button } from "react-bootstrap"
 import hero from "../assets/hero.jpg";
 import Slider from "react-slick";
-import { ChatBubbleOvalLeftIcon, ShieldCheckIcon, UserGroupIcon, CreditCardIcon } from "@heroicons/react/24/outline";
+import { ChatBubbleOvalLeftIcon, ShieldCheckIcon, UserGroupIcon, CreditCardIcon, BuildingOffice2Icon } from "@heroicons/react/24/outline";
 import { useNavigate } from "react-router-dom";
 import ssl from "../assets/ssl.png"
 import mercadopago from "../assets/mercadopago.png"
@@ -20,6 +20,7 @@ import promo10 from "../assets/promociones/promo10.png";
 import promo11 from "../assets/promociones/promo11.png";
 import promo12 from "../assets/promociones/promo12.png";
 import TestimonialsCarousel from "./TestimonialsCarousel";
+import { Helmet } from "react-helmet";
 
 export const Inicio = () => {
 
@@ -39,6 +40,13 @@ export const Inicio = () => {
 
     return (
         <div className="xs:mi-div sm:relative sm:isolate sm:px-2 sm:pt-2 lg:px-2">
+            <Helmet>
+                <title>Agencia de Viajes en Satélite | Travel Friends</title>
+                <meta
+                    name="description"
+                    content="Explora paquetes turísticos y promociones especiales desde Naucalpan, Satélite y zona norte de CDMX con Travel Friends. Atención personalizada y oficina física."
+                />
+            </Helmet>
             <div className="absolute inset-x-0 -top-40 -z-10 overflow-hidden  sm:-top-80" aria-hidden="true">
                 <div className="flex w-1/2 hidden sm:block">
 
@@ -210,7 +218,7 @@ export const Inicio = () => {
                         <p className="text-lg text-gray-600 mt-4">
                             Descubre las razones por las que somos la mejor opción para planificar tu próximo viaje.
                         </p>
-                        <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-3">
+                        <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-4">
                             {/* Beneficio 1 */}
                             <div className="flex flex-col items-center text-center">
                                 <ShieldCheckIcon className="h-16 w-16 text-[#004c97]" />
@@ -233,6 +241,14 @@ export const Inicio = () => {
                                 <h3 className="mt-4 text-xl font-bold text-gray-800">Facilidades de Pago</h3>
                                 <p className="mt-2 text-gray-600">
                                     Ofrecemos planes de pago flexibles que se adaptan a tus necesidades.
+                                </p>
+                            </div>
+                            {/* Beneficio 4 */}
+                            <div className="flex flex-col items-center text-center">
+                                <BuildingOffice2Icon className="h-16 w-16 text-[#004c97]" />
+                                <h3 className="mt-4 text-xl font-bold text-gray-800">Oficina Física</h3>
+                                <p className="mt-2 text-gray-600">
+                                    Visítanos en nuestra oficina y realiza tus pagos de forma presencial. Estamos disponibles para brindarte atención directa y personalizada.
                                 </p>
                             </div>
                         </div>

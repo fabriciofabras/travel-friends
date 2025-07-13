@@ -5,10 +5,15 @@ import oficina1 from "../assets/oficina1.jpeg";
 import oficina2 from "../assets/oficina2.jpeg";
 import oficina3 from "../assets/oficina3.jpeg";
 import { ChatBubbleOvalLeftIcon } from '@heroicons/react/24/outline';
+import { Helmet } from "react-helmet";
 
 const SeccionOficina = () => {
     return (
         <div className="p-6 bg-white">
+            <Helmet>
+                <title>Agencia de Viajes en Satélite | Travel Friends</title>
+                <meta name="description" content="Visita la oficina de Travel Friends en Naucalpan. Realiza tus pagos presencialmente y recibe atención personalizada cara a cara para planear tu viaje ideal." />
+            </Helmet>
             <h2 className="text-3xl font-bold mb-4 text-center">Conoce Nuestras Oficinas</h2>
             <p className="text-lg text-center mb-6">Visítanos y obtén atención personalizada para planear tu viaje soñado.</p>
 

@@ -32,7 +32,7 @@ export const TravelRoutes = () => {
                 <Routes>
                     <Route path="/" element={<Inicio />}></Route>
                     <Route path="/inicio" element={<Inicio />}></Route>
-                    <Route path="/nuestraoficina" element={<SeccionOficina />}></Route>
+                    <Route path="/oficina" element={<SeccionOficina />}></Route>
                     <Route path="/administrador" element={<Administrador />}></Route>
                     <Route path="/ingreso" element={<Ingreso />}></Route>
                     <Route path="/quote" element={<QuoteView />}></Route>
@@ -40,8 +40,8 @@ export const TravelRoutes = () => {
                     <Route path="/cotiza" element={<Cotiza />}></Route>
                     <Route path="/contacto" element={<Contacto />}></Route>
                     <Route path="/favoritos" element={<Favoritos />}></Route>
-                    <Route path="/politicas" element={<Politicas />}></Route>
-                    <Route path="/terminos" element={<Terminos />}></Route>
+                    <Route path="/politica-de-privacidad" element={<Politicas />}></Route>
+                    <Route path="/terminos-y-condiciones" element={<Terminos />}></Route>
                     <Route path="/hotel/:destinoId/:hotelId" element={<Hotel />}></Route>
                 </Routes>
             </div>
