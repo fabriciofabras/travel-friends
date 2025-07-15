@@ -34,7 +34,7 @@ export const NavBar = () => {
                     <HomeIcon className="h-6 w-6 inline-block mr-2" />
                     Inicio
                 </NavLink>
-                <NavLink onClick={toggleMenu} className="block py-2 text-gray-900 hover:bg-gray-100" to="/nuestraoficina">
+                <NavLink onClick={toggleMenu} className="block py-2 text-gray-900 hover:bg-gray-100" to="/oficina">
                     <HomeIcon className="h-6 w-6 inline-block mr-2" />
                     Nuestra Oficina
                 </NavLink>
