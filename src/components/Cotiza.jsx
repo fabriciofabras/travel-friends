@@ -51,7 +51,7 @@ export const Cotiza = () => {
                                             </div>
                                         </h1>
                                         <p className="descripcion-promociones">
-                                            {promocion.Description}, {promocion.Adults} adultos.
+                                            {promocion.Description}, {promocion.Adults} adultos {promocion.Kids ? `${promocion.Kids} menores` : ""} 
                                         </p>
                                         <hr className="border-t-1 border-gray-300 my-2" />
 

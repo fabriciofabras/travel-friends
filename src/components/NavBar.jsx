@@ -38,17 +38,18 @@ export const NavBar = () => {
                     <HomeIcon className="h-6 w-6 inline-block mr-2" />
                     Nuestra Oficina
                 </NavLink>
-                {/* <NavLink onClick={toggleMenu} className="block py-2 text-gray-900 hover:bg-gray-100" to="/cotiza">
+                 <NavLink onClick={toggleMenu} className="block py-2 text-gray-900 hover:bg-gray-100" to="/promociones">
                     <BuildingOfficeIcon className="h-6 w-6 inline-block mr-2" />
                     Promociones
                 </NavLink>
-                <NavLink onClick={toggleMenu} className="block py-2 text-gray-900 hover:bg-gray-100" to="/favoritos">
+                {/*<NavLink onClick={toggleMenu} className="block py-2 text-gray-900 hover:bg-gray-100" to="/favoritos">
                     <StarIcon className="h-6 w-6 inline-block mr-2" />
                     Destinos Favoritos
                 </NavLink> */}
                 <NavLink
                     onClick={toggleMenu}
-                    className="block py-2 text-gray-900 hover:bg-gray-100" to="/favoritos"
+                    className="block py-2 text-gray-900 hover:bg-gray-100" to="https://www.facebook.com/travelfriendsmx"
+
                     target="_blank"
                     rel="noopener noreferrer"
                 >
@@ -58,7 +59,9 @@ export const NavBar = () => {
 
                 <NavLink
                     onClick={toggleMenu}
-                    className="block py-2 text-gray-900 hover:bg-gray-100" to="/favoritos"
+                    className="block py-2 text-gray-900 hover:bg-gray-100" to="https://www.instagram.com/travel.friends.mexico"
+
+
                     target="_blank"
                     rel="noopener noreferrer"
                 >
@@ -84,16 +87,16 @@ export const NavBar = () => {
                     Inicio
                 </NavLink>
                 <NavLink className="navlink"
-                    variant="custom" to="/nuestraoficina">
+                    variant="custom" to="/oficina">
                     <BuildingOfficeIcon className="h-6 w-6 inline-block mr-2" />
                     Nuestra Oficina
                 </NavLink>
-                {/* <NavLink className="navlink"
-                    to="/cotiza"
+                 <NavLink className="navlink"
+                    to="/promociones"
                 ><GiftIcon className="h-6 w-6 inline-block mr-2" />
                     Promociones
                 </NavLink>
-                <NavLink className="navlink"
+                {/*<NavLink className="navlink"
                     to="/favoritos"
                 ><StarIcon className="h-6 w-6 inline-block mr-2" />
                     Destinos Favoritos

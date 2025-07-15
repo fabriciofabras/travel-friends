@@ -154,7 +154,7 @@ export const Inicio = () => {
                                 ¡Explora nuestros destinos y vive la mejor experiencia de viaje!
                             </p>                    </div>
                         <div className="px-10 sm:pt-0 mt-10 flex items-center justify-center gap-x-6">
-                            <Button href="/cotiza" variant="custom" id="click_promociones"
+                            <Button href="/promociones" variant="custom" id="click_promociones"
                                 className="btn custom px-4 py-2">Ver Promociones</Button>
                             <Button
                                 href="https://wa.me/5215512120049?text=Hola!%20quiero%20cotizar%20un%20viaje."
@@ -186,7 +186,7 @@ export const Inicio = () => {
                 <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-3 px-6">
                     <div
                         className="ofertas-especiales bg-[#004c97] bg-opacity-70 text-white p-6 rounded-lg shadow-lg cursor-pointer"
-                        onClick={() => navigate("/cotiza")}
+                        onClick={() => navigate("/promociones")}
                     >
                         <h2 className="text-2xl font-bold"></h2>
                         <p className="mt-2">
@@ -194,7 +194,7 @@ export const Inicio = () => {
                     </div>
                     <div
                         className="paquetes bg-[#004c97] bg-opacity-70 text-white p-6 rounded-lg shadow-lg cursor-pointer"
-                        onClick={() => navigate("/planes")}
+                        onClick={() => navigate("/promociones")}
                     >
                         <h2 className="text-2xl font-bold"></h2>
                         <p className="mt-2">
@@ -202,7 +202,7 @@ export const Inicio = () => {
                     </div>
                     <div
                         className="planes bg-[#004c97] bg-opacity-70 text-white p-6 rounded-lg shadow-lg cursor-pointer"
-                        onClick={() => navigate("/paquetes")}
+                        onClick={() => navigate("/promociones")}
                     >
                         <h2 className="text-2xl font-bold"></h2>
                         <p className="mt-2">

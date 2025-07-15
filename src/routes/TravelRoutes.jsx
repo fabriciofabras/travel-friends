@@ -37,7 +37,7 @@ export const TravelRoutes = () => {
                     <Route path="/ingreso" element={<Ingreso />}></Route>
                     <Route path="/quote" element={<QuoteView />}></Route>
                     <Route path="/nosotros" element={<Nosotros />}></Route>
-                    <Route path="/cotiza" element={<Cotiza />}></Route>
+                    <Route path="/promociones" element={<Cotiza />}></Route>
                     <Route path="/contacto" element={<Contacto />}></Route>
                     <Route path="/favoritos" element={<Favoritos />}></Route>
                     <Route path="/politica-de-privacidad" element={<Politicas />}></Route>
