@@ -11,7 +11,7 @@ const SeccionOficina = () => {
     return (
         <div className="p-6 bg-white">
             <Helmet>
-                <title>Agencia de Viajes en Satélite | Travel Friends</title>
+                <title>Nuestra Oficina en Naucalpan | Travel Friends Agencia de Viajes</title>
                 <meta name="description" content="Visita la oficina de Travel Friends en Naucalpan. Realiza tus pagos presencialmente y recibe atención personalizada cara a cara para planear tu viaje ideal." />
             </Helmet>
             <h2 className="text-3xl font-bold mb-4 text-center">Conoce Nuestras Oficinas</h2>

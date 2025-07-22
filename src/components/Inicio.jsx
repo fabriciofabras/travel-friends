@@ -41,7 +41,7 @@ export const Inicio = () => {
     return (
         <div className="xs:mi-div sm:relative sm:isolate sm:px-2 sm:pt-2 lg:px-2">
             <Helmet>
-                <title>Agencia de Viajes en Satélite | Travel Friends</title>
+                <title>Agencia de Viajes en Naucalpan y Satélite | Travel Friends</title>
                 <meta
                     name="description"
                     content="Explora paquetes turísticos y promociones especiales desde Naucalpan, Satélite y zona norte de CDMX con Travel Friends. Atención personalizada y oficina física."

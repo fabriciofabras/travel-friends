@@ -12,7 +12,7 @@ export const Cotiza = () => {
     return (
         <div className="relative isolate px-2 pt-2 lg:px-2">
             <Helmet>
-                <title>Agencia de Viajes en Satélite | Travel Friends</title>
+                <title>Promociones de Viaje 2025 | Travel Friends México</title>
                 <meta name="description" content="Cotiza tu viaje con Travel Friends. Diseñamos paquetes a medida desde Naucalpan y Satélite. Rápido, fácil y con atención cara a cara." />
             </Helmet>
             <div className="absolute inset-x-0 -top-40 -z-10 overflow-hidden  sm:-top-80" aria-hidden="true">
@@ -51,7 +51,7 @@ export const Cotiza = () => {
                                             </div>
                                         </h1>
                                         <p className="descripcion-promociones">
-                                            {promocion.Description}, {promocion.Adults} adultos {promocion.Kids ? `${promocion.Kids} menores` : ""} 
+                                            {promocion.Description}, {promocion.Adults} adultos {promocion.Kids ? `${promocion.Kids} menores` : ""}
                                         </p>
                                         <hr className="border-t-1 border-gray-300 my-2" />
 
