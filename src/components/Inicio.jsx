@@ -3,22 +3,22 @@ import hero from "../assets/hero.jpg";
 import Slider from "react-slick";
 import { ChatBubbleOvalLeftIcon, ShieldCheckIcon, UserGroupIcon, CreditCardIcon, BuildingOffice2Icon } from "@heroicons/react/24/outline";
 import { useNavigate } from "react-router-dom";
-import ssl from "../assets/ssl.png"
-import mercadopago from "../assets/mercadopago.png"
-import visa from "../assets/visa.png"
-import pci from "../assets/pci.png"
-import promo1 from "../assets/promociones/promo1.png"; // Ejemplo de imágenes
-import promo2 from "../assets/promociones/promo2.png";
-import promo3 from "../assets/promociones/promo3.png";
-import promo4 from "../assets/promociones/promo4.png";
-import promo5 from "../assets/promociones/promo5.png";
-import promo6 from "../assets/promociones/promo6.png";
-import promo7 from "../assets/promociones/promo7.png";
-import promo8 from "../assets/promociones/promo8.png";
-import promo9 from "../assets/promociones/promo9.png";
-import promo10 from "../assets/promociones/promo10.png";
-import promo11 from "../assets/promociones/promo11.png";
-import promo12 from "../assets/promociones/promo12.png";
+import ssl from "../assets/ssl.avif"
+import mercadopago from "../assets/mercadopago.avif"
+import visa from "../assets/visa.avif"
+import pci from "../assets/pci.avif"
+import promo1 from "../assets/promociones/promo1.avif"; // Ejemplo de imágenes
+import promo2 from "../assets/promociones/promo2.avif";
+import promo3 from "../assets/promociones/promo3.avif";
+import promo4 from "../assets/promociones/promo4.avif";
+import promo5 from "../assets/promociones/promo5.avif";
+import promo6 from "../assets/promociones/promo6.avif";
+import promo7 from "../assets/promociones/promo7.avif";
+import promo8 from "../assets/promociones/promo8.avif";
+import promo9 from "../assets/promociones/promo9.avif";
+import promo10 from "../assets/promociones/promo10.avif";
+import promo11 from "../assets/promociones/promo11.avif";
+import promo12 from "../assets/promociones/promo12.avif";
 import TestimonialsCarousel from "./TestimonialsCarousel";
 import { Helmet } from "react-helmet";
 
