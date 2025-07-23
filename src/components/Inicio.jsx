@@ -60,6 +60,7 @@ export const Inicio = () => {
                                     src={promo1}
                                     alt="Promoción 1"
                                     className="rounded-lg shadow-lg mx-auto"
+                                    fetchpriority="high"
                                 />
                             </div>
                             <div>

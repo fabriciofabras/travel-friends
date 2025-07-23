@@ -5,10 +5,12 @@
     font-style: normal;
     font-weight: normal;
     src: local('Trebuchet MS'), url('trebuc.woff') format('woff');
+    font-display: swap;
     }
     
 
     @font-face {
+    font-display: swap;
     font-family: 'Trebuchet MS Italic';
     font-style: normal;
     font-weight: normal;

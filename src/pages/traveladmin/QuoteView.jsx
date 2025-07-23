@@ -5,8 +5,6 @@ import destinos from "../../assets/destinos";
 import { CalendarIcon } from '@heroicons/react/24/outline'; // Outline style
 import { MapPinIcon, StarIcon } from '@heroicons/react/24/solid'; // Outline style
 
-import maplibregl, { Marker, FullscreenControl } from 'maplibre-gl';
-import 'maplibre-gl/dist/maplibre-gl.css';
 import PaymentComponent from "./PaymentComponent";
 import ConfirmationComponent from "./ConfirmationComponent";
 
@@ -79,20 +77,8 @@ function QuoteView() {
     // Inicializar el mapa
 
 
-    const map = new maplibregl.Map({
-      container: mapContainer.current, // Contenedor donde se renderiza el mapa
-      style:
-        'https://api.maptiler.com/maps/streets/style.json?key=get_your_own_OpIi9ZULNHzrESv6T2vL',
+    const map = ""
 
-      center: [detalleHotel.location.longitude, detalleHotel.location.latitude], // Coordenadas iniciales (Ciudad de México)
-      zoom: 13, // Nivel de zoom inicial
-    });
-
-    let marker = new Marker()
-      .setLngLat([detalleHotel.location.longitude, detalleHotel.location.latitude])
-      .addTo(map);
-    // Limpiar el mapa al desmontar el componente
-    return () => map.remove();
   }, []);
 
   const formatCurrency = (amount) => {
