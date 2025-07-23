@@ -1,6 +1,7 @@
 [
   {
     "id": "descubre-cancun",
+    "titlemeta": "Descubre Cancún",
     "title": "Descubre Cancún: Consejos Infalibles para Viajes Baratos que No Te Puedes Perder",
     "summary": "Explora Cancún sin gastar una fortuna. Te compartimos consejos para disfrutarlo al máximo, reservando con agencia y aprovechando promociones.",
     "ctaText": "Ver promociones a Cancún",
@@ -80,6 +81,7 @@
   },
   {
     "id": "descubre-mazatlan",
+    "titlemeta": "Descubre Mazatlán",
     "title": "Descubre Mazatlán: Consejos Infalibles para Viajes Baratos que No Te Puedes Perder",
     "summary": "Explora Mazatlán sin gastar una fortuna. Te compartimos consejos para disfrutarlo al máximo, reservando con agencia y aprovechando promociones.",
     "ctaText": "Ver promociones a Mazatlán",
@@ -159,6 +161,7 @@
   },
   {
     "id": "descubre-los-cabos",
+    "titlemeta": "Descubre Los Cabos",
     "title": "Descubre Los Cabos: Consejos Infalibles para Viajes Baratos que No Te Puedes Perder",
     "summary": "Explora Los Cabos sin gastar una fortuna. Te compartimos consejos para disfrutarlo al máximo, reservando con agencia y aprovechando promociones.",
     "ctaText": "Ver promociones a Los Cabos",
@@ -238,6 +241,7 @@
   },
   {
     "id": "descubre-acapulco",
+    "titlemeta": "Descubre Acapulco",
     "title": "Descubre Acapulco: Consejos Infalibles para Viajes Baratos que No Te Puedes Perder",
     "summary": "Explora Acapulco sin gastar una fortuna. Te compartimos consejos para disfrutarlo al máximo, reservando con agencia y aprovechando promociones.",
     "ctaText": "Ver promociones a Acapulco",
@@ -317,6 +321,7 @@
   },
   {
     "id": "descubre-huatulco",
+    "titlemeta": "Descubre Huatulco",
     "title": "Descubre Huatulco: Consejos Infalibles para Viajes Baratos que No Te Puedes Perder",
     "summary": "Explora Huatulco sin gastar una fortuna. Te compartimos consejos para disfrutarlo al máximo, reservando con agencia y aprovechando promociones.",
     "ctaText": "Ver promociones a Huatulco",
@@ -396,6 +401,7 @@
   },
   {
     "id": "descubre-playa-del-carmen",
+    "titlemeta": "Descubre Playa del Carmen",
     "title": "Descubre Playa del Carmen: Consejos Infalibles para Viajes Baratos que No Te Puedes Perder",
     "summary": "Explora Playa del Carmen sin gastar una fortuna. Te compartimos consejos para disfrutarlo al máximo, reservando con agencia y aprovechando promociones.",
     "ctaText": "Ver promociones a Playa del Carmen",
@@ -475,6 +481,7 @@
   },
   {
     "id": "descubre-puerto-vallarta",
+    "titlemeta": "Descubre Puerto Vallarta",
     "title": "Descubre Puerto Vallarta: Consejos Infalibles para Viajes Baratos que No Te Puedes Perder",
     "summary": "Explora Puerto Vallarta sin gastar una fortuna. Te compartimos consejos para disfrutarlo al máximo, reservando con agencia y aprovechando promociones.",
     "ctaText": "Ver promociones a Puerto Vallarta",

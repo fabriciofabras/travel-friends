@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import blogPosts from "../../assets/blogPosts.json";
+import { Helmet } from "react-helmet";
 
 const BlogPost = () => {
     const { id } = useParams(); // por ejemplo: 'descubre-cancun'
@@ -10,6 +11,10 @@ const BlogPost = () => {
 
     return (
         <div className="max-w-4xl mx-auto pt-28 pb-12">
+            <Helmet>
+                <title>{`${post.titlemeta} | Travel Friends`}</title>
+                <meta name="description" content={`Cotiza tu viaje con Travel Friends. ${post.titlemeta}` }/>
+            </Helmet>
             <h1 className="text-3xl font-bold mb-4">{post.title}</h1>
 
             {/* Imagen del destino */}
