@@ -4,6 +4,7 @@ import Slider from "react-slick";
 import { ChatBubbleOvalLeftIcon, ShieldCheckIcon, UserGroupIcon, CreditCardIcon, BuildingOffice2Icon } from "@heroicons/react/24/outline";
 import { useNavigate } from "react-router-dom";
 import ssl from "../assets/ssl.avif"
+import rnt from "../assets/rnt.png"
 import mercadopago from "../assets/mercadopago.avif"
 import visa from "../assets/visa.avif"
 import pci from "../assets/pci.avif"
@@ -180,6 +181,13 @@ export const Inicio = () => {
                         <p className="mt-4 text-lg text-gray-700">
                             En <strong>Travel Friends</strong> nos especializamos en ofrecer viajes a medida para nuestros clientes en la zona norte de la Ciudad de México. Si te encuentras en Naucalpan, Lomas Verdes, Boulevares, Satélite o zonas cercanas, estás en el lugar correcto. Tenemos promociones todo incluido a Cancún, Acapulco, Los Cabos y otros destinos nacionales e internacionales. Nuestro equipo de asesores está disponible para ayudarte a planear el viaje perfecto, con atención personalizada, opciones flexibles de pago y un compromiso total con la calidad del servicio. ¡Viajar no tiene por qué ser caro!
                         </p>
+
+                        <p className="mt-4 text-lg text-gray-700">
+                            Contamos con el <strong>Registro Nacional de Turismo (RNT)</strong> lo cual nos certifica como una agencia de viajes confiable y nos puedes encontrar en la página de consulta de <a href="https://rnt-consulta.sectur.gob.mx/" className="hover:underline">
+                        SECTUR
+                    </a>  con el folio:0415057f860ba
+
+                        </p>
                     </div>
                 </section>
 
@@ -266,6 +274,14 @@ export const Inicio = () => {
                             Nuestro compromiso es brindarte un servicio seguro y confiable.
                         </p>
                         <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-6 items-center justify-center">
+                            {/* Certificación 0 */}
+                            <div>
+                                <img
+                                    src={rnt}
+                                    alt="Certificado SSL"
+                                    className="h-16 mx-auto"
+                                />
+                            </div>
                             {/* Certificación 1 */}
                             <div>
                                 <img
@@ -290,7 +306,7 @@ export const Inicio = () => {
                                     className="h-16 mx-auto"
                                 />
                             </div>
-                            {/* Certificación 4 */}
+                            {/* Certificación 4 
                             <div>
                                 <img
                                     src={pci}
@@ -298,6 +314,7 @@ export const Inicio = () => {
                                     className="h-16 mx-auto"
                                 />
                             </div>
+                            */}
                         </div>
                     </div>
                 </section>
