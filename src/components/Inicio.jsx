@@ -8,18 +8,17 @@ import rnt from "../assets/rnt.png"
 import mercadopago from "../assets/mercadopago.avif"
 import visa from "../assets/visa.avif"
 import pci from "../assets/pci.avif"
-import promo1 from "../assets/promociones/promo1.avif"; // Ejemplo de imágenes
-import promo2 from "../assets/promociones/promo2.avif";
-import promo3 from "../assets/promociones/promo3.avif";
-import promo4 from "../assets/promociones/promo4.avif";
-import promo5 from "../assets/promociones/promo5.avif";
-import promo6 from "../assets/promociones/promo6.avif";
-import promo7 from "../assets/promociones/promo7.avif";
-import promo8 from "../assets/promociones/promo8.avif";
-import promo9 from "../assets/promociones/promo9.avif";
-import promo10 from "../assets/promociones/promo10.avif";
-import promo11 from "../assets/promociones/promo11.avif";
-import promo12 from "../assets/promociones/promo12.avif";
+import promo1 from "../assets/promociones/promo1.jpg"; // Ejemplo de imágenes
+import promo2 from "../assets/promociones/promo2.jpg";
+import promo3 from "../assets/promociones/promo3.jpg";
+import promo4 from "../assets/promociones/promo4.jpg";
+import promo5 from "../assets/promociones/promo5.jpg";
+import promo6 from "../assets/promociones/promo6.jpg";
+import promo7 from "../assets/promociones/promo7.jpg";
+import promo8 from "../assets/promociones/promo8.jpg";
+import promo9 from "../assets/promociones/promo9.jpg";
+import promo10 from "../assets/promociones/promo10.jpg";
+
 import TestimonialsCarousel from "./TestimonialsCarousel";
 import { Helmet } from "react-helmet";
 
@@ -126,7 +125,7 @@ export const Inicio = () => {
                                     className="rounded-lg shadow-lg mx-auto"
                                 />
                             </div>
-                            <div>
+                            {/* <div>
                                 <img
                                     src={promo11}
                                     alt="Promoción 8"
@@ -139,7 +138,7 @@ export const Inicio = () => {
                                     alt="Promoción 8"
                                     className="rounded-lg shadow-lg mx-auto"
                                 />
-                            </div>
+                            </div> */}
                         </Slider>
                     </div>
                     <div className="flex flex-col w-full sm:w-1/2">
