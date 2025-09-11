@@ -3,7 +3,7 @@ import logo from "../assets/logo.png"
 import { GifIcon, HomeIcon, StarIcon } from '@heroicons/react/24/outline'; // Outline style
 import { BuildingOfficeIcon } from '@heroicons/react/24/outline'; // Outline style
 import { useState } from 'react';
-import { GiftIcon, FacebookIcon, InstagramIcon, ShieldIcon } from "lucide-react";
+import { GiftIcon, FacebookIcon, InstagramIcon, ShieldIcon, MailIcon, PhoneIcon } from "lucide-react";
 
 export const NavBar = () => {
 
@@ -42,7 +42,7 @@ export const NavBar = () => {
                     <HomeIcon className="h-6 w-6 inline-block mr-2" />
                     Nuestra Oficina
                 </NavLink>
-                 <NavLink onClick={toggleMenu} className="block py-2 text-gray-900 hover:bg-gray-100" to="/promociones">
+                <NavLink onClick={toggleMenu} className="block py-2 text-gray-900 hover:bg-gray-100" to="/promociones">
                     <BuildingOfficeIcon className="h-6 w-6 inline-block mr-2" />
                     Promociones
                 </NavLink>
@@ -81,28 +81,28 @@ export const NavBar = () => {
                 </b>
             </div>
 
-            <div className="hidden lg:flex lg:gap-x-12">
-                <NavLink className="navlink"
+            <div className="hidden lg:flex lg:gap-x-4">
+                {/* <NavLink className="navlink"
                     variant="custom"
 
                     to="/inicio"
                 >        <HomeIcon className="h-6 w-6 inline-block mr-2" />
 
                     Inicio
-                </NavLink>
+                </NavLink> */}
                 <NavLink className="navlink"
                     variant="custom" to="/viaja-seguro">
-                    <ShieldIcon className="h-6 w-6 inline-block mr-2" />
+                    <ShieldIcon className="h-4 w-6 inline-block mr-2" />
                     Viaja Seguro
                 </NavLink>
                 <NavLink className="navlink"
                     variant="custom" to="/oficina">
-                    <BuildingOfficeIcon className="h-6 w-6 inline-block mr-2" />
+                    <BuildingOfficeIcon className="h-4 w-6 inline-block mr-2" />
                     Nuestra Oficina
                 </NavLink>
-                 <NavLink className="navlink"
+                <NavLink className="navlink"
                     to="/promociones"
-                ><GiftIcon className="h-6 w-6 inline-block mr-2" />
+                ><GiftIcon className="h-4 w-6 inline-block mr-2" />
                     Promociones
                 </NavLink>
                 {/*<NavLink className="navlink"
@@ -116,7 +116,7 @@ export const NavBar = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                 >
-                    <FacebookIcon className="h-6 w-6 inline-block mr-2" />
+                    <FacebookIcon className="h-4 w-6 inline-block mr-2" />
                     Facebook
                 </NavLink>
 
@@ -126,9 +126,27 @@ export const NavBar = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                 >
-                    <InstagramIcon className="h-6 w-6 inline-block mr-2" />
+                    <InstagramIcon className="h-4 w-6 inline-block mr-2" />
                     Instagram
                 </NavLink>
+                <div>
+                    <div>
+                        <NavLink
+                            className="navlink" to="mailto:contacto@travelfriends.com.mx"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+
+                            <MailIcon className="h-4 w-6 inline-block mr-2" />
+                            contacto@travelfriends.com.mx
+                        </NavLink>
+                    </div>
+                    <div className="navlink w-full text-right">
+                        <PhoneIcon className="h-4 w-6 inline-block mr-2" />
+                        55-1212-0049
+                    </div>
+                </div>
+
             </div>
             {/* <div className="hidden lg:flex lg:flex-1 lg:justify-end">
                 <b href="#" className="text-sm font-semibold leading-6 text-neutral-950">Log in <span aria-hidden="true">&rarr;</span></b>
