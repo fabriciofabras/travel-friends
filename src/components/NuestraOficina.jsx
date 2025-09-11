@@ -4,6 +4,7 @@ import { Container, Row, Col, CardBody, Card, Button } from 'react-bootstrap';
 import oficina1 from "../assets/oficina1.jpeg";
 import oficina2 from "../assets/oficina2.jpeg";
 import oficina3 from "../assets/oficina3.jpeg";
+import renatur from "../assets/renatur.jpg";
 import { ChatBubbleOvalLeftIcon } from '@heroicons/react/24/outline';
 import { Helmet } from "react-helmet";
 
@@ -20,7 +21,7 @@ const SeccionOficina = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
                 <img src={oficina1} alt="Oficina" className="rounded-xl w-full h-64 object-cover" />
                 <img src={oficina2} alt="Oficina" className="rounded-xl w-full h-64 object-cover" />
-                <img src={oficina3} alt="Oficina" className="rounded-xl w-full h-64 object-cover" />
+                <img src={renatur} alt="Oficina" className="rounded-xl w-full h-64 object-cover" />
             </div>
 
             <Card className="p-4 bg-gray-100 rounded-xl">

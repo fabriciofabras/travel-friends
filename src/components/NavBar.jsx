@@ -3,7 +3,7 @@ import logo from "../assets/logo.png"
 import { GifIcon, HomeIcon, StarIcon } from '@heroicons/react/24/outline'; // Outline style
 import { BuildingOfficeIcon } from '@heroicons/react/24/outline'; // Outline style
 import { useState } from 'react';
-import { GiftIcon, FacebookIcon, InstagramIcon } from "lucide-react";
+import { GiftIcon, FacebookIcon, InstagramIcon, ShieldIcon } from "lucide-react";
 
 export const NavBar = () => {
 
@@ -33,6 +33,10 @@ export const NavBar = () => {
                 <NavLink onClick={toggleMenu} className="block py-2 text-gray-900 hover:bg-gray-100" to="/inicio">
                     <HomeIcon className="h-6 w-6 inline-block mr-2" />
                     Inicio
+                </NavLink>
+                <NavLink onClick={toggleMenu} className="block py-2 text-gray-900 hover:bg-gray-100" to="/viaja-seguro">
+                    <ShieldIcon className="h-6 w-6 inline-block mr-2" />
+                    Viaja Seguro
                 </NavLink>
                 <NavLink onClick={toggleMenu} className="block py-2 text-gray-900 hover:bg-gray-100" to="/oficina">
                     <HomeIcon className="h-6 w-6 inline-block mr-2" />
@@ -85,6 +89,11 @@ export const NavBar = () => {
                 >        <HomeIcon className="h-6 w-6 inline-block mr-2" />
 
                     Inicio
+                </NavLink>
+                <NavLink className="navlink"
+                    variant="custom" to="/viaja-seguro">
+                    <ShieldIcon className="h-6 w-6 inline-block mr-2" />
+                    Viaja Seguro
                 </NavLink>
                 <NavLink className="navlink"
                     variant="custom" to="/oficina">

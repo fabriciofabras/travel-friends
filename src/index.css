@@ -131,6 +131,17 @@ code {
 
 }
 
+.renatur {
+  background-image: url(./assets/renatur.jpg);
+  background-size: cover; /* Ajusta la imagen al tamaño del contenedor */
+  background-position: center; /* Centra la imagen */
+  background-repeat: no-repeat; /* Evita repeticiones */
+  aspect-ratio: 16 / 11; /* Relación de aspecto de la imagen */
+  width: 80%; /* Asegura que se ajuste al ancho disponible */
+  border-radius: 5rem; /* Para que coincida con `rounded-2xl` */
+
+}
+
 .planes {
   background-image: url(./assets/planes.png);
   background-size: cover; /* Ajusta la imagen al tamaño del contenedor */

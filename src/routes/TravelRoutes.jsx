@@ -12,6 +12,7 @@ import Ingreso from "../pages/traveladmin/Ingreso"
 import Politicas from "../pages/traveladmin/Politicas"
 import Terminos from "../pages/traveladmin/Terminos"
 import SeccionOficina from "../components/NuestraOficina"
+import ViajaSeguro from "../components/ViajaSeguro"
 import BlogCancun from "../pages/blog/BlogCancun"
 import BlogPost from "../pages/blog/BlogPost"
 
@@ -35,6 +36,7 @@ export const TravelRoutes = () => {
                     <Route path="/" element={<Inicio />}></Route>
                     <Route path="/inicio" element={<Inicio />}></Route>
                     <Route path="/oficina" element={<SeccionOficina />}></Route>
+                    <Route path="/viaja-seguro" element={<ViajaSeguro />}></Route>
                     <Route path="/administrador" element={<Administrador />}></Route>
                     <Route path="/ingreso" element={<Ingreso />}></Route>
                     <Route path="/quote" element={<QuoteView />}></Route>

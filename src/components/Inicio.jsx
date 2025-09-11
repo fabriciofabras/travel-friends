@@ -174,7 +174,7 @@ export const Inicio = () => {
                 </div>
 
                 {/* Nueva sección: contenido SEO local */}
-                <section className="mt-16 px-6">
+                <section className="mt-16 px-6 grid grid-cols-2">
                     <div className="max-w-4xl mx-auto text-center">
                         <h2 className="text-3xl font-bold text-[#004c97]">Agencia de viajes en Naucalpan, Satélite y alrededores</h2>
                         <p className="mt-4 text-lg text-gray-700">
@@ -183,9 +183,16 @@ export const Inicio = () => {
 
                         <p className="mt-4 text-lg text-gray-700">
                             Contamos con el <strong>Registro Nacional de Turismo (RNT)</strong> lo cual nos certifica como una agencia de viajes confiable y nos puedes encontrar en la página de consulta de <a href="https://rnt-consulta.sectur.gob.mx/" className="hover:underline">
-                        SECTUR
-                    </a>  con el folio:0415057f860ba
+                                SECTUR
+                            </a>  con el folio:0415057f860ba
 
+                        </p>
+                    </div>
+                    <div className="renatur max-w-4xl mx-auto text-center bg-[#004c97] bg-opacity-70 text-white p-6 rounded-lg shadow-lg cursor-pointer"
+                        onClick={() => navigate("/promociones")}
+                    >
+                        <h2 className="text-2xl font-bold"></h2>
+                        <p className="mt-2">
                         </p>
                     </div>
                 </section>
