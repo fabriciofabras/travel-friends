@@ -82,8 +82,7 @@ function Quotes() {
     console.log("hotelName", hotelName)
     console.log("location_id", location_id)
 
-    const partes = location_id.split("_");
-    const location = partes[1];
+    const location = location_id;
 
     const updatedHotels = [...formData.hotels];
 
@@ -112,7 +111,7 @@ function Quotes() {
  */      const res = await fetch(`https://travel-friends-server.vercel.app/api/hotels?q=${encodeURIComponent(query)}`);
       const data = await res.json();
       console.log("response.data", data);
-      setSuggestions(data.data || []);
+      setSuggestions(data.places || []);
     } catch (error) {
       console.error("Error fetching suggestions:", error);
       setSuggestions([]);
@@ -549,8 +548,9 @@ function Quotes() {
 
     formData.hotels.forEach((hotel) => {
 
-      console.log("prueba", hotelImages[hotel.hotelID]?.data.contentDetail.contentImages.hotelImages)
-      const imagesData = hotelImages[hotel.hotelID]?.data.contentDetail.contentImages.hotelImages || [];
+      console.log("prueba1", hotelImages[hotel.hotelID])
+      console.log("prueba", hotelImages[hotel.hotelID]?.data.propertyDetailsSearch.propertyDetails[0].contentDetail.contentImages.hotelImages)
+      const imagesData =  hotelImages[hotel.hotelID]?.data.propertyDetailsSearch.propertyDetails[0].contentDetail.contentImages.hotelImages || [];
 
       console.log("imagesdata:", imagesData)
 
