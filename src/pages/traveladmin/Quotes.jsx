@@ -111,7 +111,8 @@ function Quotes() {
  */      const res = await fetch(`https://travel-friends-server.vercel.app/api/hotels?q=${encodeURIComponent(query)}`);
       const data = await res.json();
       console.log("response.data", data);
-      setSuggestions(data.places || []);
+    //  setSuggestions(data.places || []);
+      setSuggestions(data.data || []);
     } catch (error) {
       console.error("Error fetching suggestions:", error);
       setSuggestions([]);
@@ -549,8 +550,8 @@ function Quotes() {
     formData.hotels.forEach((hotel) => {
 
       console.log("prueba1", hotelImages[hotel.hotelID])
-      console.log("prueba", hotelImages[hotel.hotelID]?.data.propertyDetailsSearch.propertyDetails[0].contentDetail.contentImages.hotelImages)
-      const imagesData =  hotelImages[hotel.hotelID]?.data.propertyDetailsSearch.propertyDetails[0].contentDetail.contentImages.hotelImages || [];
+      console.log("prueba", hotelImages[hotel.hotelID]?.data.contentDetail.contentImages.hotelImages)
+      const imagesData =  hotelImages[hotel.hotelID]?.data.contentDetail.contentImages.hotelImages || [];
 
       console.log("imagesdata:", imagesData)
 
@@ -635,15 +636,20 @@ function Quotes() {
 
   // Función para obtener imágenes de los hoteles
   const fetchHotelImages = async (hotels) => {
+
+    console.log("HOTELS",hotels)
     const hotelImages = {};
 
     try {
       // Hacer las peticiones para todos los hoteles en paralelo
       await Promise.all(
         hotels.map(async (hotel) => {
+
+          let hotelId = hotel.hotelID.split('_')
+          hotelId = hotelId[1]
           /*           const res = await fetch(`https://travel-friends-server.vercel.app/api/hotelImages?q=${hotel.hotelID}`);
            */
-          const res = await fetch(`https://travel-friends-server.vercel.app/api/hotelImages?q=${hotel.hotelID}`);
+          const res = await fetch(`https://travel-friends-server.vercel.app/api/hotelImages?q=${hotelId}`);
           const data = await res.json();
           hotelImages[hotel.hotelID] = data;
         })
