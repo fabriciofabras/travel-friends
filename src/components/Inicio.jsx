@@ -14,10 +14,6 @@ import promo3 from "../assets/promociones/promo3.jpg";
 import promo4 from "../assets/promociones/promo4.jpg";
 import promo5 from "../assets/promociones/promo5.jpg";
 import promo6 from "../assets/promociones/promo6.jpg";
-import promo7 from "../assets/promociones/promo7.jpg";
-import promo8 from "../assets/promociones/promo8.jpg";
-import promo9 from "../assets/promociones/promo9.jpg";
-import promo10 from "../assets/promociones/promo10.jpg";
 
 import TestimonialsCarousel from "./TestimonialsCarousel";
 import { Helmet } from "react-helmet";
@@ -98,7 +94,7 @@ export const Inicio = () => {
                                     className="rounded-lg shadow-lg mx-auto"
                                 />
                             </div>
-                            <div>
+                           {/*  <div>
                                 <img
                                     src={promo7}
                                     alt="Promoción 7"
@@ -124,7 +120,7 @@ export const Inicio = () => {
                                     alt="Promoción 9"
                                     className="rounded-lg shadow-lg mx-auto"
                                 />
-                            </div>
+                            </div> */}
                             {/* <div>
                                 <img
                                     src={promo11}
