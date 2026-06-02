@@ -27,7 +27,7 @@ function Administrador() {
       const data = await response.json();
       setUserInfo(data); // Guardar la info del usuario en el estado
     } catch (error) {
-      console.error("Error fetching user info:", error);
+      
     }
   };
 
@@ -35,18 +35,11 @@ function Administrador() {
   useEffect(() => {
     const accessToken = getAccessTokenFromUrl();
     if (accessToken) {
-      console.log("Access Token:", accessToken)
-      console.log("Location:", window.location)
-
-      debugger;
       getUserInfo(accessToken); // Obtener la información del usuario
     } else {
-      console.log("Location:", window.location)
-      if(window.location.hostname==="localhost")
-      {
+      if(window.location.hostname==="localhost") {
         setUserInfo({name:"Pruebas locales",picture:""})
-        console.log("Estamos en Localhost")
-      }else{
+      } else {
         navigate("/ingreso"); // Redirigir si no hay token
       }
     }

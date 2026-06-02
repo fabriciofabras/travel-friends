@@ -5,11 +5,10 @@ import "react-datepicker/dist/react-datepicker.css";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 import destinos from '../../assets/destinos';
-import logo from '../../assets/logo.png';
 import footer from '../../assets/footer.png';
 import header from '../../assets/header.png';
-import axios from 'axios';
-
+import NationalQuote from './quoteTypes/NationalQuote';
+import InternationalQuote from './quoteTypes/InternationalQuote';
 
 function Quotes() {
   const options = {
@@ -48,6 +47,7 @@ function Quotes() {
   const [suggestions, setSuggestions] = useState([]);
   const [loading, setLoading] = useState(false);
   const debounceRef = useRef(null);
+  const [qouteType, setQouteType] = useState('national');
 
   useEffect(() => {
     if (hotelInput.length < 5 || !isTyping) {
@@ -77,11 +77,6 @@ function Quotes() {
 
   const handleSuggestionClick = (index, hotelName, location_id) => {
 
-    console.log("handleSuggestionClick")
-    console.log("index", index)
-    console.log("hotelName", hotelName)
-    console.log("location_id", location_id)
-
     const location = location_id;
 
     const updatedHotels = [...formData.hotels];
@@ -108,13 +103,11 @@ function Quotes() {
       setLoading(true);
 
 /*       const res = await fetch(`https://travel-friends-server.vercel.app/api/hotels?q=${encodeURIComponent(query)}`);
- */      const res = await fetch(`https://travel-friends-server.vercel.app/api/hotels?q=${encodeURIComponent(query)}`);
+ */      const res = await fetch(`http://localhost:3001/api/hotels?q=${encodeURIComponent(query)}`);
       const data = await res.json();
-      console.log("response.data", data);
       setSuggestions(data.places || []);
       //   setSuggestions(data.data || []);
     } catch (error) {
-      console.error("Error fetching suggestions:", error);
       setSuggestions([]);
     } finally {
       setLoading(false);
@@ -140,7 +133,6 @@ function Quotes() {
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
-    console.log(file)
     if (file) {
       setFlightImage(URL.createObjectURL(file));
     }
@@ -148,7 +140,6 @@ function Quotes() {
 
   const handleFileChangeEquipaje = (e) => {
     const file = e.target.files[0];
-    console.log(file)
     if (file) {
       setFlightImageEquipaje(URL.createObjectURL(file));
     }
@@ -218,7 +209,6 @@ function Quotes() {
 
 
   const handleDestinoChange = (e) => {
-    console.log("e.target.value", e.target)
     setSelectedDestino(e.target.value);
     setHotelCatalog(destinos.filter((destino) => destino.destinoId == e.target.value))
 
@@ -251,34 +241,23 @@ function Quotes() {
     const updatedHotels = [...formData.hotels];
     updatedHotels[index][field] = value;
 
-    console.log("Field", field)
     // Generar el enlace automáticamente cuando el nombre del hotel se selecciona
     if (field === "name") {
 
       if (mode === "notTyping") {
-        console.log("updated hoteles", updatedHotels)
+
         setHotelInput(value);
         setFormData({ ...formData, [field]: value });
         return;
       }
 
       if (mode === "auto") {
-
-        console.log("value", value)
-
         setHotelInput(value);
         setFormData({ ...formData, [field]: value });
         setIsTyping(true);
       } else {
-
-        console.log("value", value)
-        console.log("hotelCatalog", hotelCatalog)
         const hotel = hotelCatalog[0].hoteles.find((h) => h.name === value);
-
-        console.log("hotel", hotel)
-
         const hotelId = hotel.hotelID !== undefined ? hotel.hotelID : hotel.hotelId;
-
         updatedHotels[index].hotelID = hotel ? hotel.hotelID : "";
       }
     }
@@ -304,24 +283,19 @@ function Quotes() {
   };
 
   const formatFecha = (fecha) => {
-    console.log("fecha")
 
-    console.log(fecha)
 
     const opciones = { day: 'numeric', month: 'long', year: 'numeric' };
     return new Intl.DateTimeFormat('es-ES', opciones).format(fecha);
   };
 
   const updateDates = (update) => {
-
-    console.log(update)
     setFormData({ ...formData, dates: update });
 
     setDates(update)
   }
   const generatePDF = async () => {
 
-    console.log(formData)
     const doc = new jsPDF();
 
     const addHeaderImage = (doc, footer) => {
@@ -378,7 +352,7 @@ function Quotes() {
 
         let rows;
 
-        console.log("hotel.extraAmount", hotelExtraAmount)
+
         if (showExtraFields) {
 
           rows = [
@@ -536,25 +510,16 @@ function Quotes() {
 
     const dataSerializada = serializeFormDataForHotels(formData)
 
-    console.log(dataSerializada[0]);
-
     // AGREGAR IMAGENES DE TRIP ADVISOR 
 
-    console.log("fetchdatahotels:", formData.hotels)
-
     const hotelImages = await fetchHotelImages(formData.hotels);
-
-    console.log("hotelIMAGENES:", hotelImages);
 
 
     formData.hotels.forEach((hotel) => {
 
-      console.log("prueba1", hotelImages[hotel.hotelID])
-      console.log("prueba2", hotelImages[hotel.hotelID]?.data.propertyDetailsSearch.propertyDetails[0].contentDetail)
-      const imagesData = hotelImages[hotel.hotelID]?.data.propertyDetailsSearch.propertyDetails[0].contentDetail.contentImages.hotelImages || [];
-   //   const imagesData = hotelImages[hotel.hotelID]?.data.contentDetail.contentImages.hotelImages || [];
 
-      console.log("imagesdata:", imagesData)
+      const imagesData = hotelImages[hotel.hotelID]?.data.propertyDetailsSearch.propertyDetails[0].contentDetail.contentImages.hotelImages || [];
+      //   const imagesData = hotelImages[hotel.hotelID]?.data.contentDetail.contentImages.hotelImages || [];
 
       if (imagesData.length === 0) return; // Saltar si no hay imágenes
 
@@ -583,8 +548,6 @@ function Quotes() {
 
         let imageUrl = imageData.urls[0].value; // Usando la imagen de tamaño "large"
 
-        console.log(imageUrl)
-
         if (imageUrl?.startsWith("//")) {
           imageUrl = "https:" + imageUrl;
         }
@@ -606,7 +569,6 @@ function Quotes() {
         } else if (["webp"].includes(extension)) {
           imageFormat = "WEBP"; // Solo en builds que lo soporten
         } else {
-          console.warn("Formato de imagen no soportado:", extension);
           return;
         }
 
@@ -624,46 +586,30 @@ function Quotes() {
 
     }
 
-    /*       doc.addImage(hotelImage, "PNG", 55, startY, imgWidth, imgHeight);
-     */
-
-    /*     doc.addImage(flightImage, "PNG", 55, 180, 100, 50);
-        doc.addImage(flightImageEquipaje, "PNG", 55, 235, 100, 40); */
-
     // Generar PDF
     doc.save("cotizacion.pdf");
   };
 
 
+  const handleChangeQuote = (e) => {
+    setQouteType(e.target.value);
+  }
   // Función para obtener imágenes de los hoteles
   const fetchHotelImages = async (hotels) => {
-
-    console.log("HOTELS", hotels)
     const hotelImages = {};
 
     try {
       // Hacer las peticiones para todos los hoteles en paralelo
       await Promise.all(
         hotels.map(async (hotel) => {
-
-          console.log("hotel", hotel)
-
           let hotelId = hotel.hotelID
 
-/*           let hotelId = hotel.hotelID.split('_')
-          hotelId = hotelId[1] */
-          /*           const res = await fetch(`https://travel-friends-server.vercel.app/api/hotelImages?q=${hotel.hotelID}`);
-           */
-      //    const res = await fetch(`https://travel-friends-server.vercel.app/api/hotelImages?q=${hotelId}`);
-          const res = await fetch(`https://travel-friends-server.vercel.app/api/hotelImages?q=${hotelId}`);
+          const res = await fetch(`http://localhost:3001/api/hotelImages?q=${hotelId}`);
           const data = await res.json();
           hotelImages[hotel.hotelID] = data;
         })
       );
-
-      console.log("Imágenes de hoteles:", hotelImages);
     } catch (error) {
-      console.error("Error fetching hotel images:", error);
     }
 
     return hotelImages;
@@ -671,401 +617,106 @@ function Quotes() {
 
 
   return (
-    <div>
-      <h2>Cotizaciones</h2>
-      <Button variant="primary" onClick={openModal}>
-        Nueva
-      </Button>
-      <Table striped bordered hover className="mt-3">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Asesor</th>
-            <th>Cliente</th>
-            <th>Destino</th>
-            <th>Fechas</th>
-          </tr>
-        </thead>
-        <tbody>
-          {/* Ejemplo de datos dummie */}
-          <tr>
-            <td>1</td>
-            <td>Juan Pérez</td>
-            <td>María López</td>
-            <td>Cancún</td>
-            <td>01/02/2025 - 08/02/2025</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Ana García</td>
-            <td>Carlos Sánchez</td>
-            <td>Acapulco</td>
-            <td>15/03/2025 - 22/03/2025</td>
-          </tr>
-        </tbody>
-      </Table>
+    <div style={{ padding: '20px' }}>
+      <div style={{ marginBottom: '30px' }}>
+        <h2 style={{ color: '#333', fontWeight: '700', marginBottom: '10px' }}>Cotizaciones de Viaje</h2>
+        <p style={{ color: '#666', marginBottom: '20px' }}>Gestiona y crea cotizaciones para tus clientes</p>
+        <Button
+          variant="primary"
+          onClick={openModal}
+          size="lg"
+          style={{
+            borderRadius: '6px',
+            fontWeight: '600',
+            backgroundColor: '#0057e0',
+            border: 'none',
+            paddingLeft: '25px',
+            paddingRight: '25px',
+          }}
+        >
+          + Nueva Cotización
+        </Button>
+      </div>
+
+      <div style={{
+        backgroundColor: 'white',
+        borderRadius: '8px',
+        border: '1px solid #e0e0e0',
+        overflow: 'hidden',
+        boxShadow: '0 2px 4px rgba(0,0,0,0.05)',
+      }}>
+        <Table striped hover style={{ marginBottom: 0 }}>
+          <thead style={{ backgroundColor: '#f8f9fa', borderBottom: '2px solid #e0e0e0' }}>
+            <tr>
+              <th style={{ padding: '15px', fontWeight: '600', color: '#333' }}>#</th>
+              <th style={{ padding: '15px', fontWeight: '600', color: '#333' }}>Asesor</th>
+              <th style={{ padding: '15px', fontWeight: '600', color: '#333' }}>Cliente</th>
+              <th style={{ padding: '15px', fontWeight: '600', color: '#333' }}>Destino</th>
+              <th style={{ padding: '15px', fontWeight: '600', color: '#333' }}>Fechas</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style={{ borderBottom: '1px solid #e0e0e0', transition: 'background 0.2s' }}>
+              <td style={{ padding: '15px', color: '#666' }}>1</td>
+              <td style={{ padding: '15px', color: '#333', fontWeight: '500' }}>Juan Pérez</td>
+              <td style={{ padding: '15px', color: '#333', fontWeight: '500' }}>María López</td>
+              <td style={{ padding: '15px' }}><span style={{ backgroundColor: '#e3f2fd', color: '#0057e0', padding: '4px 12px', borderRadius: '20px', fontSize: '0.9rem' }}>Cancún</span></td>
+              <td style={{ padding: '15px', color: '#666' }}>01/02/2025 - 08/02/2025</td>
+            </tr>
+            <tr style={{ backgroundColor: '#fafafa' }}>
+              <td style={{ padding: '15px', color: '#666' }}>2</td>
+              <td style={{ padding: '15px', color: '#333', fontWeight: '500' }}>Ana García</td>
+              <td style={{ padding: '15px', color: '#333', fontWeight: '500' }}>Carlos Sánchez</td>
+              <td style={{ padding: '15px' }}><span style={{ backgroundColor: '#fff3e0', color: '#f57c00', padding: '4px 12px', borderRadius: '20px', fontSize: '0.9rem' }}>Acapulco</span></td>
+              <td style={{ padding: '15px', color: '#666' }}>15/03/2025 - 22/03/2025</td>
+            </tr>
+          </tbody>
+        </Table>
+      </div>
 
       {/* Modal */}
-      <Modal show={showModal} backdrop="static" keyboard={false} onHide={closeModal} size="lg">
-        <Modal.Header closeButton>
-          <Modal.Title>Nueva Cotización</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form onSubmit={handleFormSubmit}>
-            {/* Información principal */}
-            <Row>
-              <Col md={4}>
-                <h5 className="mb-4">Información del viaje</h5>
+      <Modal show={showModal} backdrop="static" keyboard={false} onHide={closeModal} size="xl" centered>
+        <Modal.Header closeButton style={{ borderBottom: '2px solid #e0e0e0', padding: '20px' }}>
+          <div>
+            <Modal.Title style={{ fontSize: '1.4rem', fontWeight: '700', color: '#333', marginBottom: '10px' }}>
+              Nueva Cotización
+            </Modal.Title>
 
-              </Col>
-
-              <Col md={4}>
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={manualQuote}
-                    onChange={handleChangeManual}
-                  />
-                  Manual
-                </label>
-
-              </Col>
-
-
-            </Row>
-            <Row className="mb-3">
-              {/* <Col md={4}>
-                <Form.Group>
-                  <Form.Control
-                    type="text"
-                    name="advisor"
-                    onChange={handleFormChange}
-                    placeholder="Nombre del asesor"
-                  />
-                </Form.Group>
-              </Col> */}
-              <Col md={4}>
-                <Form.Group>
-                  <Form.Control
-                    type="text"
-                    name="clientName"
-                    onChange={handleFormChange}
-                    placeholder="Nombre del cliente"
-                  />
-                </Form.Group>
-              </Col>
-              <Col md={4}>
-                <Form.Group>
-                  <Form.Control
-                    type="text"
-                    name="telefono"
-                    onChange={handleFormChange}
-                    placeholder="Teléfono (10 dígitos)"
-                  />
-                </Form.Group>
-              </Col>
-              <Col md={4}>
-                <Form.Group>
-                  <Form.Control
-                    type="text"
-                    name="email"
-                    onChange={handleFormChange}
-                    placeholder="email"
-                  />
-                </Form.Group>
-              </Col>
-
-            </Row>
-            <Row className="mb-3">
-              <Col md={4}>
-                <Form.Group>
-                  <DatePicker
-                    placeholderText="Fechas"
-                    selectsRange
-                    startDate={dates[0]}
-                    endDate={dates[1]}
-                    onChange={(update) => updateDates(update)}
-                    isClearable={true}
-                    dateFormat="dd/MM/yyyy"
-                    className="form-control"
-                    minDate={new Date()} // <-- esta línea evita fechas pasadas
-                  />
-                </Form.Group>
-              </Col>
-              <Col md={4}>
-                <Form.Group>
-                  {!manualQuote ? (<Form.Control placeholder="Destino" type="text" name="destination" value={formData.destination}
-                    onChange={handleFormChange} />
-                  ) : (<Form.Select
-                    onChange={handleDestinoChange}
-                    name="destination"
-                    value={formData.destination}
-                    defaultValue=""
-                  >
-                    <option value="" disabled>
-                      Seleccione un destino
-                    </option>
-                    {destinos.map((destino) => (
-                      <option key={destino.destinoId} value={destino.destinoId}>
-                        {destino.destino}
-                      </option>
-                    ))}
-                  </Form.Select>)
-                  }
-
-                </Form.Group>
-              </Col>
-              <Col md={2}>
-                <Form.Group>
-                  <Form.Control placeholder="Adultos" type="number" name="adults" min="0" onChange={handleFormChange} />
-                </Form.Group>
-              </Col>
-              <Col md={2}>
-                <Form.Group>
-                  <Form.Control placeholder="Menores" type="number" name="children" min="0" onChange={handleFormChange} />
-                </Form.Group>
-              </Col>
-            </Row>
-
-
-            {/* Sección de hoteles */}
-            <h5 className="mb-2">Hoteles</h5>
-            {formData.hotels.map((hotel, index) => (
-              <div key={index} className="mb-4 p-3 border rounded">
-                <Row>
-                  <Col md={4}>
-                    <Form.Group>
-                      {!manualQuote ? (
-
-                        <div style={{ position: 'relative' }}>
-                          <Form.Control
-                            onFocus={() => setActiveHotelIndex(index)}
-                            placeholder="Hotel"
-                            type="text"
-                            value={hotel.name}
-                            name="hotel"
-                            onChange={(e) => handleHotelChange(index, "name", e.target.value, "auto")} autoComplete="off"
-                          />
-                          {loading && activeHotelIndex === index && <div>Cargando...</div>}
-                          {activeHotelIndex === index && suggestions.length > 0 && (
-                            <ul
-                              style={{
-                                position: 'absolute',
-                                zIndex: 1000,
-                                backgroundColor: 'white',
-                                border: '1px solid #ccc',
-                                width: '100%',
-                                listStyle: 'none',
-                                padding: 0,
-                                margin: 0,
-                                maxHeight: '200px',
-                                overflowY: 'auto',
-                              }}
-                            >
-                              {suggestions.map((hotel, index2) => (
-                                <li
-                                  key={index}
-                                  onClick={() => handleSuggestionClick(index, hotel.name, hotel.id)}
-                                  style={{ padding: '8px', cursor: 'pointer' }}
-                                >
-                                  {hotel.name}
-                                </li>
-                              ))}
-                            </ul>
-                          )}
-                        </div>
-
-                      ) : (
-                        <Form.Select
-                          name="hotel"
-                          onChange={(e) => handleHotelChange(index, "name", e.target.value)}
-                          value={hotel.name}
-                          disabled={!formData.destination}
-                        >
-                          <option value="" disabled>
-                            Seleccione un hotel
-                          </option>
-                          {filteredHoteles.map((hotelOption) => (
-                            <option key={hotelOption.hotelID} value={hotelOption.name}>
-                              {hotelOption.name}
-                            </option>
-                          ))}
-                        </Form.Select>
-                      )}
-                    </Form.Group>
-                  </Col>
-                  <Col md={6}>
-                    <Form.Group>
-                      {/* <Form.Control
-                        placeholder="Detalle de la habitación"
-                        type="text"
-                        value={hotel.details}
-                        onChange={(e) => handleHotelChange(index, "details", e.target.value)}
-                      /> */}
-                      <Form.Control
-                        as="textarea"
-                        placeholder="Detalle de la habitación"
-                        value={hotel.details}
-                        onChange={(e) => handleHotelChange(index, "details", e.target.value)}
-                        onInput={(e) => {
-                          e.target.style.height = 'auto'; // Reinicia altura para reducir si se borra texto
-                          e.target.style.height = `${e.target.scrollHeight}px`; // Ajusta a la altura del contenido
-                        }}
-                        style={{
-                          overflow: 'hidden',
-                          resize: 'none',
-                        }}
-                      />
-                    </Form.Group>
-                  </Col>
-                  <Col md={2}>
-                    <Form.Group>
-                      <Form.Control
-                        placeholder="Monto"
-                        type="number"
-                        value={hotel.amount}
-                        onChange={(e) => handleHotelChange(index, "amount", e.target.value)}
-                      />
-                    </Form.Group>
-                  </Col>
-                </Row>
-                <Row className="">
-                  <Col md={3}>
-                    <Form.Group>
-                      <Form.Label>Imagenes</Form.Label>
-                      <Form.Control type="file" multiple accept="image/*" onChange={(event) => handleFileChangeHotel(event, index)} />
-                    </Form.Group>
-                  </Col>
-                  <Col md={7}>
-                    <label>
-                      <input
-                        type="checkbox"
-                        checked={showExtraFields}
-                        onChange={handleCheckboxChange}
-                      />
-                      Extra
-                    </label>
-                    {showExtraFields && (
-                      <Row>
-                        <Col md={8}>
-                          <Form.Group className="mb-2">
-                            <Form.Control
-                              as="textarea"
-                              placeholder="Detalle extra"
-                              type="text"
-                              value={hotel.extra}
-                              onChange={(e) =>
-                                handleHotelChange(index, "extra", e.target.value)
-                              }
-                              onInput={(e) => {
-                                e.target.style.height = 'auto'; // Reinicia altura para reducir si se borra texto
-                                e.target.style.height = `${e.target.scrollHeight}px`; // Ajusta a la altura del contenido
-                              }}
-                              style={{
-                                overflow: 'hidden',
-                                resize: 'none',
-                              }}
-                            />
-                          </Form.Group>
-                        </Col>
-                        <Col md={4}>
-                          <Form.Group className="mb-2">
-                            <Form.Control
-                              type="number"
-                              placeholder="Monto"
-                              value={hotel.extraAmount}
-                              onChange={(e) =>
-                                handleHotelChange(index, "extraAmount", e.target.value)
-                              }
-                            />
-                          </Form.Group>
-                        </Col>
-                      </Row>
-                    )}
-                  </Col>
-                  <Col md={2} className="mb-4 p-2">
-                    <Button variant="danger" onClick={() => removeHotel(index)} >
-                      Quitar
-                    </Button>
-                  </Col>
-                </Row>
-                <Row>
-
-                </Row>
+            {/* <p style={{ color: '#666', marginBottom: 0, fontSize: '0.9rem' }}>
+              Selecciona el tipo de cotización que deseas crear
+            </p> */}
+          </div>
+          <div style={{ marginLeft: 'auto' }}>
+            <Form.Group>
+              {/* <Form.Label style={{ fontWeight: '600', marginBottom: '10px', color: '#333' }}>
+                Tipo de Cotización
+              </Form.Label> */}
+              <div style={{ marginBottom: '20px', width: '200px' }}>
+                <Form.Select
+                  onChange={handleChangeQuote}
+                  style={{
+                    borderRadius: '6px',
+                    border: '1px solid #e0e0e0',
+                    padding: '10px 12px',
+                    fontSize: '1rem',
+                  }}
+                >
+                  <option value="national">Nacional</option>
+                  <option value="international">Internacional</option>
+                </Form.Select>
               </div>
 
+            </Form.Group>
+          </div>
+        </Modal.Header>
+        <Modal.Body style={{ padding: '10px' }}>
 
 
-            ))}
-            <Button variant="success" onClick={addHotel} className="mb-2">
-              Agregar Hotel
-            </Button>
-
-            {/* Opciones adicionales */}
-            <h5 className="mb-4">Opciones adicionales</h5>
-            <Row>
-              <Col md={6}>
-                <Form.Group className="mb-3">
-                  <Form.Check
-                    type="checkbox"
-                    label="Incluye traslados"
-                    onChange={(e) => setFormData({ ...formData, includeTransfers: e.target.checked })}
-                  />
-                  {formData.includeTransfers && (
-                    <Form.Group className="mt-2">
-                      <Form.Label>Monto de traslados (MXN)</Form.Label>
-                      <Form.Control
-                        type="number"
-                        value={formData.transferAmount || ""}
-                        onChange={(e) =>
-                          setFormData({ ...formData, transferAmount: e.target.value })
-                        }
-                      />
-                    </Form.Group>
-                  )}
-                </Form.Group>
-              </Col>
-              <Col md={6}>
-                <Form.Group className="mb-3">
-                  <Form.Check
-                    type="checkbox"
-                    label="Incluye vuelos"
-                    onChange={(e) => setFormData({ ...formData, includeFlights: e.target.checked })}
-                  />
-                  {formData.includeFlights && (
-                    <div>
-                      <Form.Group className="mt-2">
-                        <Form.Label>Monto del vuelo (MXN)</Form.Label>
-                        <Form.Control
-                          type="number"
-                          value={formData.flightAmount || ""}
-                          onChange={(e) =>
-                            setFormData({ ...formData, flightAmount: e.target.value })
-                          }
-                        />
-                      </Form.Group>
-                      <Form.Group className="mt-2">
-                        <Form.Label>Subir itinerario de vuelo</Form.Label>
-                        <Form.Control type="file" accept="image/*" onChange={handleFileChange} />
-                      </Form.Group>
-                      <Form.Group>
-                        <Form.Label>Subir detalle de equipaje</Form.Label>
-                        <Form.Control type="file" accept="image/*" onChange={handleFileChangeEquipaje} />
-                      </Form.Group>
-                    </div>
-                  )}
-                </Form.Group>
-              </Col>
-            </Row>
-
-            {/* Botón para guardar */}
-            <Button variant="primary" type="submit" className="mt-3">
-              Guardar y Generar PDF
-            </Button>
-          </Form>
+          {qouteType === 'national' && <NationalQuote />}
+          {qouteType === 'international' && <InternationalQuote />}
         </Modal.Body>
       </Modal>
-    </div >
+    </div>
   );
 }
 

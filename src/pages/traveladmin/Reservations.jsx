@@ -45,7 +45,7 @@ function Reservations() {
     fetch("https://travel-friends-server.vercel.app/api/reservations") // URL de tu backend
       .then((response) => response.json())
       .then((data) => setReservations(data))
-      .catch((error) => console.error("Error:", error));
+      .catch(() => {});
   }, []);
 
   const handleFormSubmit = async (e) => {
@@ -66,7 +66,6 @@ function Reservations() {
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
-    console.log(file)
     if (file) {
       setFlightImage(URL.createObjectURL(file));
     }
@@ -74,7 +73,6 @@ function Reservations() {
 
   const handleFileChangeEquipaje = (e) => {
     const file = e.target.files[0];
-    console.log(file)
     if (file) {
       setFlightImageEquipaje(URL.createObjectURL(file));
     }
@@ -82,7 +80,6 @@ function Reservations() {
 
 
   const handleDestinoChange = (e) => {
-    console.log("e.target.value", e.target)
     setSelectedDestino(e.target.value);
     setHotelCatalog(destinos.filter((destino) => destino.destinoId == e.target.value))
 
@@ -113,16 +110,11 @@ function Reservations() {
     const updatedHotels = [...formData.hotels];
     updatedHotels[index][field] = value;
 
-    console.log("Field", field)
+    
     // Generar el enlace automáticamente cuando el nombre del hotel se selecciona
     if (field === "name") {
 
-      console.log("value", value)
-      console.log("hotelCatalog", hotelCatalog)
       const hotel = hotelCatalog[0].hoteles.find((h) => h.name === value);
-
-      console.log("hotel", hotel)
-
       updatedHotels[index].link = hotel ? `https://travel-friends-mu.vercel.app/hotel/${hotelCatalog[0].destinoId}/${hotel.hotelID}` : "";
       updatedHotels[index].hotelID = hotel ? hotel.hotelID : "";
     }
@@ -144,19 +136,12 @@ function Reservations() {
   };
 
   const formatFecha = (fecha) => {
-    console.log("fecha")
-
-    console.log(fecha)
-
     const opciones = { day: 'numeric', month: 'long', year: 'numeric' };
     return new Intl.DateTimeFormat('es-ES', opciones).format(fecha);
   };
 
   const updateDates = (update) => {
-
-    console.log(update)
     setFormData({ ...formData, dates: update });
-
     setDates(update)
   }
   const generateLink = () => {
@@ -193,10 +178,6 @@ function Reservations() {
     };
 
     const dataSerializada = serializeFormDataForHotels(formData)
-
-    console.log(dataSerializada[0]);
-
-    console.log("Generate PDF")
   }
 
   const [reservations, setReservations] = useState([]);
@@ -226,7 +207,6 @@ function Reservations() {
       });
       return response.data;
     } catch (error) {
-      console.error("Error al crear la reservación:", error);
       throw error;
     }
   };

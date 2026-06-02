@@ -16,9 +16,9 @@ export const Nosotros = () => {
                 <div className="flex flex-auto flex-row">
                     
                     <div className="flex flex-col w-1/2 mx-10">
-                            <a className="text-balance text-2xl font-bold text-sky-800 sm:text-6xl">Travel Friend's</a>
-                            <p className="mt-6 text-lg leading-8 text-sky-800">Transformamos tus sueños, en viajes inolvidables</p>
-                       
+                            <a className="text-balance text-2xl font-bold text-[#0C2D6B] sm:text-6xl">Travel Friend's</a>
+                            <p className="mt-6 text-lg leading-8 text-[#C8960C] font-semibold">Transformamos tus sueños, en viajes inolvidables</p>
+
                     </div>
 
                 </div>

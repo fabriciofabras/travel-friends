@@ -14,8 +14,7 @@ export const Favoritos = () => {
 
     const handleClick = (destinoId, id) => {
 
-        console.log(destinoId)
-        console.log(id)
+        
         navigate(`/hotel/${destinoId}/${id}`);
     };
 

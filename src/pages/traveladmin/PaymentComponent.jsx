@@ -7,7 +7,7 @@ export const PaymentComponent = (props) =>{
  // initMercadoPago('TEST-c6c22da5-fa17-4e4c-a559-16e50d1921a9');
   initMercadoPago('APP_USR-a281ec0d-80e5-4450-88fe-cdf95d2ee013');
 
-console.log("props",props)
+ // props are received by the component
 const initialization = {
     amount: props.amount,
     description:props.description,
@@ -29,7 +29,6 @@ const initialization = {
       // callback llamado al hacer clic en el botón enviar datos
 
       formData.description = props.description;
-      console.log(JSON.stringify(formData))
       return new Promise((resolve, reject) => {
         fetch("https://travel-friends-server.vercel.app/process_payment", {
           method: "POST",
@@ -42,7 +41,6 @@ const initialization = {
           .then((response) => {
             // recibir el resultado del pago
             resolve();
-            console.log("response",response)
             props.setPaymentId(response.payment.id)
             props.handlePago(3)
           })
@@ -56,7 +54,6 @@ const initialization = {
     
       const onError = async (error) => {
         // callback llamado para todos los casos de error de Brick
-        console.log(error);
       };
       const onReady = async () => {
         /*

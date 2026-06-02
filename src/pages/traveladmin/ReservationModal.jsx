@@ -19,7 +19,7 @@ const ReservationModal = ({ show, handleClose, reservation, onUpdate }) => {
       onUpdate(updatedReservation); // Actualiza la UI después del éxito
       handleClose(); // Cierra el modal
     } catch (error) {
-      console.error("Error al actualizar la reservación:", error);
+      
     }
   };
 

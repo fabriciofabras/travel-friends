@@ -20,7 +20,7 @@ const ConfirmationComponent = (props) => {
 
     const onError = async (error) => {
         // callback llamado solicitada para todos los casos de error de Brick
-        console.log(error);
+        
     };
     const onReady = async () => {
         /*

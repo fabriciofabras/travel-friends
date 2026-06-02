@@ -10,13 +10,14 @@ import { Helmet } from "react-helmet";
 
 const SeccionOficina = () => {
     return (
-        <div className="p-6 bg-white">
+        <div className="px-6 pb-6 pt-36 sm:pt-32 bg-white">
             <Helmet>
                 <title>Nuestra Oficina en Naucalpan | Travel Friends Agencia de Viajes</title>
                 <meta name="description" content="Visita la oficina de Travel Friends en Naucalpan. Realiza tus pagos presencialmente y recibe atención personalizada cara a cara para planear tu viaje ideal." />
             </Helmet>
-            <h2 className="text-3xl font-bold mb-4 text-center">Conoce Nuestras Oficinas</h2>
-            <p className="text-lg text-center mb-6">Visítanos y obtén atención personalizada para planear tu viaje soñado.</p>
+            <h2 className="text-3xl font-bold mb-2 text-center text-[#1565C0]">Conoce Nuestras Oficinas</h2>
+            <div className="mx-auto mb-4 h-1 w-16 rounded-full bg-[#C8960C]"></div>
+            <p className="text-lg text-center mb-6 text-gray-600">Visítanos y obtén atención personalizada para planear tu viaje soñado.</p>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
                 <img src={oficina1} alt="Oficina" className="rounded-xl w-full h-64 object-cover" />
@@ -24,9 +25,9 @@ const SeccionOficina = () => {
                 <img src={renatur} alt="Oficina" className="rounded-xl w-full h-64 object-cover" />
             </div>
 
-            <Card className="p-4 bg-gray-100 rounded-xl">
+            <Card className="p-4 bg-white rounded-xl shadow-md border-t-4 border-t-[#C8960C]">
                 <CardBody className="text-center">
-                    <h3 className="text-2xl font-bold mb-2">Ubicación</h3>
+                    <h3 className="text-2xl font-bold mb-2 text-[#1565C0]">Ubicación</h3>
                     <p><MapPin className="inline mr-2" /> Av. Vía Adolfo López Mateos 201, Col. Santa Cruz Acatlán, Naucalpan, Méx., Santa Cruz Acatlán, 53150 Naucalpan, Méx., México</p>
                     <iframe
                         title="miOficina"
@@ -34,10 +35,10 @@ const SeccionOficina = () => {
                         className="w-full h-64 mt-4 rounded-xl"
                         allowFullScreen=""
                         loading="lazy"></iframe>
-                    <h3 className="text-2xl font-bold mt-4 mb-2">Horario de Atención</h3>
+                    <h3 className="text-2xl font-bold mt-4 mb-2 text-[#1565C0]">Horario de Atención</h3>
                     <p>Lunes a Sábado: 10:00 AM - 7:00 PM</p>
 
-                    <h3 className="text-2xl font-bold mt-4 mb-2">Contacto</h3>
+                    <h3 className="text-2xl font-bold mt-4 mb-2 text-[#1565C0]">Contacto</h3>
                     <p><Phone className="inline mr-2" /> +52 55 1212 0049</p>
                     <p><Mail className="inline mr-2" /> contacto@travelfriends.com.mx</p>
 

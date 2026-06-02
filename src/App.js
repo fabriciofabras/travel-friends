@@ -10,13 +10,13 @@ function App() {
       <BrowserRouter>
         <TravelRoutes />
          {/* Footer */}
-         <footer className="bg-[#004c97] text-white py-4 text-center">
-                <p>&copy; 2025 Travel Friends. Todos los derechos reservados.</p>
-                <div className="flex justify-center mt-4 space-x-4">
-                    <a href="/politica-de-privacidad" className="hover:underline">
+         <footer className="bg-[#0C2D6B] text-white py-6 text-center border-t-4 border-t-[#C8960C]">
+                <p className="text-sm text-slate-300">&copy; 2025 Travel Friends. Todos los derechos reservados.</p>
+                <div className="flex justify-center mt-3 space-x-6 text-sm">
+                    <a href="/politica-de-privacidad" className="text-[#C8960C] hover:text-white transition-colors">
                         Políticas de Privacidad
                     </a>
-                    <a href="/terminos-y-condiciones" className="hover:underline">
+                    <a href="/terminos-y-condiciones" className="text-[#C8960C] hover:text-white transition-colors">
                         Términos y Condiciones
                     </a>
                 </div>

@@ -25,7 +25,7 @@ code {
 .titulo-promociones {
   font-size: 22px;
   font-weight: bold;
-  color: #005ae0;
+  color: #1565C0;
   font-family: 'Trebuchet'
 }
 
@@ -59,7 +59,7 @@ code {
 }
 
 .navbar {
-  background-color: #9e1414;
+  background-color: #0C2D6B;
 }
 
 .menu {
@@ -81,8 +81,7 @@ code {
 }
 
 .menu-item a:hover {
-  background-color: rgb(39, 106, 199);
-
+  background-color: #C8960C;
 }
 
 /* Estilo para el menú desplegable */
@@ -103,7 +102,7 @@ code {
 }
 
 .dropdown-menu li a:hover {
-  background-color: rgb(39, 106, 199);
+  background-color: #C8960C;
 }
 
 /* Mostrar el menú desplegable al pasar el ratón sobre el elemento principal */
@@ -165,16 +164,17 @@ code {
 
 .btn.custom {
   border-radius: 8px;
-  border: 2px solid white;
-  background-color: #004c97;
+  border: 2px solid #0C2D6B;
+  background-color: #0C2D6B;
   color: white;
   font-weight: 600;
+  transition: background-color 0.2s, color 0.2s;
 }
 
 .btn.custom:hover {
-  background-color: white;
-  color: #004c97;
-  border-color: #004c97;
+  background-color: #C8960C;
+  color: white;
+  border-color: #C8960C;
 }
 
 @media (min-width: 640px) {
@@ -185,26 +185,26 @@ code {
 }
 
 .navlink {
-  color: #d59319;
+  color: #C8960C;
   font-family: "Trebuchet";
   text-decoration: none;
+  transition: color 0.2s;
 }
 
 .h2-travel {
-  color: #d59319;
+  color: #C8960C;
   font-family: "Trebuchet";
   font-size: 30px;
 }
 
 .h3-travel {
-  color: #d59319;
+  color: #C8960C;
   font-family: "Trebuchet";
   font-size: 20px;
 }
 
 .navlink:hover {
-  color: #004c97;
-  font-size: 17px;
+  color: #0C2D6B;
   font-family: "Trebuchet";
 }
 

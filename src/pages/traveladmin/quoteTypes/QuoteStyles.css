@@ -1,0 +1,213 @@
+/* Quote Component Styles */
+
+/* Form Controls */
+.quote-form-control {
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.quote-form-control:focus {
+  border-color: #0057e0;
+  box-shadow: 0 0 0 3px rgba(0, 87, 224, 0.1);
+  outline: none;
+}
+
+/* Section Headers */
+.quote-section-header {
+  color: #0057e0;
+  font-weight: 600;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+/* Hotel Card */
+.hotel-card {
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  transition: all 0.3s ease;
+}
+
+.hotel-card:hover {
+  box-shadow: 0 2px 8px rgba(0, 87, 224, 0.15);
+}
+
+.hotel-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.hotel-card-title {
+  font-weight: 600;
+  color: #333;
+}
+
+/* Form Labels */
+.quote-label {
+  font-weight: 500;
+  font-size: 0.95rem;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+/* Suggestions List */
+.suggestions-list {
+  position: absolute;
+  z-index: 1000;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  width: 100%;
+  list-style: none;
+  padding: 0;
+  margin: 5px 0 0 0;
+  max-height: 250px;
+  overflow-y: auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.suggestions-list li {
+  padding: 12px;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+  transition: background 0.2s;
+}
+
+.suggestions-list li:hover {
+  background-color: #f0f5ff;
+}
+
+.suggestions-list li:last-child {
+  border-bottom: none;
+}
+
+/* Buttons */
+.quote-btn-primary {
+  border-radius: 6px;
+  font-weight: 600;
+  background-color: #0057e0;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.quote-btn-primary:hover {
+  background-color: #0044b0;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 87, 224, 0.3);
+}
+
+.quote-btn-success {
+  border-radius: 6px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.quote-btn-success:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+}
+
+.quote-btn-danger {
+  border-radius: 6px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.quote-btn-danger:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+}
+
+/* Textarea */
+.quote-textarea {
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+  padding: 10px 12px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  resize: none;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.quote-textarea:focus {
+  border-color: #0057e0;
+  box-shadow: 0 0 0 3px rgba(0, 87, 224, 0.1);
+  outline: none;
+}
+
+/* Option Box */
+.option-box {
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  transition: all 0.3s ease;
+}
+
+.option-box:hover {
+  border-color: #0057e0;
+  background-color: #f0f5ff;
+}
+
+/* File Input */
+.quote-file-input {
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 8px;
+}
+
+.quote-file-input:focus {
+  border-color: #0057e0;
+  box-shadow: 0 0 0 3px rgba(0, 87, 224, 0.1);
+}
+
+/* Checkbox */
+.quote-checkbox {
+  cursor: pointer;
+  margin-right: 8px;
+}
+
+.quote-checkbox:focus {
+  outline: 2px solid #0057e0;
+  outline-offset: 2px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .quote-section-header {
+    font-size: 1.1rem;
+  }
+
+  .hotel-card {
+    padding: 15px;
+  }
+
+  .suggestions-list {
+    max-height: 200px;
+  }
+
+  .quote-label {
+    font-size: 0.9rem;
+  }
+}
+
+/* Smooth transitions */
+* {
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Loading state */
+.quote-loading {
+  color: #666;
+  font-size: 0.9rem;
+  padding: 10px;
+}

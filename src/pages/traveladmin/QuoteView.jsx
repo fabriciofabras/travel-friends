@@ -36,7 +36,6 @@ function QuoteView() {
 
     // Verificar si la fecha es válida
     if (isNaN(dateObject.getTime())) {
-      console.error("Fecha no válida:", fecha);
       return "Fecha no válida";
     }
 
@@ -56,11 +55,8 @@ function QuoteView() {
 
   const detalleDestino = destinos.filter((destino) => destino.destinoId == formData.destinoId)
 
-  console.log("detalleDestino", detalleDestino)
   let detalleHotel = detalleDestino[0].hoteles.filter((hotel) => hotel.hotelID == formData.hotelID);
-
   detalleHotel = detalleHotel[0];
-  console.log("hotel", detalleHotel)
 
   useEffect(() => {
 
@@ -90,15 +86,13 @@ function QuoteView() {
     }).format(amount);
   };
 
-  console.log("formData")
-  console.log(formData)
+  
 
   const fechas = formData.dates.split(",")
   const checkIn = fechas[0];
   const checkOut = fechas[1];
 
   const handleChange = (e) => {
-    console.log("Handle change")
   };
 
   const crearPreferencia = async () => {
@@ -129,7 +123,6 @@ function QuoteView() {
     });
 
     // Enviar datos al servidor (puedes usar fetch o axios)
-    console.log("Datos enviados:", Object.fromEntries(data.entries()));
   };
 
   const handlePago = (step) =>{

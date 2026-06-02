@@ -15,7 +15,7 @@ export const NavBar = () => {
 
 
     return (
-        <nav className="flex items-center justify-around pt-4 lg:px-12 px-4 bg-white border-2" aria-label="Global">
+        <nav className="flex items-center justify-around pt-4 lg:px-12 px-4 bg-white border-b-4 border-b-[#C8960C] shadow-md" aria-label="Global">
             <div className="flex lg:hidden">
                 <button
                     type="button"
@@ -29,21 +29,21 @@ export const NavBar = () => {
                 </button>
             </div>
 
-            <div className={`lg:hidden ${isMenuOpen ? 'block' : 'hidden'} absolute top-16 left-0 right-0 bg-white p-4 shadow-lg`}>
-                <NavLink onClick={toggleMenu} className="block py-2 text-gray-900 hover:bg-gray-100" to="/inicio">
-                    <HomeIcon className="h-6 w-6 inline-block mr-2" />
+            <div className={`lg:hidden ${isMenuOpen ? 'block' : 'hidden'} absolute top-16 left-0 right-0 bg-white p-4 shadow-lg z-50 border-t border-[#C8960C]`}>
+                <NavLink onClick={toggleMenu} className="block py-2 px-3 text-[#1565C0] font-semibold hover:bg-amber-50 rounded-md" to="/inicio">
+                    <HomeIcon className="h-5 w-5 inline-block mr-2" />
                     Inicio
                 </NavLink>
-                <NavLink onClick={toggleMenu} className="block py-2 text-gray-900 hover:bg-gray-100" to="/viaja-seguro">
-                    <ShieldIcon className="h-6 w-6 inline-block mr-2" />
+                <NavLink onClick={toggleMenu} className="block py-2 px-3 text-[#1565C0] font-semibold hover:bg-amber-50 rounded-md" to="/viaja-seguro">
+                    <ShieldIcon className="h-5 w-5 inline-block mr-2" />
                     Viaja Seguro
                 </NavLink>
-                <NavLink onClick={toggleMenu} className="block py-2 text-gray-900 hover:bg-gray-100" to="/oficina">
-                    <HomeIcon className="h-6 w-6 inline-block mr-2" />
+                <NavLink onClick={toggleMenu} className="block py-2 px-3 text-[#1565C0] font-semibold hover:bg-amber-50 rounded-md" to="/oficina">
+                    <HomeIcon className="h-5 w-5 inline-block mr-2" />
                     Nuestra Oficina
                 </NavLink>
-                <NavLink onClick={toggleMenu} className="block py-2 text-gray-900 hover:bg-gray-100" to="/promociones">
-                    <BuildingOfficeIcon className="h-6 w-6 inline-block mr-2" />
+                <NavLink onClick={toggleMenu} className="block py-2 px-3 text-[#1565C0] font-semibold hover:bg-amber-50 rounded-md" to="/promociones">
+                    <BuildingOfficeIcon className="h-5 w-5 inline-block mr-2" />
                     Promociones
                 </NavLink>
                 {/*<NavLink onClick={toggleMenu} className="block py-2 text-gray-900 hover:bg-gray-100" to="/favoritos">
@@ -52,24 +52,21 @@ export const NavBar = () => {
                 </NavLink> */}
                 <NavLink
                     onClick={toggleMenu}
-                    className="block py-2 text-gray-900 hover:bg-gray-100" to="https://www.facebook.com/travelfriendsmx"
-
+                    className="block py-2 px-3 text-[#1565C0] font-semibold hover:bg-amber-50 rounded-md" to="https://www.facebook.com/travelfriendsmx"
                     target="_blank"
                     rel="noopener noreferrer"
                 >
-                    <FacebookIcon className="h-6 w-6 inline-block mr-2" />
+                    <FacebookIcon className="h-5 w-5 inline-block mr-2" />
                     Facebook
                 </NavLink>
 
                 <NavLink
                     onClick={toggleMenu}
-                    className="block py-2 text-gray-900 hover:bg-gray-100" to="https://www.instagram.com/travel.friends.mexico"
-
-
+                    className="block py-2 px-3 text-[#1565C0] font-semibold hover:bg-amber-50 rounded-md" to="https://www.instagram.com/travel.friends.mexico"
                     target="_blank"
                     rel="noopener noreferrer"
                 >
-                    <InstagramIcon className="h-6 w-6 inline-block mr-2" />
+                    <InstagramIcon className="h-5 w-5 inline-block mr-2" />
                     Instagram
                 </NavLink>
                 {/* Añade más enlaces si es necesario */}

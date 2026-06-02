@@ -32,8 +32,7 @@ export const Cotiza = () => {
                         promociones.Promotions.map((promocion, index) => {
                             let promotionDetail = JSON.parse(promocion.PromotionDetail);
                             promotionDetail = promotionDetail.PromotionHotelDetail;
-                            console.log("promotionDetail")
-                            console.log(promotionDetail)
+                            
                             return (
                                 <div className="flex flex-col  w-3/3 rounded-2xl">
                                     <img className="rounded-lg" src={promocion.UrlImage}></img>

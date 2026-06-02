@@ -14,10 +14,7 @@ export const Hotel = () => {
 
     const destino = destinos.filter(destino => destino.destinoId == destinoId)
 
-    console.log(destino)
-
     let hotel = destino[0].hoteles.filter(hotel => (hotel.hotelID !== undefined ? hotel.hotelID : hotel.hotelId) == hotelId)
-    console.log("hotel:", hotel)
     hotel = hotel[0];
 
     return (
