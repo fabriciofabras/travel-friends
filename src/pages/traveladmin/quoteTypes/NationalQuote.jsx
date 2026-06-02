@@ -437,14 +437,6 @@ function NationalQuote() {
       }
     }
 
-    // Ajusta las dimensiones de la imagen según sea necesario
-    const pageWidth = doc.internal.pageSize.width;
-
-    const imgWidth = 110; // Ancho de la imagen (ajustado al ancho de la página)
-    const imgHeight = 60; // Altura de la imagen
-    const x = 50; // Posición horizontal (comienza en el borde izquierdo)
-    const y = 150; // Posición vertical (al final de la página)
-
     const addFooterImage = (doc, footer) => {
       const pageHeight = doc.internal.pageSize.height;
       const pageWidth = doc.internal.pageSize.width;
@@ -505,9 +497,7 @@ function NationalQuote() {
       });
     };
 
-    const dataSerializada = serializeFormDataForHotels(formData)
-
-    // AGREGAR IMAGENES DE TRIP ADVISOR 
+    // AGREGAR IMAGENES DE TRIP ADVISOR
 
     const hotelImages = await fetchHotelImages(formData.hotels);
 
@@ -611,53 +601,6 @@ function NationalQuote() {
     return hotelImages;
   };
 
-  // Funciones para manejar Items Incluidos
-  const addIncludedItem = () => {
-    setFormData({
-      ...formData,
-      incluidedinTrip: [...formData.incluidedinTrip, '']
-    });
-  };
-
-  const removeIncludedItem = (index) => {
-    setFormData({
-      ...formData,
-      incluidedinTrip: formData.incluidedinTrip.filter((_, i) => i !== index)
-    });
-  };
-
-  const handleIncludedItemChange = (index, value) => {
-    const updatedItems = [...formData.incluidedinTrip];
-    updatedItems[index] = value;
-    setFormData({
-      ...formData,
-      incluidedinTrip: updatedItems
-    });
-  };
-
-  // Funciones para manejar Items No Incluidos
-  const addNotIncludedItem = () => {
-    setFormData({
-      ...formData,
-      notIncludedinTrip: [...formData.notIncludedinTrip, '']
-    });
-  };
-
-  const removeNotIncludedItem = (index) => {
-    setFormData({
-      ...formData,
-      notIncludedinTrip: formData.notIncludedinTrip.filter((_, i) => i !== index)
-    });
-  };
-
-  const handleNotIncludedItemChange = (index, value) => {
-    const updatedItems = [...formData.notIncludedinTrip];
-    updatedItems[index] = value;
-    setFormData({
-      ...formData,
-      notIncludedinTrip: updatedItems
-    });
-  };
 
 
   return (

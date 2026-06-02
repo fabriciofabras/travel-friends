@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { initMercadoPago, Wallet } from '@mercadopago/sdk-react';
 
-const MercadoPagoButton = () => {
+const MercadoPagoButton = ({ preferenceId }) => {
   // Inicializar Mercado Pago con tu Public Key
   useEffect(() => {
     initMercadoPago('TESTUSER857296118');
