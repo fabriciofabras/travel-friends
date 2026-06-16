@@ -99,8 +99,8 @@ function NationalQuote() {
     try {
       setLoading(true);
 
-/*       const res = await fetch(`https://travel-friends-server.vercel.app/api/hotels?q=${encodeURIComponent(query)}`);
- */      const res = await fetch(`http://localhost:3001/api/hotels?q=${encodeURIComponent(query)}`);
+       const res = await fetch(`https://travel-friends-server.vercel.app/api/hotels?q=${encodeURIComponent(query)}`);
+ //      const res = await fetch(`http://localhost:3001/api/hotels?q=${encodeURIComponent(query)}`);
       const data = await res.json();
       setSuggestions(data.places || []);
       //   setSuggestions(data.data || []);
@@ -589,8 +589,8 @@ function NationalQuote() {
       await Promise.all(
         hotels.map(async (hotel) => {
           let hotelId = hotel.hotelID
-
-          const res = await fetch(`http://localhost:3001/api/hotelImages?q=${hotelId}`);
+          
+          const res = await fetch(`https://travel-friends-server.vercel.app/api/hotelImages?q=${hotelId}`);
           const data = await res.json();
           hotelImages[hotel.hotelID] = data;
         })
